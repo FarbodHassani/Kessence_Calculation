@@ -1,0 +1,400 @@
+\documentclass[a4paper,12pt]{article}
+%% My standard included packages
+%\pdfoutput=1 % if your are submitting a pdflatex (i.e. if you have
+%             % images in pdf, png or jpg format)
+%\usepackage{jcappub} % for details on the use of the package, please
+%                     % see the JCAP-author-manual
+%\usepackage[T1]{fontenc} % if needed
+
+\usepackage{setspace}           % Allows easy changes to line spacing 
+\usepackage{graphicx}           % Allows including of graphics files
+\usepackage{amsmath}            % Additional math capabilities
+\usepackage{marginnote}         % Used with todonotes package
+\usepackage{datetime}           % Allows formatting of date and time
+\newcommand {\be}{\begin{equation}}
+\newcommand {\ee}{\end{equation}}
+\usepackage[toc,page]{appendix}
+\usepackage{cancel}
+
+\usepackage{enumitem} 
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{graphicx}% Use pdf, png, jpg, or epså¤ with pdflatex; use eps in DVI mode
+\usepackage{caption}
+\usepackage{subcaption}
+          % List formatting commands
+\setlist{noitemsep}             % Remove space between list items 
+%\usepackage{subfigure}          % Create numbered and captioned subfigures
+\usepackage{rotating}           % Create landscape tables and figures
+\usepackage[dvipsnames]{xcolor} % Refer to colors by name
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=blue,citecolor=Black]{hyperref}           % URLS and hyperlinks
+%\usepackage{hyperref}           % URLS and hyperlinks
+\usepackage{float}              % Activate [H] option to place figure HERE
+\usepackage[numbers]{natbib}
+\usepackage{versionPO}          % Include text conditionally
+\usepackage{caption}
+%\usepackage[utf8]{inputenc}
+%\usepackage[nottoc]{tocbibind}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
+% These next lines allow including or excluding different versions of text
+% using versionPO.sty
+\includeversion{notes}		% Include notes?
+%\excludeversion{notes}
+\excludeversion{comment}
+\includeversion{links}          % Turn hyperlinks on?
+\excludeversion{submit}		% Format for conference submission?
+\includeversion{toc}		% Include table of contents?
+%\graphicspath{{./Results1-Perihelionadvance}}
+
+% Turn off hyperlinking if links is excluded
+\iflinks{}{\hypersetup{draft=true}}
+
+% Notes options
+\ifnotes{%
+\usepackage[margin=1in,paperwidth=10in,right=2.5in]{geometry}%
+\usepackage[textwidth=1.4in,shadow,colorinlistoftodos]{todonotes}%
+}{%
+\usepackage[margin=1in]{geometry}%
+\usepackage[disable]{todonotes}%
+}
+
+% Allow todonotes inside footnotes without blowing up LaTeX
+% Next command works but now notes can overlap. Instead, we'll define 
+% a special footnote note command that performs this redefinition.
+%\renewcommand{\marginpar}{\marginnote}%
+
+% Save original definition of \marginpar
+\let\oldmarginpar\marginpar
+% Workaround for todonotes problem with natbib (To Do list title comes out wrong)
+\makeatletter\let\chapter\@undefined\makeatother % Undefine \chapter for todonotes
+% Packages included specifically for this document.
+\usepackage{texintro}           % Document-specific definitions
+\usepackage{tocvsec2}           % More flexible formatting of table of contents
+\usepackage{bibentry}           % Print full citation in text
+\nobibliography*                                % Allow use of \bibentry command
+\usepackage{tikz}             % Already included by todonotes
+\usetikzlibrary{matrix}
+\usepackage[retainorgcmds]{IEEEtrantools}  % Equation formatting. Option needed to
+                                           % allow enumitem to work.
+
+% Workaround for todonotes problem with natbib (To Do list title comes out wrong)
+% If you're including tocvsec2, do so before this command.
+\makeatletter\let\chapter\@undefined\makeatother % Undefine \chapter for todonotes.
+
+% Number paragraphs and subparagraphs and include them in TOC
+\setcounter{tocdepth}{2}
+
+\usepackage[affil-it]{authblk} 
+\usepackage{etoolbox}
+%\usepackage{lmodern}
+%\renewcommand\Authfont{\fontsize{12}{14.4}\selectfont}
+%\renewcommand\Affilfont{\fontsize{9}{10.8}\itshape}
+%\renewcommand\Authfont{\fontsize{12}{15}\selectfont}
+%\renewcommand\Affilfont{\fontsize{9}{11}\itshape}
+\definecolor{astral}{RGB}{46,116,181}
+%\subsectionfont{\color{astral}}
+%\sectionfont{\color{astral}}
+%\usedate{31 August}                         % Use usual LaTeX date layout
+%\date{ $1^{th}$ September, 2017}
+%\title{\color{BlueViolet}\Huge{On the accuracy of approximated geodesic equations and different potentials with different numerical methods } }
+\title{\color{BlueViolet}\Huge{K-essence field equation}}
+%\vskip 2em
+\author{Farbod Hassani}
+%\thanks{Email:\href{mailto:farbod.hassani@unige.ch}{{farbod.hassani@unige.ch}}}  \thanks{Homepage: \href{http://www.farbod-hassani.com}{farbod-hassani.com}}}
+%\affil{D\'epartement de Physique Th\'eorique and Center for Astroparticle Physics, Universit\'e de Gen\'eve,
+%24 quai Ansermet, CH-1211 Gen\'eve 4, Switzerland}
+
+%{farbod-hassani.com}} }
+%\newcommand*{\TitleFont}{%     \usefont{\encodingdefault}{\rmdefault}{b}'%     \fontsize{18}{16}%    \selectfont}
+%\title{\TitleFont Halo finder}
+%\author[1]{{Farbod Hassani} \thanks{ \url{farbod.hassani@gmail.com}
+%}
+%\thanks{farbod-hassani.com}}
+%\author[2]{Author E\thanks{E.E@university.edu}}
+%\affil[1]{D\'epartement de Physique Th\'eorique and Center for Astroparticle Physics, Universit\'e de Gen\'eve,
+%24 quai Ansermet, CH-1211 Gen\'eve 4, Switzerland}
+%\emailAdd{farbod.hassani@gmail.com}
+%\affil[2]{Department of Mechanical Engineering, \LaTeX\ University}
+      %\begin{abstract}
+%This is abstract text: This simple document shows very basic features of \LaTeX{}.
+%\lstset { %
+%    language=C++,
+%    %backgroundcolor=\color{black!5}, % set backgroundcolor
+%    basicstyle=\footnotesize,% basic font setting
+%}
+\begin{document}
+
+  \maketitle
+  \tableofcontents
+
+  \flushbottom
+\section{Theory} 
+The most general action for a scalar field coupled to Einstein gravity is;
+\be
+S=\frac{1}{16 \pi G} \int \sqrt{-g} R d^4 x + \int \sqrt{-g} P (X, \varphi) d^4 x
+\ee
+The metric convention is $(-,+,+,+)$ and $X=- \frac{1}{2}  g^{\mu \nu}\partial _\mu \phi \partial_\nu \phi$. We  assume the scalar action as a matter sector which contributes to stress energy tensor,
+\be
+T^{\mu\nu}\equiv \dfrac {+2}{\sqrt {-g}}\dfrac {\delta \mathcal{ L}}{\delta g_{\mu\nu}}=\dfrac {2}{\sqrt {-g}}\dfrac {\delta \left[ \sqrt {-g}P\left( X,\varphi \right) \right] }{\delta g_{\mu\nu}}
+=
+\dfrac {2}{\sqrt {-g}}[- \dfrac {1 }{2 \sqrt{-g}} \frac{\delta g}{\delta g_{\mu\nu}}P\left( X,\varphi\right) +\dfrac {\delta P\left( X,\varphi\right) }{\delta g_{\mu\nu}}\sqrt {-g}]
+\ee
+According to appendix \ref{A1},
+\be
+\dfrac {\delta \sqrt {-g}}{\delta g_{\mu\nu}}=\dfrac {-1}{2\sqrt {-g}}\dfrac {\delta g}{\delta g_{\mu\nu}}=\dfrac {-1}{2\sqrt {-g}}\dfrac {g\delta g_{\mu\nu}g^{\mu\nu}}{\delta g_{\mu\nu}}=\dfrac {\sqrt {-g}}{2}g^{\mu\nu}
+\ee
+\be
+T^{\mu\nu}=2\dfrac {\delta P\left( X,\varphi\right) }{\delta g_{\mu\nu}} + g^{\mu\nu}P\left( X,\varphi\right)
+\ee
+\be
+T_{\rho \sigma}=g_{\mu \rho} g_{\nu \sigma} T^{\mu \nu}= \Big[ 2 g_{\mu \rho} g_{\nu \sigma}  \dfrac {\delta P\left( X,\varphi\right) }{-g_{\mu \rho'} g_{\nu \sigma'}  \delta g ^{\sigma' \rho'}} + g_{\mu \rho} g_{\nu \sigma}  g^{\mu\nu}P\left( X,\varphi\right) \Big]= -2\dfrac {\delta P \left( X,\varphi\right) }{\delta g^{\rho \sigma}}+g_{\rho \sigma}P\left( X,\varphi\right)
+\ee
+Where we have used $\delta g_{\mu \nu}= - g_{\mu \rho} g_{\nu \sigma} \delta g^{\rho \sigma}$.
+\begin{align}
+X=-\dfrac {1}{2}g^{\mu\nu}\partial_{\mu}\varphi\partial_{\nu}\varphi \longrightarrow  \delta X=-\dfrac {1}{2}\delta g^{\mu\nu}\partial_{\mu}\varphi\partial_{\nu}\varphi-\dfrac {1}{2}g^{\mu\nu}\partial_{\mu}\delta \varphi\partial_{\nu}\varphi-\dfrac {1}{2}g^{\mu\nu}\partial_{\mu}\varphi\partial_{\nu}\delta\varphi
+\end{align}
+so,
+\be
+\dfrac {\partial X}{\partial g^{\mu\nu}}=-\dfrac {\partial_{\mu}\varphi\partial_{\nu}\varphi}{2}
+\ee
+\be
+\dfrac {\delta P}{\delta g^{\mu\nu}}=\dfrac {\partial P}{\partial X}\dfrac {\partial X}{\partial g^{\mu\nu}}+ \cancel{\dfrac {\partial P}{\partial\varphi}\dfrac {\partial\varphi}{\partial g^{\mu\nu}}}=\dfrac {\partial P}{\partial X}\dfrac {\partial X}{\partial g^{\mu\nu}}=-\dfrac {\partial_{\mu}\varphi\partial_{\nu}\varphi}{2}P_{,X}
+\ee
+\be
+T_{\mu\nu}=g_{\mu\nu}P\left( X,\varphi\right) +P_{,X}\partial_{\mu}\varphi\partial_{v}\varphi \; , \;
+T_{\mu\nu}=\left( \rho+p\right) u_{\mu}u_{\nu}+p g_{\mu\nu}
+\ee
+\be
+u_{\mu}=\dfrac {\partial_{\mu}\varphi}{\sqrt {-\partial_{\mu}\varphi\partial^{\mu}\varphi}}\rightarrow u_{\mu}=\dfrac {\partial_{\mu}\varphi}{\sqrt {2X}} , \rho=2XP_{,X}-P \; , \; p=P 
+\ee
+We assume that field is a monotonic function of time in background which is perturbed in each constant time hypersurfaces
+\be
+\varphi_{0}\left( t+\pi\left( t,\overrightarrow {x}\right) \right) =\varphi_{0}\left( t\right) +\dfrac {\partial\varphi_{0}}{\partial t}\pi+\dfrac {\partial^{2}\varphi_{0}}{2\partial^{2}t}\pi^{2}+\ldots
+\ee
+We can choose $\varphi_0(t)=t$ for simplicity, using the following ansatz for the metric,
+\be
+g_{\mu\nu}=-e^{2\Phi}dt^{2}+a^{2}\left( t\right) e^{-2\Psi}dr^{2}
+\ee
+\be
+\delta g^{(1)}_ { 00}=-2\Phi \, \; \; , 
+\delta g^{(1)}_{ij}= -2 a^{2} \Psi \delta_{ij}
+\ee
+Where $\delta g^{(1)}_ { 00}$ means the first order metric in pertubations.  The inverse of metric is defined as following,
+\be
+g^{\mu\nu}=-e^{-2\Phi}dt^{2}+a^{-2}e^{2\Psi}dr^{2} 
+\ee
+\be
+\delta g_{(1)}^{00}=+2\Phi \, \; \; , 
+\delta g_{(1)}^{ij}= +2 a^{-2} \Psi \delta^{ij} 
+\ee
+We have,
+\be
+X=\dfrac {-1}{2}g^{\mu\nu}\partial_{\mu}\left( t+\pi\right) \partial_{\nu}\left( t+\pi\right) 
+\ee
+We expand X perturbatively,
+\be
+X=\overline {X}+\delta X_{1}+ \delta X_{2}+\ldots
+\ee
+\be
+\overline {X}=-\dfrac {1}{2}\bar{g}^{00}\partial_{0}t\partial_{0}t=+\dfrac {1}{2}\\
+\ee
+\be
+\delta X_{1}=-\dfrac {1}{2}\delta g_{(1)}^{00}\partial_{0}t\partial_{0}t-\dfrac {1}{2} \bar{g}^{00}\partial_{0}t\partial_{0}\pi-\dfrac {1}{2} \bar{g}^{00}\partial_{0}\pi\partial_{0}t-\dfrac {1}{2}\bar{g}^{ij}\partial_{i}\pi\partial_{j}\pi
+\ee
+\be
+ \delta X_{1}=-\Phi+\dot{\pi}- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2 +O\left( \varepsilon^{2}\right)
+\ee
+We do not need to calculate $X_2$ since the energy momentum constraint adds at most one spatial derivative which does not change the second order terms to first order. So
+\be
+P\left( t+\pi,\overline{X}+ \delta X_1+\delta X_2 \right) =\overline{P}\left( t,\overline {X}\right) +{\color{red}\dfrac {\partial\overline {P}}{\partial t}\pi+\dfrac {1}{2}\dfrac {\partial^{2}\overline {P}}{\partial t^2}\pi^{2}}+\dfrac {\partial\overline {P}}{\partial\overline {X}}\delta X_1+\dfrac {1}{2}\dfrac {\partial P}{\partial X^{2}}\delta X_1^{2} +\dfrac {1}{2}\dfrac {\partial P}{\partial X^{2}}\delta X_2 + \mathcal{O}(\epsilon^3).
+\ee
+Why the {\color{red} red part is zero (in arxiv: 0811.0827)}.\\
+The adiabatic sound speed ({\color{red}why?!}) is defined as below,
+\be
+%c^{2}_{s}\equiv \frac{\delta P}{\delta \rho} =\dfrac {\bar{P}_{,X} \delta X + \bar{P}_{,\varphi} \delta \varphi}{\bar{\rho}_{,X} \delta X  +\bar{\rho}_{,\varphi} \delta  \varphi}=\dfrac {\bar{P}_{,X}}{\bar{\rho}_{,X}}=\dfrac {\bar{P}_{,X}}{\bar{P}_{,X}+2\bar{X}\bar{P}_{,XX}} 
+c^{2}_{s}\equiv \dfrac {\bar{P}_{,X}}{\bar{\rho}_{,X}}=\dfrac {\bar{P}_{,X}}{\bar{P}_{,X}+2\bar{X}\bar{P}_{,XX}} 
+\ee
+and 
+\be
+\Omega= \frac{\bar{\rho}}{3 M_{pl}^2 H^2}=\frac{{2\bar{X} \bar{P}_{,X}-\bar{P}}}{3 M_{pl}^2 H^2} \label{22}
+\ee
+Where we have used $ \rho=2XP_{,X}-P$
+\be
+\omega=\dfrac {\overline {P}}{\overline {\rho}}=\dfrac {\overline {P}}{2\overline {X} \, \overline{P}_{,X}-\overline {P}} \label{23}
+\ee
+So we can write the function $P$ and it derivative in terms of $\Omega$, $\omega$ and $c_s^2$,
+\be
+\bar{P}_{X}=\bar{P} (1+\frac{1}{\omega}) \; \; \; \; \;  \; \bar{P} _{,XX}=\bar{P}_{,X} \frac{1-c_s^2}{c_s^2} = \bar{P} (1+\frac{1}{\omega}) (\frac{1}{c_s^2} -1 )
+\ee
+So according to \ref{22} and \ref{23}\\
+\be
+\bar{P}=  3 M_{pl}^2 H^2 \Omega \, \omega 
+\ee
+Now we can construct stress tensor up to first order in Gevolution's scheme,
+\begin{align}
+T_{\mu \nu} &= P g_{\mu \nu} + P_{,X} \partial_{\mu} \varphi \partial_{\nu} \varphi \\ \nonumber & =(\bar{g}_{\mu \nu} + \delta g^{(1)}_{\mu \nu}) (\bar{P}+\bar{P}_{,X} \delta X_1) + (\bar{P}_{,X}+\bar{P}_{,XX} \delta X_1) \partial_{\mu} (t+ \pi) \partial_\nu (t+\pi)+ \ldots
+\\ \nonumber & 
+= \Big[ \bar{g}_{\mu \nu} \bar{P} 
++
+ \bar{P}_{,X} \partial_{\mu} t \partial_{\nu} t \Big] \epsilon ^0 
++
+\Big[ \bar{g}_{\mu \nu}  \bar{P}_{,X} \delta X_1 
++
+ \delta g^{(1)}_{\mu \nu} \bar{P} 
+ +
+  \bar{P}_{,X}  \left ( \partial_{\mu} \pi \partial_{\nu} t  
+  +
+  \partial_{\mu} t \partial_{\nu} \pi  \right ) 
+  +
+   \delta X_1 \bar{P}_{,XX}   \partial_{\mu} t \partial_{\nu} t  
+   +
+    \bar{P}_{,X}   \partial_{\mu} \pi \partial_{\nu} \pi \Big ] \epsilon^1
++ \mathcal {O}(\epsilon^{3/2})
+\end{align}
+So,
+\begin{align}
+T_{00}= [3 M_{pl}^2 H^2 \Omega ] \epsilon ^0 
+&+
+  3 M_{pl}^2 H^2 \Omega  \Bigg[ - (1+\omega) \left (-\Phi+\partial_{t}\pi- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2 \right )
+ -
+ 2\Phi  \omega
+   +
+ 2 (1+\omega) \dot{\pi}
+\nonumber \\ &
++
+ \left ( -\Phi+\partial_{t}\pi- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2  \right ) (\omega + 1) (\frac{1}{c_s^2} -1 )     + \cancel{(1+ \omega )   \dot{\pi}^2 }\Bigg ] \epsilon^1 
+\end{align}
+We can rewrite the last equations as;
+\begin{align}
+T_{00}&= 3 M_{pl}^2 H^2 \Omega 
++
+  3 M_{pl}^2 H^2 \Omega (1+\omega) \left [   \left (-\Phi+\dot{\pi}- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2 \right ) (-2+\frac{1}{c_s^2})
+ -
+   \frac{2 \omega}{1+\omega} \Phi 
+   +
+ 2  \dot{\pi} \right ]
+ \nonumber \\ &
+  = 3 M_{pl}^2 H^2 \Omega 
++
+  3 M_{pl}^2 H^2 \Omega (1+\omega)  c_s^{-2} \left [ \left (2c_s^2 -1-\frac{2 c_s^2 \omega}{1+\omega} 
+   \right )   \Phi  +
+ \left (-2 c_s^2+ 1+2 c_s^2  \right )     \dot{\pi} 
+   +
+\frac{2c_s^2-1}{2 a^2} (\vec{\nabla} \pi)^2 \right ]
+ \nonumber \\ &
+  = 3 M_{pl}^2 H^2 \Omega    \Bigg[ 1
++
+   (1+\omega)  c_s^{-2} \left [ \left (\frac{2c_s^2}{1+\omega} -1 
+   \right )   \Phi  +    \dot{\pi} 
+   + 
+\frac{2c_s^2-1}{2 a^2} (\vec{\nabla} \pi)^2 \right ] \Bigg]
+ \nonumber \\ &
+  = 3 M_{pl}^2 H^2 \Omega    \Bigg[ 1
++ \left (2-(1+\omega)  c_s^{-2}  \right )\Phi +
+ (1+\omega)  c_s^{-2}    \dot{\pi} 
+   +
+\frac{(2c_s^2-1)(1+\omega)  }{2 a^2 c_s^{2} } (\vec{\nabla} \pi)^2 \Bigg]
+\end{align}
+
+
+\section{Numerical solution to the k-essence equation }
+The obtained equation from energy-momentum constraint $T^{\mu 0}_{;\mu}$ is written as below pertubatively;
+\begin{align}
+&-3 M_{pl}^2  \Omega_{kessence}  \Big [ 3 H^3 (w-1)-2 H \dot{H} \Big]  \epsilon^0   + 3 M_{pl}^2 H \Omega_{kessence} \Bigg[  -\Big(  (1+3w) H^2 +3 H \dot{w}    \nonumber \\&  +  2 (H^2 + \dot{H})(1+3 w)  \Big )  \Phi + \Big( -2\dot{H} (w+1)+H \dot{w}   \Big) \dot{\pi} - 3 H (1+w)\dot{ \Phi} + H (1+w) \frac{\nabla^2 \pi}{a^2} + H(1+w) \ddot{\pi} \Bigg] \epsilon \label{eq1}+ \mathcal{O}({\epsilon^2})=0
+\end{align}
+
+So, if we assume $\dot{w}=0$
+\be
+c^2 \frac{\nabla^2 \pi}{a^2} + \ddot{\pi} -3   \dot{\Phi} -\frac{(3 H^2+2 \dot{H}) (1+3 w) }{H (1+w)}  \Phi  - 2 H \dot{\pi} +  \frac{ 6H w}{ 1+w} \Psi =0 \label{eq2}
+\ee
+
+we take $d t=t_{n+1}-t_n $ and $x_{i,j,k} $ as lattice point,. We  solve the differential equation numerically as following;
+\be
+\pi_v= \dot{\pi}
+\ee
+\be
+\pi^{n}= \pi ^{n-1}+\pi_v ^{n-\frac{1}{2}} d t
+\ee
+\be \label{eq3}
+\pi_v ^{n+\frac{1}{2}}=\pi_v ^{n-\frac{1}{2}} + \ddot{\pi} ^{n}  d t 
+\ee
+
+From equation \ref{eq2} we have;
+\begin{align}
+& \ddot{\pi} ^{n} =- \frac{\pi^{n}_{i-1,j,k}+\pi^{n}_{i+1,j,k} +\pi^{n}_{i,j-1,k} +\pi^{n}_{i,j+1,k}+\pi^{n}_{i,j,k-1}+\pi^{n}_{i,j,k+1} -6 \pi^{n}_{i,j,k}  }{ a^2 dx^2}   +3 \frac{\Phi ^{n}_{i,j,k} -\Phi^{n-1}_{i,j,k} }{d t}    \nonumber \\ & + \frac{(3 H^2+2 \dot{H}) (1+3 w) }{H (1+w)} \Phi^{n}_{i,j,k} + H  \frac{(\pi_{v  \; {i,j,k}}^{n+\frac{1}{2}} +\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} )}{2} -  \frac{ 6H w}{ 1+w} \Psi ^{n}_{i,j,k}
+\end{align}
+Where we have taken $\pi_{v  \; {i,j,k}}^{n} =\frac{(\pi_{v  \; {i,j,k}}^{n+\frac{1}{2}} +\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} )}{2} $ \\
+So we can rewrite the equation \ref{eq3} as below;
+\begin{align} 
+ &\pi_v ^{n+\frac{1}{2}}=\pi_v ^{n-\frac{1}{2}} +d t  \Big [c^2 \frac{\nabla^2 \pi ^n}{a^2} +3 \frac{\Phi ^{n}_{i,j,k} -\Phi^{n-1}_{i,j,k} }{d t} + \frac{(3 H^2+2 \dot{H}) (1+3 w) }{H (1+w)} \Phi^{n}_{i,j,k} + H  \frac{(\pi_{v  \; {i,j,k}}^{n+\frac{1}{2}} +\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} )}{2} -  \frac{ 6H w}{ 1+w} \Psi ^{n}_{i,j,k} \Big]
+\end{align}
+So the set of equations we should solve are;
+\begin{align} 
+ \pi_v ^{n+\frac{1}{2}}= & \frac{1}{1- dt H/2} \Bigg[ (1+ dt H/2)\pi_v ^{n-\frac{1}{2}} + c^2 d t  \Big (  \frac{\pi^{n}_{i-1,j,k}+\pi^{n}_{i+1,j,k} +\pi^{n}_{i,j-1,k} +\pi^{n}_{i,j+1,k}+\pi^{n}_{i,j,k-1}+\pi^{n}_{i,j,k+1}  -6 \pi^{n}_{i,j,k}  }{ a^2 dx^2}  \nonumber \\ & +3 \frac{\Phi ^{n}_{i,j,k} -\Phi^{n-1}_{i,j,k} }{d t} + \frac{(3 H^2+2 \dot{H}) (1+3 w) }{H (1+w)} \Phi^{n}_{i,j,k} -  \frac{ 6H w}{ 1+w} \Psi ^{n}_{i,j,k} \Big) \Bigg]
+\end{align}
+\be
+\pi^{n+1}= \pi ^{n}+\pi_v ^{n+\frac{1}{2}} d t
+\ee
+Then we need to calculate $\dot{H}$ and $\dot{\Phi}$ in each loop. \\
+To calculate $\dot{\Phi}$ we save two $\Phi$ in each loop. \\
+ On the other hand we have $\dot{H}$ according to the background constraint of Energy-momentum tensor divergence according to eq.\ref{eq1},
+\be
+-3 M_{pl}^2  \Omega_{kessence}  \Big [ 3 H^3 (w-1)-2 H \dot{H} \Big]  \epsilon^0 =0
+\ee
+\be
+\dot{H}_{(n)}= \frac{3}{2} H^2 _{(n)} (w-1)
+\ee
+Gevolution works with conformal time $\tau$ and light velocity equal to one $c=1$, which imposes 
+
+%\be
+% \ddot{\pi} ^{n} =- \frac{\nabla^2 \pi}{a^2} + \ddot{\pi} +3   \dot{\Phi} -\frac{(3 H^2+2 \dot{H}) (1+3 w) }{H (1+w)}  \Phi  - 2 H \dot{\pi} +  \frac{ 6H w}{ 1+w} \Psi 
+%\ee
+%\begin{align}
+%& \frac{\pi^{n}_{i-1,j,k}+\pi^{n}_{i+1,j,k} +\pi^{n}_{i,j-1,k} +\pi^{n}_{i,j+1,k}+\pi^{n}_{i,j,k-1}+\pi^{n}_{i,j,k+1} -6 \pi^{n}_{i,j,k}  }{ a^2 dx^2} -  \frac{\pi^{n+1} _{i,j,k} - \pi ^{n}_{i,j,k}  + \pi ^{n-1}_{i,j,k}  }{dt ^2}\nonumber \\ &  -3 \frac{\Phi ^{n+1}_{i,j,k} -\Phi^{n}_{i,j,k} }{d t} - \frac{(3 H^2+2 \dot{H}) (1+3 w) }{H (1+w)} \Phi^{n}_{i,j,k} -2 H  \frac{(\pi_{v  \; {i,j,k}}^{n+1} -\pi_{v \; {i,j,k}}^{n-1} )}{dt} +  \frac{ 6H w}{ 1+w} \Psi ^{n+1}_{i,j,k}
+%\end{align}
+%What I think;
+%\begin{align}
+%& \frac{\pi^{n}_{i-1,j,k}+\pi^{n+1}_{i+1,j,k} +\pi^{n+1}_{i,j-1,k} +\pi^{n+1}_{i,j+1,k}+\pi^{n+1}_{i,j,k-1}+\pi^{n+1}_{i,j,k+1} -6 \pi^{n+1}_{i,j,k}  }{dx^2} -  \frac{\pi^{n+1} _{i,j,k} - \pi ^{n}_{i,j,k}  + \pi ^{n-1}_{i,j,k}  }{dt ^2}\nonumber \\ &  -3 \frac{\Phi^{n}_{i,j,k} }{d t} - \frac{(3 H^2+2 \dot{H}) (1+3 w) }{H (1+w)} \Phi^{n}_{i,j,k} -2 H  \frac{(\pi_{v  \; {i,j,k}}^{n+1/2} -\pi_{v \; {i,j,k}}^{n-1/2} )}{dt} +  \frac{ 6H w}{ 1+w} \Psi ^{n+1}_{i,j,k}
+%\end{align}
+\begin{appendices}
+\section{Derivative of determinant} \label{A1}
+Assume an invertible matrix M,
+\be
+\det\left( M+\delta M \right) =\det \left( M\left( 1+M^{-1}\delta M\right) \right)
+\ee
+where $\delta M$ is a small change in the matrix M. According to the properties of determinant $\det\left( AB\right) =\det\left( A\right) \det\left( B\right) 
+$ we have,
+\be
+\det\left( M\left( 1+\delta M\right) \right) =\det M\det\left( I+\delta M\right) 
+\ee
+%According to Cayley-Hamilton theorem: \\
+For a $n \times n$ matrix M, the characteristic polynomial is defined by p($\lambda$)=$\det (A- \lambda I)$=$(-1)^n \Big[ \lambda ^n +c _1 \lambda ^{n-1} + c _2 \lambda ^{n-2}  +...+c_n \Big]$  where $c_n=(-1)^n \det( A)$, $c_1=tr (A)$. So,
+\be
+\det\left( I+\delta M\right) =p(\lambda=1)=1^{n}+1^{n-1}tr\left( \delta M\right) +O\left( \delta M^{2} \right) 
+\ee
+On the other hand,
+\begin{align}
+\delta\det M&=\det\left( M+\delta M\right) -\det\left( M\right) =\det M\det\left( I+\delta M\right) -\det\left( M\right) \nonumber \\ &
+=\det M (1+ tr(\delta M)) -\det\left( M\right)= \det M  \, tr (\delta M)
+\end{align}
+So for the metric we can write the same statement to get the result,
+\be
+\delta g =\delta \det g_{\mu \nu}=  \det (g_{\mu \nu}+ \delta g_{\mu \nu}) - \det (g_{\mu \nu}) = \det (g_{\mu \nu}) tr (\delta g_{\mu \nu}) = g \, \delta g_{\mu\nu}g^{\mu\nu}
+\ee
+Pay attention to the relation between $\delta g^{\mu \nu}$ and $\delta g_ {\mu \nu}$ which shows that $\delta g_{\mu \nu}$ is not a tensor!
+\be
+g_{\mu\nu}g^{\nu\rho}=\delta^{\rho}_{\mu} \rightarrow
+\delta g_{\mu\nu}g^{\nu\rho}+g_{\mu\nu}\delta g^{\nu\rho}=0 
+\ee
+\be
+\delta g^{\nu\rho}=-g^{\nu\sigma}\delta g_{\sigma\mu}g^{\mu\rho}
+\ee
+\end{appendices}
+
+\end{document}
+
+ 
