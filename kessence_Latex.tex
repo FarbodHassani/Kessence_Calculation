@@ -177,19 +177,19 @@ We assume that field is a monotonic function of time in background which is pert
 \ee
 We can choose $\varphi_0(t)=t$ for simplicity, using the following ansatz for the metric,
 \be
-g_{\mu\nu}=-e^{2\Phi}dt^{2}+a^{2}\left( t\right) e^{-2\Psi}dr^{2}
+g_{\mu\nu}=-e^{2\Psi}dt^{2}+a^{2}\left( t\right) e^{-2\Phi}dr^{2}
 \ee
 \be
-\delta g^{(1)}_ { 00}=-2\Phi \, \; \; , 
-\delta g^{(1)}_{ij}= -2 a^{2} \Psi \delta_{ij}
+\delta g^{(1)}_ { 00}=-2\Psi \, \; \; , 
+\delta g^{(1)}_{ij}= -2 a^{2} \Phi \delta_{ij}
 \ee
 Where $\delta g^{(1)}_ { 00}$ means the first order metric in pertubations.  The inverse of metric is defined as following,
 \be
-g^{\mu\nu}=-e^{-2\Phi}dt^{2}+a^{-2}e^{2\Psi}dr^{2} 
+g^{\mu\nu}=-e^{-2\Psi}dt^{2}+a^{-2}e^{2\Phi}dr^{2} 
 \ee
 \be
-\delta g_{(1)}^{00}=+2\Phi \, \; \; , 
-\delta g_{(1)}^{ij}= +2 a^{-2} \Psi \delta^{ij} 
+\delta g_{(1)}^{00}=+2\Psi \, \; \; , 
+\delta g_{(1)}^{ij}= +2 a^{-2} \Phi \delta^{ij} 
 \ee
 We have,
 \be
@@ -206,7 +206,7 @@ X=\overline {X}+\delta X_{1}+ \delta X_{2}+\ldots
 \delta X_{1}=-\dfrac {1}{2}\delta g_{(1)}^{00}\partial_{0}t\partial_{0}t-\dfrac {1}{2} \bar{g}^{00}\partial_{0}t\partial_{0}\pi-\dfrac {1}{2} \bar{g}^{00}\partial_{0}\pi\partial_{0}t-\dfrac {1}{2}\bar{g}^{ij}\partial_{i}\pi\partial_{j}\pi
 \ee
 \be
- \delta X_{1}=-\Phi+\dot{\pi}- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2 +O\left( \varepsilon^{2}\right)
+ \delta X_{1}=-\Psi+\dot{\pi}- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2 +O\left( \varepsilon^{2}\right)
 \ee
 We do not need to calculate $X_2$ since the energy momentum constraint adds at most one spatial derivative which does not change the second order terms to first order. So
 \be
@@ -259,29 +259,29 @@ So,
 \begin{align}
 T_{00}= [3 M_{pl}^2 H^2 \Omega ] \epsilon ^0 
 &+
-  3 M_{pl}^2 H^2 \Omega  \Bigg[ - (1+\omega) \left (-\Phi+\partial_{t}\pi- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2 \right )
+  3 M_{pl}^2 H^2 \Omega  \Bigg[ - (1+\omega) \left (-\Psi+\partial_{t}\pi- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2 \right )
  -
- 2\Phi  \omega
+ 2\Psi  \omega
    +
  2 (1+\omega) \dot{\pi}
 \nonumber \\ &
 +
- \left ( -\Phi+\partial_{t}\pi- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2  \right ) (\omega + 1) (\frac{1}{c_s^2} -1 )     + \cancel{(1+ \omega )   \dot{\pi}^2 }\Bigg ] \epsilon^1 
+ \left ( -\Psi+\partial_{t}\pi- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2  \right ) (\omega + 1) (\frac{1}{c_s^2} -1 )     + \cancel{(1+ \omega )   \dot{\pi}^2 }\Bigg ] \epsilon^1 
 \end{align}
 We can rewrite the last equations as;
 \begin{align}
 T_{00}&= 3 M_{pl}^2 H^2 \Omega 
 +
-  3 M_{pl}^2 H^2 \Omega (1+\omega) \left [   \left (-\Phi+\dot{\pi}- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2 \right ) (-2+\frac{1}{c_s^2})
+  3 M_{pl}^2 H^2 \Omega (1+\omega) \left [   \left (-\Psi+\dot{\pi}- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2 \right ) (-2+\frac{1}{c_s^2})
  -
-   \frac{2 \omega}{1+\omega} \Phi 
+   \frac{2 \omega}{1+\omega} \Psi 
    +
  2  \dot{\pi} \right ]
  \nonumber \\ &
   = 3 M_{pl}^2 H^2 \Omega 
 +
   3 M_{pl}^2 H^2 \Omega (1+\omega)  c_s^{-2} \left [ \left (2c_s^2 -1-\frac{2 c_s^2 \omega}{1+\omega} 
-   \right )   \Phi  +
+   \right )   \Psi  +
  \left (-2 c_s^2+ 1+2 c_s^2  \right )     \dot{\pi} 
    +
 \frac{2c_s^2-1}{2 a^2} (\vec{\nabla} \pi)^2 \right ]
@@ -289,12 +289,12 @@ T_{00}&= 3 M_{pl}^2 H^2 \Omega
   = 3 M_{pl}^2 H^2 \Omega    \Bigg[ 1
 +
    (1+\omega)  c_s^{-2} \left [ \left (\frac{2c_s^2}{1+\omega} -1 
-   \right )   \Phi  +    \dot{\pi} 
+   \right )   \Psi  +    \dot{\pi} 
    + 
 \frac{2c_s^2-1}{2 a^2} (\vec{\nabla} \pi)^2 \right ] \Bigg]
  \nonumber \\ &
   = 3 M_{pl}^2 H^2 \Omega    \Bigg[ 1
-+ \left (2-(1+\omega)  c_s^{-2}  \right )\Phi +
++ \left (2-(1+\omega)  c_s^{-2}  \right )\Psi +
  (1+\omega)  c_s^{-2}    \dot{\pi} 
    +
 \frac{(2c_s^2-1)(1+\omega)  }{2 a^2 c_s^{2} } (\vec{\nabla} \pi)^2 \Bigg]
@@ -304,12 +304,12 @@ T_{00}&= 3 M_{pl}^2 H^2 \Omega
 \section{Numerical solution to the k-essence equation }
 The obtained equation from energy-momentum constraint $T^{\mu 0}_{;\mu}$ is written as below pertubatively;
 \begin{align}
-&-3 M_{pl}^2  \Omega_{kessence}  \Big [ 3 H^3 (w-1)-2 H \dot{H} \Big]  \epsilon^0   + 3 M_{pl}^2 H \Omega_{kessence} \Bigg[  -\Big(  (1+3w) H^2 +3 H \dot{w}    \nonumber \\&  +  2 (H^2 + \dot{H})(1+3 w)  \Big )  \Phi + \Big( -2\dot{H} (w+1)+H \dot{w}   \Big) \dot{\pi} - 3 H (1+w)\dot{ \Phi} + H (1+w) \frac{\nabla^2 \pi}{a^2} + H(1+w) \ddot{\pi} \Bigg] \epsilon \label{eq1}+ \mathcal{O}({\epsilon^2})=0
+&-3 M_{pl}^2  \Omega_{kessence}  \Big [ 3 H^3 (w-1)-2 H \dot{H} \Big]  \epsilon^0   + 3 M_{pl}^2 H \Omega_{kessence} \Bigg[  -\Big(  (1+3w) H^2 +3 H \dot{w}    \nonumber \\&  +  2 (H^2 + \dot{H})(1+3 w)  \Big )  \Psi + \Big( -2\dot{H} (w+1)+H \dot{w}   \Big) \dot{\pi} - 3 H (1+w)\dot{ \Psi} + H (1+w) \frac{\nabla^2 \pi}{a^2} + H(1+w) \ddot{\pi} \Bigg] \epsilon \label{eq1}+ \mathcal{O}({\epsilon^2})=0
 \end{align}
 
 So, if we assume $\dot{w}=0$
 \be
-c^2 \frac{\nabla^2 \pi}{a^2} + \ddot{\pi} -3   \dot{\Phi} -\frac{(3 H^2+2 \dot{H}) (1+3 w) }{H (1+w)}  \Phi  - 2 H \dot{\pi} +  \frac{ 6H w}{ 1+w} \Psi =0 \label{eq2}
+c^2 \frac{\nabla^2 \pi}{a^2} + \ddot{\pi} -3   \dot{\Psi} -\frac{(3 H^2+2 \dot{H}) (1+3 w) }{H (1+w)}  \Psi  - 2 H \dot{\pi} +  \frac{ 6H w}{ 1+w} \Phi =0 \label{eq2}
 \ee
 
 we take $d t=t_{n+1}-t_n $ and $x_{i,j,k} $ as lattice point,. We  solve the differential equation numerically as following;
@@ -325,22 +325,22 @@ we take $d t=t_{n+1}-t_n $ and $x_{i,j,k} $ as lattice point,. We  solve the dif
 
 From equation \ref{eq2} we have;
 \begin{align}
-& \ddot{\pi} ^{n} =- \frac{\pi^{n}_{i-1,j,k}+\pi^{n}_{i+1,j,k} +\pi^{n}_{i,j-1,k} +\pi^{n}_{i,j+1,k}+\pi^{n}_{i,j,k-1}+\pi^{n}_{i,j,k+1} -6 \pi^{n}_{i,j,k}  }{ a^2 dx^2}   +3 \frac{\Phi ^{n}_{i,j,k} -\Phi^{n-1}_{i,j,k} }{d t}    \nonumber \\ & + \frac{(3 H^2+2 \dot{H}) (1+3 w) }{H (1+w)} \Phi^{n}_{i,j,k} + H  \frac{(\pi_{v  \; {i,j,k}}^{n+\frac{1}{2}} +\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} )}{2} -  \frac{ 6H w}{ 1+w} \Psi ^{n}_{i,j,k}
+& \ddot{\pi} ^{n} =- \frac{\pi^{n}_{i-1,j,k}+\pi^{n}_{i+1,j,k} +\pi^{n}_{i,j-1,k} +\pi^{n}_{i,j+1,k}+\pi^{n}_{i,j,k-1}+\pi^{n}_{i,j,k+1} -6 \pi^{n}_{i,j,k}  }{ a^2 dx^2}   +3 \frac{\Psi ^{n}_{i,j,k} -\Psi^{n-1}_{i,j,k} }{d t}    \nonumber \\ & + \frac{(3 H^2+2 \dot{H}) (1+3 w) }{H (1+w)} \Psi^{n}_{i,j,k} + H  \frac{(\pi_{v  \; {i,j,k}}^{n+\frac{1}{2}} +\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} )}{2} -  \frac{ 6H w}{ 1+w} \Psi ^{n}_{i,j,k}
 \end{align}
 Where we have taken $\pi_{v  \; {i,j,k}}^{n} =\frac{(\pi_{v  \; {i,j,k}}^{n+\frac{1}{2}} +\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} )}{2} $ \\
 So we can rewrite the equation \ref{eq3} as below;
 \begin{align} 
- &\pi_v ^{n+\frac{1}{2}}=\pi_v ^{n-\frac{1}{2}} +d t  \Big [c^2 \frac{\nabla^2 \pi ^n}{a^2} +3 \frac{\Phi ^{n}_{i,j,k} -\Phi^{n-1}_{i,j,k} }{d t} + \frac{(3 H^2+2 \dot{H}) (1+3 w) }{H (1+w)} \Phi^{n}_{i,j,k} + H  \frac{(\pi_{v  \; {i,j,k}}^{n+\frac{1}{2}} +\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} )}{2} -  \frac{ 6H w}{ 1+w} \Psi ^{n}_{i,j,k} \Big]
+ &\pi_v ^{n+\frac{1}{2}}=\pi_v ^{n-\frac{1}{2}} +d t  \Big [c^2 \frac{\nabla^2 \pi ^n}{a^2} +3 \frac{\Psi ^{n}_{i,j,k} -\Psi^{n-1}_{i,j,k} }{d t} + \frac{(3 H^2+2 \dot{H}) (1+3 w) }{H (1+w)} \Psi^{n}_{i,j,k} + H  \frac{(\pi_{v  \; {i,j,k}}^{n+\frac{1}{2}} +\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} )}{2} -  \frac{ 6H w}{ 1+w} \Phi ^{n}_{i,j,k} \Big]
 \end{align}
 So the set of equations we should solve are;
 \begin{align} 
- \pi_v ^{n+\frac{1}{2}}= & \frac{1}{1- dt H/2} \Bigg[ (1+ dt H/2)\pi_v ^{n-\frac{1}{2}} + c^2 d t  \Big (  \frac{\pi^{n}_{i-1,j,k}+\pi^{n}_{i+1,j,k} +\pi^{n}_{i,j-1,k} +\pi^{n}_{i,j+1,k}+\pi^{n}_{i,j,k-1}+\pi^{n}_{i,j,k+1}  -6 \pi^{n}_{i,j,k}  }{ a^2 dx^2}  \nonumber \\ & +3 \frac{\Phi ^{n}_{i,j,k} -\Phi^{n-1}_{i,j,k} }{d t} + \frac{(3 H^2+2 \dot{H}) (1+3 w) }{H (1+w)} \Phi^{n}_{i,j,k} -  \frac{ 6H w}{ 1+w} \Psi ^{n}_{i,j,k} \Big) \Bigg]
+ \pi_v ^{n+\frac{1}{2}}= & \frac{1}{1- dt H/2} \Bigg[ (1+ dt H/2)\pi_v ^{n-\frac{1}{2}} + c^2 d t  \Big (  \frac{\pi^{n}_{i-1,j,k}+\pi^{n}_{i+1,j,k} +\pi^{n}_{i,j-1,k} +\pi^{n}_{i,j+1,k}+\pi^{n}_{i,j,k-1}+\pi^{n}_{i,j,k+1}  -6 \pi^{n}_{i,j,k}  }{ a^2 dx^2}  \nonumber \\ & +3 \frac{\Psi ^{n}_{i,j,k} -\Psi^{n-1}_{i,j,k} }{d t} + \frac{(3 H^2+2 \dot{H}) (1+3 w) }{H (1+w)} \Phi^{n}_{i,j,k} -  \frac{ 6H w}{ 1+w} \Phi ^{n}_{i,j,k} \Big) \Bigg]
 \end{align}
 \be
 \pi^{n+1}= \pi ^{n}+\pi_v ^{n+\frac{1}{2}} d t
 \ee
-Then we need to calculate $\dot{H}$ and $\dot{\Phi}$ in each loop. \\
-To calculate $\dot{\Phi}$ we save two $\Phi$ in each loop. \\
+Then we need to calculate $\dot{H}$ and $\dot{\Psi}$ in each loop. \\
+To calculate $\dot{\Psi}$ we save two $\Psi$ in each loop. \\
  On the other hand we have $\dot{H}$ according to the background constraint of Energy-momentum tensor divergence according to eq.\ref{eq1},
 \be
 -3 M_{pl}^2  \Omega_{kessence}  \Big [ 3 H^3 (w-1)-2 H \dot{H} \Big]  \epsilon^0 =0
