@@ -229,10 +229,11 @@ Where we have used $ \rho=2XP_{,X}-P$
 So we can write the function $P$ and it derivative in terms of $\Omega$, $\omega$ and $c_s^2$,
 \be
 \bar{P}_{X}=\bar{P} (1+\frac{1}{\omega}) \; \; \; \; \;  \; \bar{P} _{,XX}=\bar{P}_{,X} \frac{1-c_s^2}{c_s^2} = \bar{P} (1+\frac{1}{\omega}) (\frac{1}{c_s^2} -1 )
+\label{Pbarder}
 \ee
 So according to \ref{22} and \ref{23}\\
 \be
-\bar{P}=  3 M_{pl}^2 H^2 \Omega \, \omega 
+\bar{P}=  3 M_{pl}^2 H^2 \Omega \, \omega  \label{Pbar}
 \ee
 Now we can construct stress tensor up to first order in Gevolution's scheme,
 \begin{align}
@@ -253,59 +254,363 @@ T_{\mu \nu} &= P g_{\mu \nu} + P_{,X} \partial_{\mu} \varphi \partial_{\nu} \var
    \delta X_1 \bar{P}_{,XX}   \partial_{\mu} t \partial_{\nu} t  
    +
     \bar{P}_{,X}   \partial_{\mu} \pi \partial_{\nu} \pi \Big ] \epsilon^1
-+ \mathcal {O}(\epsilon^{3/2})
++ \mathcal {O}(\epsilon^{3/2}) 
+\label{eqTmunu}
 \end{align}
-So,
+\section{$T_{00}$ component of energy momentum tensor}
+According to previous equation $T_{00} $ component is,
 \begin{align}
-T_{00}= [3 M_{pl}^2 H^2 \Omega ] \epsilon ^0 
-&+
-  3 M_{pl}^2 H^2 \Omega  \Bigg[ - (1+\omega) \left (-\Psi+\partial_{t}\pi- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2 \right )
- -
- 2\Psi  \omega
-   +
- 2 (1+\omega) \dot{\pi}
-\nonumber \\ &
+T_{00} &=
+   \Big[ \bar{g}_{0 0} \bar{P} 
 +
- \left ( -\Psi+\partial_{t}\pi- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2  \right ) (\omega + 1) (\frac{1}{c_s^2} -1 )     + \cancel{(1+ \omega )   \dot{\pi}^2 }\Bigg ] \epsilon^1 
+ \bar{P}_{,X} \partial_{0} t \partial_{0} t \Big] \epsilon ^0 
++
+\Big[ \bar{g}_{0 0}  \bar{P}_{,X} \delta X_1 
++
+ \delta g^{(1)}_{0 0} \bar{P} 
+ +
+  \bar{P}_{,X}  \left ( \partial_{0} \pi \partial_{0} t  
+  +
+  \partial_{0} t \partial_{0} \pi  \right ) 
+  +
+   \delta X_1 \bar{P}_{,XX}   \partial_{0} t \partial_{0} t  
+   +
+    \cancelto{\mathcal {O}(\epsilon^{3/2}) 
+} { \bar{P}_{,X}  } \partial_{0} \pi \partial_{0} \pi \; \;  \Big ] \epsilon^1
++ \mathcal {O}(\epsilon^{3/2}) 
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  \nonumber
+ \\
+  &
+  =
+  [-\bar{P} 
++
+ \bar{P}_{,X}  ] \epsilon ^0 
++
+\Big[ -  \bar{P}_{,X} \delta X_1 
+-
+ 2 \Psi \bar{P} 
+ +
+ 2 \bar{P}_{,X}   \dot{\pi}
+  +
+   \delta X_1 \bar{P}_{,XX} 
+  \Big ] \epsilon^1
++ \mathcal {O}(\epsilon^{3/2}) 
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  \nonumber
+ \\
+  &
+  =
+  [-\bar{P} 
++
+\bar{P}  (1+\frac{1}{w}) ] \epsilon ^0 
++
+\Big[ - \bar{P}  (1+\frac{1}{w})  \delta X_1 
+-
+ 2 \Psi \bar{P} 
+ +
+ 2 \bar{P}  (1+\frac{1}{w})  \dot{\pi}
+  +
+  \bar{P}  (1+\frac{1}{w}) (\frac{1}{c_s^2}-1) \,   \delta X_1 
+   \Big ] \epsilon^1
++ \mathcal {O}(\epsilon^{3/2}) 
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  \nonumber
+ \\
+  &
+  =
+\frac{\bar{P}}{w} \,\epsilon ^0 
++
+\frac{\bar{P}}{w}   \Big[ -  (1+w)  \delta X_1 
+-
+ 2 w \Psi
+ +
+ 2  (1+w)  \dot{\pi}
+  +
+  (1+w) (\frac{1}{c_s^2}-1) \,   \delta X_1 
+   \Big ] \epsilon^1
++ \mathcal {O}(\epsilon^{3/2}) 
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  \nonumber
+ \\
+  &
+  =
+\frac{\bar{P}}{w} \,\epsilon ^0 
++
+\frac{\bar{P}}{w}   \Big[  (1+w) (\frac{1}{c_s^2}- 2)  \delta X_1 
+-
+ 2 w \Psi
+ +
+ 2  (1+w)  \dot{\pi}
+ \Big ] \epsilon^1
++ \mathcal {O}(\epsilon^{3/2}) 
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  \nonumber
+ \\
+  &  
+  =
+3 M_{pl}^2 H^2 \Omega  \,\epsilon ^0 
++
+3 M_{pl}^2 H^2 \Omega    \Bigg[  (1+w) (\frac{1}{c_s^2}- 2)  \Big[ -\Psi+\dot{\pi}- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2 \Big ]
+-
+ 2 w \Psi
+ +
+ 2  (1+w)  \dot{\pi}
+ \Bigg ] \epsilon^1
++ \mathcal {O}(\epsilon^{3/2})  
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  \nonumber
+ \\
+  &
+  =
+3 M_{pl}^2 H^2 \Omega \Bigg[  1+ \Psi \Big (- (1+w) (\frac{1}{c_s^2}- 2)-2 w  \Big ) + \dot{\pi} \Big ( (1+w) (\frac{1}{c_s^2}- 2 )+2 (1+w)   \Big)  -  \frac{1}{2 a^2} (\vec{\nabla} \pi)^2  \Big ( (1+w) (\frac{1}{c_s^2}- 2 )  \Big )
+ \Bigg]
+ %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+   \nonumber
+ \\
+  &
+  =
+3 M_{pl}^2 H^2 \Omega \Bigg[  1+ \Psi \Big (2 - \frac{1+w}{c_s^2}  \Big ) + \dot{\pi} \Big ( \frac{1+w}{c_s^2}   \Big)  -  \frac{1}{2 a^2} (\vec{\nabla} \pi)^2  \Big ( (1+w) (\frac{1}{c_s^2}- 2 )  \Big )
+ \Bigg]+  \mathcal {O}(\epsilon^{3/2}) 
 \end{align}
-We can rewrite the last equations as;
+Where we have used \ref{Pbarder} and \ref{Pbar}.
+%\begin{align}
+%T_{00}&
+% =
+%[3 M_{pl}^2 H^2 \Omega ] \epsilon ^0 
+%+
+%  3 M_{pl}^2 H^2 \Omega  \Bigg[ - (1+\omega) \left (-\Psi+\partial_{t}\pi- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2 \right )
+% -
+% 2\Psi  \omega
+%   +
+% 2 (1+\omega) \dot{\pi}
+%\nonumber \\ &
+%+
+% \left ( -\Psi+\partial_{t}\pi- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2  \right ) (\omega + 1) (\frac{1}{c_s^2} -1 )     + \cancel{(1+ \omega )   \dot{\pi}^2 }\Bigg ] \epsilon^1 
+% \nonumber
+%   \\
+% &
+% 3 M_{pl}^2 H^2 \Omega 
+%+
+%  3 M_{pl}^2 H^2 \Omega (1+\omega) \left [   \left (-\Psi+\dot{\pi}- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2 \right ) (-2+\frac{1}{c_s^2})
+% -
+%   \frac{2 \omega}{1+\omega} \Psi 
+%   +
+% 2  \dot{\pi} \right ]
+% \nonumber \\ &
+%  = 3 M_{pl}^2 H^2 \Omega 
+%+
+%  3 M_{pl}^2 H^2 \Omega (1+\omega)  c_s^{-2} \left [ \left (2c_s^2 -1-\frac{2 c_s^2 \omega}{1+\omega} 
+%   \right )   \Psi  +
+% \left (-2 c_s^2+ 1+2 c_s^2  \right )     \dot{\pi} 
+%   +
+%\frac{2c_s^2-1}{2 a^2} (\vec{\nabla} \pi)^2 \right ]
+% \nonumber \\ &
+%  = 3 M_{pl}^2 H^2 \Omega    \Bigg[ 1
+%+
+%   (1+\omega)  c_s^{-2} \left [ \left (\frac{2c_s^2}{1+\omega} -1 
+%   \right )   \Psi  +    \dot{\pi} 
+%   + 
+%\frac{2c_s^2-1}{2 a^2} (\vec{\nabla} \pi)^2 \right ] \Bigg]
+% \nonumber \\ &
+%  = 3 M_{pl}^2 H^2 \Omega    \Bigg[ 1
+%+ \left (2-(1+\omega)  c_s^{-2}  \right )\Psi +
+% (1+\omega)  c_s^{-2}    \dot{\pi} 
+%   +
+%\frac{(2c_s^2-1)(1+\omega)  }{2 a^2 c_s^{2} } (\vec{\nabla} \pi)^2 \Bigg]
+%\end{align}
+%
+Finaly the $T_{00}$ component is;
+\be
+T_{00}=  
+3 M_{pl}^2 H^2 \Omega \Bigg[  1+ \Psi \Big (2 - \frac{1+w}{c_s^2}  \Big ) + \dot{\pi} \Big ( \frac{1+w}{c_s^2}   \Big)  -  \frac{1}{2 a^2} (\vec{\nabla} \pi)^2  \Big ( (1+w) (\frac{1}{c_s^2}- 2 )  \Big )
+ \Bigg]+  \mathcal {O}(\epsilon^{3/2}) 
+\ee
+\section{$T_{0i}$ component of energy momentum tensor}
+According to the equation \ref{eqTmunu} we can calculate $T_{0i}$ component of energy momentum tensor
 \begin{align}
-T_{00}&= 3 M_{pl}^2 H^2 \Omega 
+T_{\mu \nu} &
+= \Big[ \bar{g}_{\mu \nu} \bar{P} 
 +
-  3 M_{pl}^2 H^2 \Omega (1+\omega) \left [   \left (-\Psi+\dot{\pi}- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2 \right ) (-2+\frac{1}{c_s^2})
- -
-   \frac{2 \omega}{1+\omega} \Psi 
-   +
- 2  \dot{\pi} \right ]
- \nonumber \\ &
-  = 3 M_{pl}^2 H^2 \Omega 
+ \bar{P}_{,X} \partial_{\mu} t \partial_{\nu} t \Big] \epsilon ^0 
 +
-  3 M_{pl}^2 H^2 \Omega (1+\omega)  c_s^{-2} \left [ \left (2c_s^2 -1-\frac{2 c_s^2 \omega}{1+\omega} 
-   \right )   \Psi  +
- \left (-2 c_s^2+ 1+2 c_s^2  \right )     \dot{\pi} 
-   +
-\frac{2c_s^2-1}{2 a^2} (\vec{\nabla} \pi)^2 \right ]
- \nonumber \\ &
-  = 3 M_{pl}^2 H^2 \Omega    \Bigg[ 1
+\Big[ \bar{g}_{\mu \nu}  \bar{P}_{,X} \delta X_1 
 +
-   (1+\omega)  c_s^{-2} \left [ \left (\frac{2c_s^2}{1+\omega} -1 
-   \right )   \Psi  +    \dot{\pi} 
-   + 
-\frac{2c_s^2-1}{2 a^2} (\vec{\nabla} \pi)^2 \right ] \Bigg]
- \nonumber \\ &
-  = 3 M_{pl}^2 H^2 \Omega    \Bigg[ 1
-+ \left (2-(1+\omega)  c_s^{-2}  \right )\Psi +
- (1+\omega)  c_s^{-2}    \dot{\pi} 
+ \delta g^{(1)}_{\mu \nu} \bar{P} 
+ +
+  \bar{P}_{,X}  \left ( \partial_{\mu} \pi \partial_{\nu} t  
+  +
+  \partial_{\mu} t \partial_{\nu} \pi  \right ) 
+  +
+   \delta X_1 \bar{P}_{,XX}   \partial_{\mu} t \partial_{\nu} t  
    +
-\frac{(2c_s^2-1)(1+\omega)  }{2 a^2 c_s^{2} } (\vec{\nabla} \pi)^2 \Bigg]
+    \bar{P}_{,X}   \partial_{\mu} \pi \partial_{\nu} \pi \Big ] \epsilon^1
++ \mathcal {O}(\epsilon^{3/2}) 
+%\label{eqTmunu}
+\end{align}
+So $T_{0i}$ reads;
+\begin{align}
+T_{0 i} &
+= \Big[ \cancel{\bar{g}_{0 i}} \bar{P} 
++
+ \bar{P}_{,X} \partial_{0} t \partial_{i} t \Big] \epsilon ^0 
++
+\Big[ \cancel{\bar{g}_{0 i}}  \bar{P}_{,X} \delta X_1 
++
+ \delta g^{(1)}_{0 i} \bar{P} 
+ +
+  \bar{P}_{,X}  \left ( \partial_{0} \pi \cancel{ \partial_{i} t  }
+  +
+  \partial_{0} t \partial_{i} \pi  \right ) 
+  +
+   \delta X_1 \bar{P}_{,XX}   \partial_{0} t  \cancel{\partial_{i} t  }
+   +
+ \cancelto{\mathcal {O}(\epsilon^{3/2}) 
+}    {\bar{P}_{,X} } \partial_{0} \pi \partial_{i} \pi \; \;   \Big ] \epsilon^1
++ \mathcal {O}(\epsilon^{3/2}) 
+\nonumber 
+\\ 
+&
+= [0] \epsilon ^0 
++
+\Big[
+ \delta g^{(1)}_{0 i} \bar{P} 
+ +
+  \bar{P}_{,X}   \partial_{0} t \partial_{i} \pi 
+  \Big ] \epsilon^1
++ \mathcal {O}(\epsilon^{3/2}) 
+\nonumber 
+\\ 
+&
+= 
+3 M_{pl}^2 H^2 \Omega \Big[
+ w \, \delta g^{(1)}_{0 i} 
+ +
+   (1+w )\,  \partial_{i} \pi 
+  +
+  (1+w) \, \dot{\pi} \partial_{i} \pi \Big ] \epsilon^1
++ \mathcal {O}(\epsilon^{3/2}) 
+%\label{eqTmunu}
 \end{align}
 
+\section{$T_{ij}$ component of energy momentum tensor}
+Again using the equation \ref{eqTmunu} 
+\begin{align}
+T_{\mu \nu} &
+= \Big[ \bar{g}_{\mu \nu} \bar{P} 
++
+ \bar{P}_{,X} \partial_{\mu} t \partial_{\nu} t \Big] \epsilon ^0 
++
+\Big[ \bar{g}_{\mu \nu}  \bar{P}_{,X} \delta X_1 
++
+ \delta g^{(1)}_{\mu \nu} \bar{P} 
+ +
+  \bar{P}_{,X}  \left ( \partial_{\mu} \pi \partial_{\nu} t  
+  +
+  \partial_{\mu} t \partial_{\nu} \pi  \right ) 
+  +
+   \delta X_1 \bar{P}_{,XX}   \partial_{\mu} t \partial_{\nu} t  
+   +
+    \bar{P}_{,X}   \partial_{\mu} \pi \partial_{\nu} \pi \Big ] \epsilon^1
++ \mathcal {O}(\epsilon^{3/2}) 
+%\label{eqTmunu}
+\end{align}
+So $T_{ij}$ is;
+\begin{align}
+T_{i j} &
+= \Big[ \bar{g}_{i j} \bar{P} 
++
+ \bar{P}_{,X} \cancel{ \partial_{i} t }\partial_{j} t \Big] \epsilon ^0 
++
+\Big[ \bar{g}_{i j}  \bar{P}_{,X} \delta X_1 
++
+ \delta g^{(1)}_{i j} \bar{P} 
+ +
+  \bar{P}_{,X}  \left ( \partial_{i} \pi \partial_{j} t  
+  +
+\cancel{  \partial_{i} t }\partial_{j} \pi  \right ) 
+  +
+   \delta X_1 \bar{P}_{,XX}   \cancel{ \partial_{i} t }\partial_{j} t  
+   +
+    \bar{P}_{,X}   \partial_{i} \pi \partial_{j} \pi \Big ] \epsilon^1
++ \mathcal {O}(\epsilon^{3/2}) 
+\nonumber \\ & 
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+= \Big[ a^2 \delta_{ij} \bar{P} 
+ \Big] \epsilon ^0 
++
+\Big[a^2  \delta_{ij}   \bar{P}_{,X} \delta X_1 
+-
+ 2 a^2 \Phi \delta_{ij} \bar{P} 
+     +
+    \bar{P}_{,X}   \partial_{i} \pi \partial_{j} \pi \Big ] \epsilon^1
++ \mathcal {O}(\epsilon^{3/2}) 
+\nonumber \\ & 
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+= \frac{\bar{P}}{w}   \Big[ a^2 w \delta_{ij} 
+\Big] \epsilon ^0 
++
+\frac{\bar{P}}{w} \Big[a^2  \delta_{ij}   (1+w)  \Big (-\Psi+\dot{\pi}- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2  \Big ) 
+-
+ 2 a^2 w \Phi \delta_{ij} 
+     +
+   (1+w)  \partial_{i} \pi \partial_{j} \pi \Big ] \epsilon^1
++ \mathcal {O}(\epsilon^{3/2}) 
+\nonumber \\ & 
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+=3 M_{pl}^2 H^2 \Omega a^2   \Bigg[  w \delta_{ij} 
++
+ \delta_{ij}   (1+w)  \Big (-\Psi+\dot{\pi}- \frac{1}{2 a^2} (\vec{\nabla} \pi)^2  \Big ) 
+-
+ 2 w \Phi \delta_{ij} 
+     +
+   \frac{(1+w)}{a^2}  \partial_{i} \pi \partial_{j} \pi \Bigg ] \epsilon^1
++ \mathcal {O}(\epsilon^{3/2}) 
+\nonumber \\ & 
+%:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: 
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+=3 M_{pl}^2 H^2 \Omega a^2   \Bigg[  w \delta_{ij} 
+-
+ 2 w \Phi \,  \delta_{ij} - (1+w) \Psi \, \delta_{ij}+  (1+w) \dot{\pi} \, \delta_{ij} - \frac{1+w}{2 a^2}   (\vec{\nabla} \pi)^2 \, \delta_{ij} +\frac{(1+w)}{a^2}  \partial_{i} \pi \partial_{j} \pi    \Bigg ] 
+     + \mathcal {O}(\epsilon^{3/2}) 
+\end{align}
+As a result we can write;
+\be
+T_{ij}=3 M_{pl}^2 H^2 \Omega a^2   \Bigg[  w \delta_{ij} 
+-
+ 2 w \Phi \,  \delta_{ij} - (1+w) \Psi \, \delta_{ij}+  (1+w) \dot{\pi} \, \delta_{ij} - \frac{1+w}{2 a^2}   (\vec{\nabla} \pi)^2 \, \delta_{ij} +\frac{1+w}{a^2}  \partial_{i} \pi \partial_{j} \pi    \Bigg ] 
+     + \mathcal {O}(\epsilon^{3/2}) 
+\ee
+The diagonal components read; 
+\be
+T_{ii}=3 M_{pl}^2 H^2 \Omega a^2   \Bigg[   w \delta_{ij} 
+-
+ 2 w  \, \Phi  - (1+w)  \, \Psi +  (1+w) \,  \dot{\pi} 
+ + \frac{1+w}{2 a^2}   \big [ -(\vec{\nabla} \pi)^2  +2  \,  (\partial_{i} \pi  )^2  \Big]  \Bigg ] 
+     + \mathcal {O}(\epsilon^{3/2}) 
+\ee
+The off diagonal components are; 
+\be
+T_{ij}=3 M_{pl}^2 H^2 \Omega (1+w)   \,   \partial_{i} \pi \partial_{j} \pi   
+     + \mathcal {O}(\epsilon^{3/2}) 
+\ee
 
 \section{Numerical solution to the k-essence equation }
 The obtained equation from energy-momentum constraint $T^{\mu 0}_{;\mu}$ is written as below pertubatively;
 \begin{align}
 &-3 M_{pl}^2  \Omega_{kessence}  \Big [ 3 H^3 (w-1)-2 H \dot{H} \Big]  \epsilon^0   + 3 M_{pl}^2 H \Omega_{kessence} \Bigg[  -\Big(  (1+3w) H^2 +3 H \dot{w}    \nonumber \\&  +  2 (H^2 + \dot{H})(1+3 w)  \Big )  \Psi + \Big( -2\dot{H} (w+1)+H \dot{w}   \Big) \dot{\pi} - 3 H (1+w)\dot{ \Psi} + H (1+w) \frac{\nabla^2 \pi}{a^2} + H(1+w) \ddot{\pi} \Bigg] \epsilon \label{eq1}+ \mathcal{O}({\epsilon^2})=0
 \end{align}
+
 
 So, if we assume $\dot{w}=0$
 \be
