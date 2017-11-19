@@ -169,7 +169,7 @@ T_{\mu\nu}=g_{\mu\nu}P\left( X,\varphi\right) +P_{,X}\partial_{\mu}\varphi\parti
 T_{\mu\nu}=\left( \rho+p\right) u_{\mu}u_{\nu}+p g_{\mu\nu}
 \ee
 \be
-u_{\mu}=\dfrac {\partial_{\mu}\varphi}{\sqrt {-\partial_{\mu}\varphi\partial^{\mu}\varphi}}\rightarrow u_{\mu}=\dfrac {\partial_{\mu}\varphi}{\sqrt {2X}} , \rho=2XP_{,X}-P \; , \; p=P 
+u_{\mu}=\dfrac {\partial_{\mu}\varphi}{\sqrt {-\partial_{\mu}\varphi\partial^{\mu}\varphi}}\rightarrow u_{\mu}=\dfrac {\partial_{\mu}\varphi}{\sqrt {2X}} , \rho=2XP_{,X}-P \; , \; p=P  \label{eq10}
 \ee
 We assume that field is a monotonic function of time in background which is perturbed in each constant time hypersurfaces
 \be
@@ -177,7 +177,7 @@ We assume that field is a monotonic function of time in background which is pert
 \ee
 We can choose $\varphi_0(\tau)=\tau$ for simplicity, using the following ansatz for the metric,
 \be
-g_{\mu\nu}=-a(\tau)^2 \Big [e^{2\Psi}d\tau^{2}+ e^{-2\Phi}dr^{2} \Big]
+g_{\mu\nu}=a(\tau)^2 \Big [-e^{2\Psi}d\tau^{2}+ e^{-2\Phi}dr^{2} \Big]
 \ee
 where $\tau$ is the conformal time.
 \be
@@ -211,7 +211,7 @@ X=\overline {X}+\delta X_{1}+ \delta X_{2}+\ldots
 \ee
 We do not need to calculate $X_2$ since the energy momentum constraint adds at most one spatial derivative which does not change the second order terms to first order. So
 \be
-P\left( \tau+\pi,\overline{X}+ \delta X_1+\delta X_2 \right) =\overline{P}\left( \tau,\overline {X}\right) 
+P\left(\varphi( \tau+\pi),\overline{X}+ \delta X_1+\delta X_2 \right) =\overline{P}\left( \varphi( \tau),\overline {X}\right) 
 + \cancel{\dfrac {\partial\overline {P}}{\partial \tau}} \pi+\dfrac {1}{2} \cancel{\dfrac {\partial^{2}\overline {P}}{\partial \tau^2}}\pi^{2}
 +
 \dfrac {\partial\overline {P}}{\partial\overline {X}}\delta X_1+\dfrac {1}{2}\dfrac {\partial P}{\partial X^{2}}\delta X_1^{2} +\dfrac {1}{2}\dfrac {\partial P}{\partial X^{2}}\delta X_2 + \mathcal{O}(\epsilon^3).
@@ -261,9 +261,38 @@ T_{\mu \nu} &= P g_{\mu \nu} + P_{,X} \partial_{\mu} \varphi \partial_{\nu} \var
   +
    \delta X_1 \bar{P}_{,XX}   \partial_{\mu} \tau \partial_{\nu} \tau  
    +
-    \bar{P}_{,X}   \partial_{\mu} \pi \partial_{\nu} \pi \Big ] \epsilon^1
-+ \mathcal {O}(\epsilon^{3/2}) 
+    \bar{P}_{,X}   \partial_{\mu} \pi \partial_{\nu} \pi \nonumber \\ &
+    +  \delta X_1 \bar{P}_{,XX}  \big(  \partial_{\mu} \tau \partial_{\nu} \pi  +   \partial_{\mu} \pi \partial_{\nu} \tau  \big)
+    + \cancelto{\mathcal {O}(\epsilon^{2})}{\delta X_1 \bar{P}_{,XX}   \partial_{\mu} \pi \partial_{\nu} \pi  
+   } \Big ] 
+ \; \; \;+ \mathcal {O}(\epsilon^{2}) 
 \end{align}
+\section{Density transfer function}
+According to equation \ref{eq10} we can write,
+\begin{align}
+\rho &=2 (\bar{X}+\delta X)(\bar{P}_{,X} + \bar{P}_{,XX} \delta X)- \bar{P} - \bar{P}_{,X} \delta X  \\
+\nonumber &
+=(2 \bar{X}\bar{P}_{,X}- \bar{P} )+(2 \bar{X}  \bar{P}_{,XX} + \bar{P}_{,X}) \delta X
+\nonumber  \\&
+=\Big ( \frac{2}{ 2 a^2} a^2 \bar{P} (1+\frac{1}{w})-\bar{P} \Big)+ \Bigg(  \frac{1}{a^2}a^4 \bar{P} (1+\frac{1}{w} )(\frac{1}{c_s^2}-1) + a^2 \bar{P} (\frac{1}{w}+1) \Bigg) \delta X
+\nonumber  \\&
+= \frac{\bar{P}}{w}+ \frac{\bar{P}}{w} \Big(  a^2  (1+w) (\frac{1}{c_s^2}-1) + a^2 (1+w) \Big) \delta X
+\nonumber  \\&
+= \frac{\bar{P}}{w} \Bigg[1+  \Big( (1+w) (\frac{1}{c_s^2}-1) +  (1+w) \Big) \Big( -\Psi +\pi ' \Big) \Bigg]
+\nonumber  \\&
+= \frac{\bar{P}}{w} \Bigg[1+  \frac{1+w}{c_s^2} \Big( -\Psi +\pi ' \Big) \Bigg]
+\end{align}
+where we have used equation \ref{Pbarder}-\ref{Pbar} and we have neglected $(\nabla \pi)^2$ term.
+Finally we can get the density contrast  as following,
+\be
+\delta=\frac{\rho- \bar{\rho}}{\bar{\rho}}=\frac{1+w}{c_s^2} \Big ( -\Psi+\pi' \Big )
+\ee
+where $\bar{\rho}= \frac{\bar{P}}{w}$. The last relation shows that density contrast transfer function is obtained from time derivative of the field and the metric not the field . It is a good test to check that we can recover density contrast transfer function from field derivative and metric $\Psi$ transfer functions. The transfer function is defined as below:
+\be
+T_{kessence}(k,z_i)=\frac{\delta_{kessence} (k,z=z_i)}{\mathcal{R}(k,z=\infty)}
+\ee
+Note that the notation here is the same as class and hi-class.
+\newpage
 \section{$T_{00}$ component of energy momentum tensor}
 According to previous equation $T_{00} $ component is,
 \begin{align}
@@ -282,9 +311,8 @@ T_{00} &=
   +
    \delta X_1 \bar{P}_{,XX}   \partial_{0} \tau \partial_{0} \tau 
    +
-    \cancelto{\mathcal {O}(\epsilon^{3/2}) 
-} { \bar{P}_{,X}  } \partial_{0} \pi \partial_{0} \pi \; \;  \Big ] \epsilon^1
-+ \mathcal {O}(\epsilon^{3/2}) 
+    \cancelto{\mathcal {O}(\epsilon^{2}) 
+} { \bar{P}_{,X}  } \partial_{0} \pi \partial_{0} \pi  +   \cancelto{\mathcal {O}(\epsilon^{2})}  {2 \pi'   } \delta X_1  \bar{P}_{,XX}  \Big ]
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   \nonumber
@@ -302,8 +330,8 @@ T_{00} &=
  2 \bar{P}_{,X}   {\pi'}
   +
    \delta X_1 \bar{P}_{,XX} 
-  \Big ] \epsilon^1
-+ \mathcal {O}(\epsilon^{3/2}) 
+  \Big ] 
++ \mathcal {O}(\epsilon^{2}) 
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   \nonumber
@@ -321,8 +349,8 @@ a^2 \bar{P}  (1+\frac{1}{w}) ] \epsilon ^0
  2  a^2 \bar{P}  (1+\frac{1}{w})  {\pi'}
   +
   a^4 \bar{P}  (1+\frac{1}{w}) (\frac{1}{c_s^2}-1) \,   \delta X_1 
-   \Big ] \epsilon^1
-+ \mathcal {O}(\epsilon^{3/2}) 
+   \Big ] 
++ \mathcal {O}(2) 
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   \nonumber
@@ -352,9 +380,9 @@ a^2 \bar{P}  (1+\frac{1}{w}) ] \epsilon ^0
 -
  2 w \Psi
  +
- 2  (1+w)  \prime{\pi}
- \Big ] \epsilon^1
-+ \mathcal {O}(\epsilon^{3/2}) 
+ 2  (1+w)  {\pi'}
+ \Big ] 
++ \mathcal {O}(\epsilon^{2}) 
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   \nonumber
@@ -368,8 +396,8 @@ a^2 \bar{P}  (1+\frac{1}{w}) ] \epsilon ^0
  2 w \Psi
  +
  2  (1+w)  {\pi'}
- \Bigg ] \epsilon^1
-+ \mathcal {O}(\epsilon^{3/2})  
+ \Bigg ]
++ \mathcal {O}(\epsilon^{2})  
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   \nonumber
@@ -385,14 +413,14 @@ a^2 \bar{P}  (1+\frac{1}{w}) ] \epsilon ^0
   &
   =
 3 M_{pl}^2  \mathcal{H}^2 \Omega \Bigg[  1+ \Psi \Big (2 - \frac{1+w}{c_s^2}  \Big ) + {\pi'} \Big ( \frac{1+w}{c_s^2}   \Big)  - \frac{(\vec{\nabla} \pi)^2}{2}   \Big ( (1+w) (\frac{1}{c_s^2}- 2 )  \Big )
- \Bigg]+  \mathcal {O}(\epsilon^{3/2}) 
+ \Bigg]+  \mathcal {O}(\epsilon^{2}) 
 \end{align}
 Where we have used \ref{Pbarder} and \ref{Pbar}.
 Finaly the $T_{00}$ component is;
 \be
 T_{00}=  
 3 M_{pl}^2   \mathcal{H}^2\Omega \Bigg[  1+ \Psi \Big (2 - \frac{1+w}{c_s^2}  \Big ) + {\pi'} \Big ( \frac{1+w}{c_s^2}   \Big)  -  \frac{(\vec{\nabla} \pi)^2}{2}   \Big ( (1+w) (\frac{1}{c_s^2}- 2 )  \Big )
- \Bigg]+  \mathcal {O}(\epsilon^{3/2}) 
+ \Bigg]+  \mathcal {O}(\epsilon^{2}) 
 \ee
 \section{$T_{0i}$ component of energy momentum tensor}
 According to the equation \ref{eqTmunuI} we can calculate $T_{0i}$ component of energy momentum tensor
@@ -412,8 +440,10 @@ T_{\mu \nu} &
   +
    \delta X_1 \bar{P}_{,XX}   \partial_{\mu} \tau \partial_{\nu} \tau  
    +
-    \bar{P}_{,X}   \partial_{\mu} \pi \partial_{\nu} \pi \Big ] \epsilon^1
-+ \mathcal {O}(\epsilon^{3/2}) 
+    \bar{P}_{,X}   \partial_{\mu} \pi \partial_{\nu} \pi  + 
+     \nonumber \\ &
+    +  \delta X_1 \bar{P}_{,XX}  \big(  \partial_{\mu} \tau \partial_{\nu} \pi  +   \partial_{\mu} \pi \partial_{\nu} \tau \big ) \Big]
++ \mathcal {O}(\epsilon^{2}) 
 %\label{eqTmunu}
 \end{align}
 So $T_{0i}$ reads;
@@ -427,15 +457,17 @@ T_{0 i} &
 +
  \delta g^{(1)}_{0 i} \bar{P} 
  +
-  \bar{P}_{,X}  \left ( \partial_{0} \pi \cancel{ \partial_{i} \tau  }
+  \bar{P}_{,X}  \Big( \partial_{0} \pi \cancel{ \partial_{i} \tau  }
   +
-  \partial_{0} \tau \partial_{i} \pi  \right ) 
+  \partial_{0} \tau \partial_{i} \pi  \Big ) 
   +
    \delta X_1 \bar{P}_{,XX}   \partial_{0} \tau  \cancel{\partial_{i} \tau  }
    +
- \cancelto{\mathcal {O}(\epsilon^{3/2}) 
-}    {\bar{P}_{,X} } \partial_{0} \pi \partial_{i} \pi \; \;   \Big ] \epsilon^1
-+ \mathcal {O}(\epsilon^{3/2}) 
+     \delta X_1 \bar{P}_{,XX}   \partial_{0} \tau  \partial_{i} \pi
+     \nonumber  \\&
+  +
+    {\bar{P}_{,X} } \partial_{0} \pi \partial_{i} \pi \; \;   \Big ]
++ \mathcal {O}(\epsilon^{2}) 
 \nonumber 
 \\ 
 &
@@ -444,19 +476,19 @@ T_{0 i} &
 \Big[
  \delta g^{(1)}_{0 i} \bar{P} 
  +
-  \bar{P}_{,X}   \partial_{0} \tau \partial_{i} \pi 
-  \Big ] \epsilon^1
-+ \mathcal {O}(\epsilon^{3/2}) 
+  \bar{P}_{,X}   \partial_{0} \tau \partial_{i} \pi +  {\bar{P}_{,X} } \partial_{0} \pi \partial_{i} \pi + \delta X_1 \bar{P}_{,XX}    \partial_{i} \pi
+  \Big ] 
++ \mathcal {O}(\epsilon^{2}) 
 \nonumber 
 \\ 
 &
 = 
-3 M_{pl}^2 \mathcal{H}^2 \Omega \Big[
+3 M_{pl}^2 \mathcal{H}^2 \Omega \Bigg[
  w \, \frac{\delta g^{(1)}_{0 i} }{a^2}
  +
-   (1+w )\,  \partial_{i} \pi 
-   \Big ] \epsilon^1
-+ \mathcal {O}(\epsilon^{3/2}) 
+   (1+w )\,  \partial_{i} \pi + (1+w) \, \pi' \partial_{i} \pi  +(1+ w)(\frac{1}{c_s^2}-1)  \Big (-\Psi+ \pi' -\frac{(\vec{\nabla} \pi)^2}{2} \Big) \partial_{i} \pi 
+   \Bigg ]
++ \mathcal {O}(\epsilon^{2}) 
 %\label{eqTmunu}
 \end{align}
 
@@ -478,8 +510,11 @@ T_{\mu \nu} &
   +
    \delta X_1 \bar{P}_{,XX}   \partial_{\mu} \tau \partial_{\nu} \tau  
    +
-    \bar{P}_{,X}   \partial_{\mu} \pi \partial_{\nu} \pi \Big ] \epsilon^1
-+ \mathcal {O}(\epsilon^{3/2}) %\label{eqTmunu}
+    \bar{P}_{,X}   \partial_{\mu} \pi \partial_{\nu} \pi  + 
+     \nonumber \\ &
+    +  \delta X_1 \bar{P}_{,XX}  \big(  \partial_{\mu} \tau \partial_{\nu} \pi  +   \partial_{\mu} \pi \partial_{\nu} \tau \big ) \Big]
++ \mathcal {O}(\epsilon^{3/2}) 
+%\label{eqTmunu}
 \end{align}
 So $T_{ij}$ is;
 \begin{align}
@@ -498,8 +533,8 @@ T_{i j} &
   +
    \delta X_1 \bar{P}_{,XX}   \cancel{ \partial_{i} \tau }\partial_{j} \tau  
    +
-    \bar{P}_{,X}   \partial_{i} \pi \partial_{j} \pi \Big ] \epsilon^1
-+ \mathcal {O}(\epsilon^{3/2}) 
+    \bar{P}_{,X}   \partial_{i} \pi \partial_{j} \pi \Big ]
++ \mathcal {O}(\epsilon^{2}) 
 \nonumber \\ & 
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -510,8 +545,8 @@ T_{i j} &
 -
  2 a^2 \Phi \delta_{ij} \bar{P} 
      +
-    \bar{P}_{,X}   \partial_{i} \pi \partial_{j} \pi \Big ] \epsilon^1
-+ \mathcal {O}(\epsilon^{3/2}) 
+    \bar{P}_{,X}   \partial_{i} \pi \partial_{j} \pi \Big ] 
++ \mathcal {O}(\epsilon^{2}) 
 \nonumber \\ & 
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -522,8 +557,8 @@ T_{i j} &
 -
  2  w \Phi \delta_{ij} 
      +
-   (1+w)  \partial_{i} \pi \partial_{j} \pi \Big ] \epsilon^1
-+ \mathcal {O}(\epsilon^{3/2}) 
+   (1+w)  \partial_{i} \pi \partial_{j} \pi \Big ] 
++ \mathcal {O}(\epsilon^{2}) 
 \nonumber \\ & 
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -533,22 +568,22 @@ T_{i j} &
 -
  2 w \Phi \delta_{ij} 
      +
-   {(1+w)}  \partial_{i} \pi \partial_{j} \pi \Bigg ] \epsilon^1
-+ \mathcal {O}(\epsilon^{3/2}) 
+   {(1+w)}  \partial_{i} \pi \partial_{j} \pi \Bigg ]
++ \mathcal {O}(\epsilon^{2}) 
 \nonumber \\ & 
 %:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: 
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 =3 M_{pl}^2 \mathcal{H}^2 \Omega    \Bigg[  w \delta_{ij} 
 -
  2 w \Phi \,  \delta_{ij} - (1+w) \Psi \, \delta_{ij}+  (1+w) {\pi'} \, \delta_{ij} - \frac{1+w}{2}   (\vec{\nabla} \pi)^2 \, \delta_{ij} +{(1+w)}  \partial_{i} \pi \partial_{j} \pi    \Bigg ] 
-     + \mathcal {O}(\epsilon^{3/2}) 
+     + \mathcal {O}(\epsilon^{2}) 
 \end{align}
 As a result we can write;
 \be
 T_{ij}=3 M_{pl}^2 \mathcal{H}^2 \Omega  \Bigg[  w \delta_{ij} 
 -
  2 w \Phi \,  \delta_{ij} - (1+w) \Psi \, \delta_{ij}+  (1+w) {\pi'} \, \delta_{ij} - \frac{1+w}{2 }   (\vec{\nabla} \pi)^2 \, \delta_{ij} +({1+w}  )\partial_{i} \pi \partial_{j} \pi    \Bigg ] 
-     + \mathcal {O}(\epsilon^{3/2}) 
+     + \mathcal {O}(\epsilon^{2}) 
 \ee
 The diagonal components read; 
 \be
@@ -568,11 +603,16 @@ Here we use the stress tensor conservation to obtain the field evolution. We use
 \be
 T_{\mu \nu ;}^{ \; \ \; \; \mu}=g^{\mu \rho} T_{\mu \nu; \, \rho}= g^{\mu \rho} \Big [ \partial_{\rho} T_{\mu \nu} - \Gamma^{\sigma}_{\rho \mu} T_{\sigma \nu}-\Gamma^{\sigma}_{\rho \nu} T_{\mu \sigma}  \Big ]=0
 \ee
-which there is sum on $\mu$. We use the upper formula to derive the constraint equation in Mathematica.\\
-The result is read as following;
+which there is a sum on $\mu$. We use the upper formula to derive the constraint equation in Mathematica. We assume $\delta g_{0i}=0$, $c_s^2$ and $\omega$ are constants. 
+\\ The result is read as following;
 \be
 .....
 \ee
+\section{Mathematica code tests:}
+In the first step we try to recover eqs 3.14 and 3.15 of {\color{red}{https://arxiv.org/pdf/1504.05481.pdf}}. We neglect the interaction between scalar field and matter sector, ie. $Q_I=0$ in eq 3.4. \\
+Using metric 3.10 and Stress tensor definition 3.11-3.13 we try to obtain Continuity and Euler equations (3.14-3.15).
+
+
 \section{Numerical solution to the k-essence equation }
 The obtained equation from energy-momentum constraint $T^{\mu 0}_{;\mu}$ is written as below pertubatively;
 \begin{align}
