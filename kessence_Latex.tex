@@ -291,8 +291,80 @@ where $\bar{\rho}= \frac{\bar{P}}{w}$. The last relation shows that density cont
 \be
 T_{kessence}(k,z_i)=\frac{\delta_{kessence} (k,z=z_i)}{\mathcal{R}(k,z=\infty)}
 \ee
-Note that the notation here is the same as class and hi-class.
-\newpage
+Note that the notation here is the same as class and hi-class and in the hi-class and class code the variables are normalized to the unity curvature perturbation so we do not need to normalize them. \\
+One good test of the obtained field transfer function from hi-class is comparing the density transfer function which calculated from the last formula with the one we get from class fluid description.\\
+The field equations are written in Synchronous gauge in the hi-class while we have calculated density contrast transfer function in the Newtonian gauge. So wee need to calculate density contrast transfer function in Newtonian gauge in terms of Synchronous gauge variable as following,
+\begin{align}
+\delta_{Newt}&=\frac{1+w}{c_s^2} \Big ( -\Psi+\pi' \Big )= \frac{1+w}{c_s^2} \Big ( -\alpha ' - \mathcal{H} \alpha+\pi' \Big )
+\nonumber \\ 
+&
+=\delta_{Syn} + \alpha \frac{{\bar{\rho'}}}{\bar{\rho}}
+\end{align}
+where $\alpha=({h'} + 6 {\eta'})/k^2$, $\Psi=\frac{1}{k^2} \Big [ {h^{''}}+ 6 {\eta^{''}} + \frac{a'}{a}  (h'+6 \eta ') \Big]$ according to equation 18 of  {\color{blue}{https://arxiv.org/pdf/astro-ph/9506072.pdf}} \\
+Here we want to compare the calculated $\delta _{Newt}$ from the field and metric perturbations in the hi-class with the class output in both Newtonian and Synchronous gauge.\\ 
+According to the background equations ${\rho'} + 3 \mathcal{H} (\rho + w \rho)=0 $ for constant $w$ we have,
+\be
+\bar{\rho}_{kessence} (a) =a ^{-3(1+w)}
+\ee
+so we can write,
+\be
+ \frac{{\bar{\rho'}}}{\bar{\rho}}= -3 (1+w) \mathcal{H}
+ \ee
+First we compare  $\frac{(\delta_{Newt} - \delta_{Syn})}{-3 (1+w) \mathcal{H}}$ with $\alpha$ that we read from the hi-class. Note that according to the code units $\mathcal{H}(z=0)=H(z=0)=2.25 \times10^{-4} /Mpc $. In the below figure we have compared the $\alpha$ in hi-class with what we get from the calculation in the class. These two quantities do not agree in high wavenumbers. The relative error of the functions is plotted in the figure \ref{plt2}. The relative error reaches to $30 \%$ in high k. 
+\begin{figure}[htbp!]
+\begin{center}
+\captionsetup{,margin=1cm}
+\includegraphics[width=0.60\textwidth]{alpha_class} 
+\caption{The  $\alpha$ is in hi-class and class is compared. There is a difference between two functions in high k! {\color{red}{What is the reason?}} }
+%\label{f1}
+\end{center}
+\end{figure}
+\begin{figure}[htbp!]
+\begin{center}
+\captionsetup{,margin=1cm}
+\includegraphics[width=0.60\textwidth]{alphaerror} 
+\caption{The  relative error of $\alpha$ in class and hi-class is shown. It is clear that  the relative error is very large in high wavenumbers.}
+%\label{plt2}
+\end{center}
+\end{figure}
+\begin{figure}[htbp!]
+\begin{center}
+\captionsetup{,margin=1cm}
+\includegraphics[width=0.60\textwidth]{newt_comp} 
+\caption{Density contrast comparison in class and hi-class in Newtonian gauge.}
+\label{plt2}
+\end{center}
+\end{figure}
+\begin{figure}[htbp!]
+\begin{center}
+\captionsetup{,margin=1cm}
+\includegraphics[width=0.60\textwidth]{sync_comp} 
+\caption{Density contrast comparison in class and hi-class in Synchronous gauge. {\color{red}{which one is correct?!}}}
+%\label{plt2}
+\end{center}
+\end{figure}
+Now we try to compare the density transfer functions in the class and hi-class in two gauges, the results are not satisfying according to the figures.
+\begin{figure}[htbp!]
+\begin{center}
+\captionsetup{,margin=1cm}
+\includegraphics[width=0.60\textwidth]{newt_comp} 
+\caption{Density contrast comparison in class and hi-class in Newtonian gauge.}
+\label{plt2}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp!]
+\begin{center}
+\captionsetup{,margin=1cm}
+\includegraphics[width=0.60\textwidth]{pitransfer} 
+\caption{Field transfer function in Newtonian gauge for quintessence model is plotted in different redshift}
+%\label{plt2}
+\end{center}
+\end{figure}
+
+\subsection{EFTcamb}
+Now we want to use EFTcamb results for the quintessence which is straightforward to check the consistency of the result,
+%\newpage
 \section{$T_{00}$ component of energy momentum tensor}
 According to previous equation $T_{00} $ component is,
 \begin{align}
