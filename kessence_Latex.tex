@@ -344,14 +344,6 @@ First we compare  $\frac{(\delta_{Newt} - \delta_{Syn})}{-3 (1+w) \mathcal{H}}$ 
 \end{center}
 \end{figure}
 Now we try to compare the density transfer functions in the class and hi-class in two gauges, the results are not satisfying according to the figures.
-\begin{figure}[htbp!]
-\begin{center}
-\captionsetup{,margin=1cm}
-\includegraphics[width=0.60\textwidth]{newt_comp} 
-\caption{Density contrast comparison in class and hi-class in Newtonian gauge.}
-\label{plt2}
-\end{center}
-\end{figure}
 
 \begin{figure}[htbp!]
 \begin{center}
@@ -361,9 +353,83 @@ Now we try to compare the density transfer functions in the class and hi-class i
 %\label{plt2}
 \end{center}
 \end{figure}
-
 \subsection{EFTcamb}
 Now we want to use EFTcamb results for the quintessence which is straightforward to check the consistency of the result,
+
+
+\section{Gevolution}
+All the transfer functions in the class and hi-class are normalized to one curvature perturbation. Curvature perturbation is obtained from powerspectrum as following,
+\be
+{\langle \mathcal{R} (k)  \mathcal{R} (k')\rangle} = (2 \pi )^3 \delta_D(k-k') P_{\mathcal{R}} (k)= (2 \pi )^3 \delta_D(k-k')  \frac{2 \pi^2}{k^3} \mathcal{P}_{\mathcal{R}}(k) =  (2 \pi )^3 \delta_D(k-k')   \frac{2 \pi^2}{k^3} A_s (\frac{k}{k_p})^{n_s-1}
+\ee
+So we can write
+\be
+\delta_{\mathcal{R}}(k)= \frac{\sqrt{2 \pi^2 A_s(\frac{k}{k_p})^{n_s-1}}}{k^{3/2}}
+\ee
+So $\delta_{\mathcal{R}}$, curvature perturbation transfer function, is the normalization factor which we should consider. Precisely we should multiply the field value from the class to $\delta_{\mathcal{R}}(k)$ to go in Gevolution units.\\
+On the other hand, in the Gevolution after realization of the field the power spectrum is calculated as following,
+\be
+\langle \pi(k,t)  \pi(k,t) \rangle =(2 \pi )^3  P_{\pi} ^{Gev}=(2 \pi )^3   \delta_{\mathcal{R}}(k) ^2 P_{\pi}^{\text{hiclass}} = \frac{2 \pi^2}{k^3} A_s (\frac{k}{k_p})^{n_s-1} P_{\pi}^{\text{hiclass}}
+\ee
+In the Gevolution the wavenumber is measured in $\frac{h}{Mpc}$ but for the purpose of working with normal numbers it is multiplied to Boxsize so;
+\be
+k  \, \left[\frac{h}{Mpc} \right] = {k \times \text{Boxsize }}\, \left [\frac{{h}}{ \text{Boxsize }Mpc} \right]
+\ee
+As the powerspectrum in Gevolution in in $Mpc^3$ so $P(k[\frac{h}{Mpc}]) [\frac{Mpc^3}{h^3}]=P(k \, h [\frac{1}{Mpc}]) \left [{Mpc^3} \right ] $
+%Plus in the gevolution $\frac{\text{Boxsize}}{Mpc}= \text{Number of grid points}$ 
+The dimensionless powerspectrum is calculated as following: {(\color{red}{arXiv:0712.3028v2}}) \\
+1- For the boxsize $L$, the field in Fourier space is discrete (no matter it is continuos or discrete in real space) and the k-modes are $\vec{k}= (\frac{2 \pi}{L}) (i,j,k)$. \\
+2- The discrete Fourier transform is obtained by placing $\delta (x)$ on a lattice of  $N^3$ grid points with spacing $\frac{L}{N}$ 
+\be
+\delta_k^{DFT}= \frac{1}{N^3} \sum_r e^{-i\vec{k}.{r}} \delta(\vec{r})
+\ee
+3- Note that,
+\be
+\delta_k \approx ( \frac{\Delta x}{2 \pi} )^3 N^3 \delta_k^{DFT} \approx \dfrac{1}{\Delta k} \delta_k^{DFT} 
+\ee
+3- The powerspectrum is;
+\be
+P(k) \approx \frac{\langle | \delta^{DFT} |^2 \rangle}{(\Delta k)^3}
+\ee
+ 4- The relation between dimensionless powerspectrum with the power with dimension is as following,
+ \be
+ \mathcal{P} (k)= \frac{k^3}{2 \pi ^2} P (k)
+ \ee
+ But factor $\frac{1}{N^6}$ should not be considered when we want to compare initial field transfer function with output powerspectrum! It is something internal in the Gevolution for calculating power from the realization. \\
+ 
+-{\color{red}{Question:}} Why we do not get the same field realization (or order of magnitude) after going forward and backward in Fourier space? \\
+- Is the below code right for realizing the field in Fourier and real space?
+\begin{lstlisting}
+generateRealization(*scalarFT_pi, 0., tk_d_kess, (unsigned int) ic.seed,
+ ic.flags & ICFLAG_KSPHERE); 
+plan_pi_k ->execute(FFT_BACKWARD);
+pi_k->updateHalo();	// pi_k now is realized in real space
+plan_pi_k->execute(FFT_FORWARD);}
+\end{lstlisting}
+If we turn off the following part we get completely different solution for the field in real space! As we expect the same order of magnitude of the $\pi (t,\vec{x})$ as other perturbations field $\phi$ so it seems we should turn off the below command! 
+\begin{lstlisting}
+plan_pi_k->execute(FFT_FORWARD); 
+\end{lstlisting}
+ 
+ \subsection{Some tests on Gevolution:}
+ We want to test if the initial powerspectrum is the same as realized field powerspectrum in gevolution. \\
+ In the figure \ref{comparehi-gev} the powerspectrum of the field from Gevolution's output is compared with the one which is made by hand. We make the dimensionless powerspectrum by hand from the initial transfer function as following,
+ \be
+ \mathcal{P}_{\pi}^{Gevolution} (k) = \frac{k ^3}{2 \pi ^2} \; \delta_{\mathcal{R}}^2 \,  \delta_{\pi}
+^{\text{hiclass}} \times  \delta_{\pi}^{\text{hiclass}} =  \frac{k ^3}{2 \pi ^2} \;    \frac{2 \pi^2 A_s(\frac{k}{k_p})^{n_s-1}}{k^{3}}  \;  \delta_{\pi}
+^{\text{hiclass}} \times  \delta_{\pi}^{\text{hiclass}} =    { A_s(\frac{k}{k_p})^{n_s-1}} \;  \delta_{\pi}
+^{\text{hiclass}} \times  \delta_{\pi}^{\text{hiclass}} 
+ \ee
+ \begin{figure}[htbp!]
+\begin{center}
+\captionsetup{,margin=1cm}
+\includegraphics[width=0.60\textwidth]{Gev-hiclass} 
+\caption{The powerspectrum which is calculated by hand is compared with output power of Gevolution. Simulation setting is: Boxsize=200 $Mpc/h$,  N$\_$grid=64 .  There is a deviation between two plots in high wavenumbers { \color{Red}{why?}}. While the Nyqvist frequency approximately is $\frac{2 \pi }{\Delta x} \approx  \frac{2 \pi \times \text{num}-{\text{grids}} }{\text{Boxsize}} =2.01 \, \frac{h}{Mpc}$}
+\label{comparehi-gev}
+\end{center}
+\end{figure}
+ 
+  
 %\newpage
 \section{$T_{00}$ component of energy momentum tensor}
 According to previous equation $T_{00} $ component is,
