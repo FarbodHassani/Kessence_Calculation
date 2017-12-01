@@ -270,7 +270,7 @@ T_{\mu \nu} &= P g_{\mu \nu} + P_{,X} \partial_{\mu} \varphi \partial_{\nu} \var
 %\newpage
 \section{$T_{00}$ component of energy momentum tensor}
 According to previous equation $T_{00} $ component is,
-\begin{align}
+\begin{align} \label{T00}
 T_{00} &=
    \Big[ \bar{g}_{0 0} \bar{P} 
 +
@@ -422,7 +422,7 @@ T_{\mu \nu} &
 %\label{eqTmunu}
 \end{align}
 So $T_{0i}$ reads;
-\begin{align}
+\begin{align} \label{T0i}
 T_{0 i} &
 = \Big[ \cancel{\bar{g}_{0 i}} \bar{P} 
 +
@@ -492,7 +492,7 @@ T_{\mu \nu} &
 %\label{eqTmunu}
 \end{align}.
 So $T_{ij}$ is;
-\begin{align}
+\begin{align} \label{Tij}
 T_{i j} &
 = \Big[ \bar{g}_{i j} \bar{P} 
 +
@@ -575,93 +575,79 @@ T_{ij}=3 M_{pl}^2 \mathcal{H}^2 \Omega (1+w)   \,   \partial_{i} \pi \partial_{j
 \ee
 \section{The constraint equations from stress energy tensor}
 Here we use the stress tensor conservation to obtain the field evolution. Easy way of obtaining the equations (Euler and continuity) is to derive the equations for a general fluid  then calculate it for the special case of k-essence.
-In general energy-momentum tensor is given by,
-\begin{align}
-& T_0^0=-(\bar{\rho} + \delta \rho^{(new)}) \\ \nonumber &
-T_i^0=(\bar{\rho} +\bar{P}) u_{i}^{(new)}  \\ \nonumber &
-T^i_0=(\bar{\rho} +\bar{P}) v_{i}^{ (new)}   \\ \nonumber &
-T_j^i=(\bar{P}+\delta P) \delta_j^{i \;(new)} +\Sigma_j^{i \;(new)}, \; \; \; \; \Sigma_i^i=0,
+We define the energy-momentum tensor as,
+\begin{align} \label{tmunu22}
+& T_{0}^{0}=-(\bar{\rho}^{d} + \delta \rho^{d} )\\ \nonumber &
+T_{i}^{0}=(\bar{\rho} + \bar{P}) v_i= - T^{i}_{0}\\ \nonumber &
+T_{j}^{i}=(\bar{P}^{d}+\delta P^{d}) \delta_{i}^{j} +\Sigma_{j}^{i}, \; \; \; \; \Sigma_{i}^{i}=0,
 \end{align}
-Note that $\delta \rho^{(new)}$ differs from $\delta \rho$, because it has an additional term coming from $(\nabla \pi)^2$ contribution and $u_i$ and $v_i$ are different in our case.
-We use the below formula in Mathematica to obtain the result, \\
+Note that all of the fluid quantities here are symbolic to simplify the equations. So the $\delta \rho^{d}$ here is not necessarily same as $\delta \rho $ in previous section, they are two different quantities in general. Moreover we have allowed anisotropic pressure part $\Sigma_{ij}$ since the perturbative scheme let second order contributions to first order equations. \\
+Now we calculate $T_{\mu \nu}$ for a general fluid to find k-essence correspondence. By $T_{\mu \nu}=g_{\mu \rho} T^{\rho}_{\nu}$ we get,
+\begin{align} 
+& T_{00}=a^2 \Big (\bar{\rho}^d + \delta \rho ^d + 2 \bar{\rho}^d \Psi \Big)\\ \nonumber &
+T_{i0}=- a^2(\bar{\rho}^d + \bar{P}^d) v_i=  T_{0i}\\ \nonumber &
+T_{ji}=a^2 (\bar{P}^{d}+\delta P^{d} - 2  \bar{P}^{d} \Phi) \delta_{ij} +a^2 \Sigma_{j i}, 
+\end{align}
+According to equation \ref{T00}, we have,
+\be
+\bar{\rho}^{d}= \frac{3 M_{pl}^2   \mathcal{H}^2\Omega}{a^2}, \; \; 
+\;  \; \; \;   \delta \rho^{d}=\frac{3 M_{pl}^2   \mathcal{H}^2\Omega (1+w)}{c_s^2 \, a^2} \Bigg[ - \Psi+   {\pi'}  -  \Big(1-2 c_s^2 \Big) 
+ \frac{(\vec{\nabla} \pi)^2}{2}   \Bigg]
+\ee 
+Using equation \ref{T0i} we have,
+\be
+u_{i}^{d}= -\frac{3 M_{pl}^2   \mathcal{H}^2\Omega}{a^2} \Big[1+ \pi' +(\frac{1}{c_s^2} -1) \Big(-\Psi +\pi' - \frac{(\vec{\nabla} \pi)^2}{2}  \Big ) \Big ] \partial _i \pi  , \; \; 
+\;  \; \; \; \bar{P}^d= w  \bar{\rho}^d 
+\ee
+and from equation \ref{Tij}
+\be
+ \delta P ^{d} = \frac{3 M_{pl}^2   \mathcal{H}^2\Omega (1+w)}{a^2}  \Big [ - \Psi + \pi' +  \frac{(\vec{\nabla} \pi)^2}{2}   \Big ], \; \; 
+\;  \; \; \; 
+\Sigma_{ij}=\frac{3 M_{pl}^2   \mathcal{H}^2\Omega (1+w) \partial_i \pi \partial_j \pi}{a^2}
+\ee
+It is important to note that,
+\be
+  \delta P ^{d} -  c_s^2 \delta \rho^{d} =\frac{6 M_{pl}^2   \mathcal{H}^2\Omega (1+w) ( 1- c_s^2  ) }{a^2} \frac{(\vec{\nabla} \pi)^2}{2}   
+\ee
+According to energy-momentum conservation,
 \be
 T^{\mu}_{ \nu \, ; \mu }= \partial_{\mu} T_{ \nu} ^{\mu}+ \Gamma^{\mu}_{\rho \mu} T_{\nu}^{ \rho}-\Gamma^{\rho}_{\mu \nu} T_{\rho} ^{ \mu}  =0
 \ee
-The Euler and continuity equations read,
-\begin{align}
- & \dot{\delta}^{(new)} = -(1+w) (\theta^{(new)}  + 3 \Phi ') -3 \mathcal{H} \Big({\delta P/\delta \rho} -w \Big)\delta ^{(new)}  \nonumber  \\ &
-\dot{\theta}^{(new)} = -\mathcal{H} \Big( 1 - 3 w   \Big )  \theta ^{(new)}  - \frac{{w'}}{1+w} \theta ^{(new)} + \frac{\delta P /\delta \rho}{1+w} \, k^2 \delta ^{(new)}  - k^2 \sigma ^{(new)}+k^2 \Psi
-\end{align}
-\subsection{$T_{\mu}^ {\nu}$ calculation}
-For the special case of k-essence, first we raise one index of the obtained stress tensor in previous sections then we find the correspondence fluid components of the k-essence stress tensor and at the end we substitute the fluid components into the general continuity and Euler equations.
+The background constraint is,
 \be
-T^{\mu}_{\nu}= g^{\mu \rho} T_{\rho \nu}
+\bar{\rho}'^{d}+3 \mathcal{H}(\bar{\rho}^{d} + \bar{P}^{d})=0
 \ee
-So we have,
-\begin{align}
-T_0^0  &=
--3 M_{pl}^2  \mathcal{H}^2 \Omega \, \frac{e^{-2 \Psi}}{a^2}  \Bigg[  1+ \Psi \Big (2 - \frac{1+w}{c_s^2}  \Big ) + {\pi'} \Big ( \frac{1+w}{c_s^2}   \Big)  - \frac{(\vec{\nabla} \pi)^2}{2}   \Big ( (1+w) (\frac{1}{c_s^2}- 2 )  \Big )
- \Bigg]+  \mathcal {O}(\epsilon^{2}) \nonumber \\ &
- =-\frac{3 M_{pl}^2  \mathcal{H}^2 \Omega}{a^2} \, \Big [1 -2 \Psi \Big]  \Bigg[  1+ \Psi \Big (2 - \frac{1+w}{c_s^2}  \Big ) + {\pi'} \Big ( \frac{1+w}{c_s^2}   \Big)  - \frac{(\vec{\nabla} \pi)^2}{2}   \Big ( (1+w) (\frac{1}{c_s^2}- 2 )  \Big )
- \Bigg]+  \mathcal {O}(\epsilon^{2})   \nonumber \\ &
-  =-\frac{3 M_{pl}^2  \mathcal{H}^2 \Omega}{a^2}\Bigg[  1- \Psi \Big ( \frac{1+w}{c_s^2}  \Big ) + {\pi'} \Big ( \frac{1+w}{c_s^2}   \Big)  - \frac{(\vec{\nabla} \pi)^2}{2}   \Big ( (1+w) (\frac{1}{c_s^2}- 2 )  \Big )
- \Bigg]+  \mathcal {O}(\epsilon^{2})
-\end{align}
-According to $T_0^0= -\bar{\rho} - \delta \rho^{(new)}$ we deduce that,
+Defining the below variables;
 \be
-\bar{\rho}= \frac{3 M_{pl}^2  \mathcal{H}^2 \Omega}{a^2}, \; \;  \; \; \; \delta \rho^{(new)}=\frac{3 M_{pl}^2  \mathcal{H}^2 \Omega}{a^2} \Big[ -\Psi \Big ( \frac{1+w}{c_s^2}  \Big ) + {\pi'} \Big ( \frac{1+w}{c_s^2}   \Big)  - \frac{(\vec{\nabla} \pi)^2}{2}    ( (1+w) (\frac{1}{c_s^2}- 2 )    \Big ]
+ \Sigma_{j}^{ i}=T_j^i - \delta_j^i T_k^k/3, \,\,\;\; (\bar{\rho} +\bar{P} )\theta = \partial _k  \delta ^{k j}\delta T_j^0.  \,\,\;\  (\bar{\rho} +\bar{P} ) \sigma=(\delta ^{kj} \partial_i \partial_k - \frac{1}{3} \delta_{i}^j) \Sigma_j^i
 \ee
-The relation between $\delta \rho ^{new}$ and $\delta \rho$ is easily obtained. Since we can directly calculate $\delta \rho$ according to equation \ref{eq10},
+The Euler and continuity equations in Fourier space read,
 \begin{align}
-\rho &=2 (\bar{X}+\delta X)(\bar{P}_{,X} + \bar{P}_{,XX} \delta X)- \bar{P} - \bar{P}_{,X} \delta X  \\
-\nonumber &
-=(2 \bar{X}\bar{P}_{,X}- \bar{P} )+(2 \bar{X}  \bar{P}_{,XX} + \bar{P}_{,X}) \delta X
-\nonumber  \\&
-=\Big ( \frac{2}{ 2 a^2} a^2 \bar{P} (1+\frac{1}{w})-\bar{P} \Big)+ \Bigg(  \frac{1}{a^2}a^4 \bar{P} (1+\frac{1}{w} )(\frac{1}{c_s^2}-1) + a^2 \bar{P} (\frac{1}{w}+1) \Bigg) \delta X
-\nonumber  \\&
-= \frac{\bar{P}}{w}+ \frac{\bar{P}}{w} \Big(  a^2  (1+w) (\frac{1}{c_s^2}-1) + a^2 (1+w) \Big) \delta X
-\nonumber  \\&
-= \frac{\bar{P}}{w} \Bigg[1+  \Big( (1+w) (\frac{1}{c_s^2}-1) +  (1+w) \Big) \Big( -\Psi +\pi '   - \frac{\vec{(\nabla} \pi)^2}{2} \Big) \Bigg]
-\nonumber  \\&
-= \frac{\bar{P}}{w} \Bigg[1+  \frac{1+w}{c_s^2} \Big( -\Psi +\pi '  - \frac{\vec{(\nabla} \pi)^2}{2}\Big) \Bigg]
-\label{deltarho}
-\end{align}
-where we have used equation \ref{Pbarder}-\ref{Pbar}. Finally,
-\be
-\bar{\rho}= \frac{\bar{P}}{w} = \frac{3 M_{pl}^2\mathcal{H}^2 \Omega }{a^2} , \; \;  \; \; \; \delta \rho= \frac{3 M_{pl}^2\mathcal{H}^2 \Omega }{a^2} \Big[ \frac{1+w}{c_s^2} \Big ( -\Psi + \pi' - \frac{(\vec{\nabla}\pi)^2}{2}  \Big)  \Big]
-\ee
-and,
-\be
-\delta \rho^{(new)}= \delta \rho +  \frac{3 M_{pl}^2\mathcal{H}^2 \Omega }{a^2} \Big[ (1+w)  (\vec{\nabla}\pi)^2 \Big]
-\ee
-The other components are,
-\begin{align}
-T_i^0 &= - \frac{3 M_{pl}^2\mathcal{H}^2 \Omega }{a^2} \Big [ 1-2 \Psi \Big ] \Bigg [( 1+w)    +( 1+w)   \pi' + (\frac{1}{c_s^2} -1)(1+w) \Big ( -\Psi -  \frac{(\vec{\nabla}\pi)^2}{2} + \pi' \Big ) \Bigg ]  \partial_i \pi  \nonumber \\ &
-=- \frac{3 M_{pl}^2\mathcal{H}^2 \Omega  ( 1+w)}{a^2} \Bigg [  1 - 2 \Psi +  \pi' + (\frac{1}{c_s^2} -1) \Big ( -\Psi -  \frac{(\vec{\nabla}\pi)^2}{2} + \pi' \Big ) \Bigg ]  \partial_i \pi   \nonumber \\ &
-=- \frac{3 M_{pl}^2\mathcal{H}^2 \Omega  ( 1+w)}{a^2} \Bigg [  1 -  \Psi \Big ( 1+\frac{1}{ c_s^2}\Big )  + \frac{\pi'}{c_s^2} +  \frac{(\vec{\nabla}\pi)^2}{2} \Big ( 1- \frac{1}{c_s^2}\Big) \Bigg ]  \partial_i \pi 
+ & \dot{\delta}^{d} = -(1+w) (\theta^{d}  + 3 \Phi ') -3 \mathcal{H} \Big({\delta P^{d}/\delta \rho^{d}} -w \Big)\delta^{d}  
+     \\  \nonumber &
+ \dot{\theta}^{d} = -\mathcal{H} \Big( 1 - 3 w   \Big )  \theta^{d} - \frac{{w'}}{1+w} \theta ^{d}+ \frac{\delta P^{d} \delta \rho^{d}}{1+w} \, k^2 \delta^{d}  - k^2 \sigma +k^2 \Psi
 \end{align}
 
-\begin{align}
-T_0^i &= \frac{3 M_{pl}^2\mathcal{H}^2 \Omega }{a^2} \Big [ 1+2 \Phi \Big ] \Bigg [( 1+w)    +( 1+w)   \pi' + (\frac{1}{c_s^2} -1)(1+w) \Big ( -\Psi -  \frac{(\vec{\nabla}\pi)^2}{2} + \pi' \Big ) \Bigg ]  \partial_i \pi  \nonumber \\ &
-= \frac{3 M_{pl}^2\mathcal{H}^2 \Omega  ( 1+w)}{a^2} \Bigg [  1 +2 \Phi +  \pi' + (\frac{1}{c_s^2} -1) \Big ( -\Psi -  \frac{(\vec{\nabla}\pi)^2}{2} + \pi' \Big ) \Bigg ]  \partial_i \pi  
- \nonumber
-  \\
-   &
-= 
-\frac{3 M_{pl}^2\mathcal{H}^2 \Omega  ( 1+w)}{a^2} \Bigg [  1 +2  \Phi+ \frac{\pi'}{c_s^2}  + \Psi \Big (1- \frac{1}{c_s^2} \Big ) +  \frac{(\vec{\nabla}\pi)^2}{2} \Big ( 1- \frac{1}{c_s^2}\Big) \Bigg ]  \partial_i \pi 
-\end{align}
-
-\begin{align}
-T_i^j &= \frac{3 M_{pl}^2\mathcal{H}^2 \Omega }{a^2} \Big [ 1+2 \Phi \Big ] \Bigg [w    -2 w \Phi+ (1+w) \Big ( -\Psi -  \frac{(\vec{\nabla}\pi)^2}{2} + \pi' + \delta^{jk} \partial _i  \pi \partial_k \pi \Big ) \Bigg ] 
- \nonumber 
- \\ 
- &
-= \frac{3 M_{pl}^2\mathcal{H}^2 \Omega }{a^2}  \Bigg [w  \delta_{i}^j+ (1+w) \Big ( -\Psi   \delta_{i}^j -  \frac{(\vec{\nabla}\pi)^2}{2}   \delta_{i}^j + \pi'   \delta_{i}^j + \delta^{jk} \partial _i  \pi \partial_k \pi \Big ) \Bigg ] \end{align}
+where  $\delta \rho^{d}= \rho^{d} -\bar{\rho}^{d}$, $\delta P^{d} =P ^{d}-\bar{P}^{d}$, $\theta= i \vec{k}. \vec{u}$. \\
 \subsection{Euler and continuity equations}
-Continuity equation in the background level gives,
+We can write Euler and continuity equations for k-essence case easily just by substituting the below quantities into the general equations.
 \begin{align}
-....
-\end{align}
+ & \delta^{d} =\frac{\rho^d -\bar{\rho }^d}{\bar{\rho}^d} =  \frac{1+w}{c_s^2} \Bigg[ - \Psi+   {\pi'}  -  \Big(1-2 c_s^2 \Big) 
+ \frac{(\vec{\nabla} \pi)^2}{2}   \Bigg] 
+ \nonumber
+   \\ 
+   &
+ \theta^d=\vec{\nabla} .\vec{u}^d=\delta^{ij} \partial_j u_i ^d=-\frac{3 M_{pl}^2   \mathcal{H}^2\Omega}{a^2} \Big[1+ \pi' +(\frac{1}{c_s^2} -1) \Big(-\Psi +\pi' - \frac{(\vec{\nabla} \pi)^2}{2}  \Big ) \Big ] \ \partial ^2 \pi  
+  \nonumber
+   \\ 
+   &
+   \frac{\delta P ^{d} }{ \delta \rho^{d} }=c_s^2 + \frac{6 M_{pl}^2   \mathcal{H}^2\Omega (1+w) ( 1- c_s^2  ) }{a^2} \frac{(\vec{\nabla} \pi)^2}{2 \delta \rho^{d}   } =   c_s^2 \Bigg [1 + \frac{ (1-c_s^2) (\vec{\nabla} \pi)^2}{- \Psi+   {\pi'}  -  \Big(1-2 c_s^2 \Big) 
+ \frac{(\vec{\nabla} \pi)^2}{2}  } \Bigg ]
+   \nonumber
+   \\ 
+   &
+   \sigma=\frac{(\delta ^{kj} \partial_i \partial_k )\Sigma_j^i}{(\bar{\rho} +\bar{P} )} =\partial^2 \pi \partial^2 \pi
+ \end{align}
 \section{Mathematica code tests:}
 In the first step we try to recover eqs 3.14 and 3.15 of {\color{red}{https://arxiv.org/pdf/1504.05481.pdf}}. We neglect the interaction between scalar field and matter sector, ie. $Q_I=0$ in eq 3.4. \\
 Using metric 3.10 and Stress tensor definition 3.11-3.13 we try to obtain Continuity and Euler equations (3.14-3.15).
