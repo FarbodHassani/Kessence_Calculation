@@ -132,7 +132,7 @@
   \tableofcontents
 
   \flushbottom
-\section{Theory} 
+\section{Energy momentum tensor} 
 The most general action for a scalar field coupled to Einstein gravity is;
 \be
 S=\frac{1}{16 \pi G} \int \sqrt{-g} R d^4 x + \int \sqrt{-g} P (X, \varphi) d^4 x
@@ -211,12 +211,12 @@ X=\overline {X}+\delta X_{1}+ \delta X_{2}+\ldots
 \ee
 We do not need to calculate $X_2$ since the energy momentum constraint adds at most one spatial derivative which does not change the second order terms to first order. So
 \be
-P\left(\varphi( \tau+\pi),\overline{X}+ \delta X_1+\delta X_2 \right) =\overline{P}\left( \varphi( \tau),\overline {X}\right) 
-+ \cancel{\dfrac {\partial\overline {P}}{\partial \tau}} \pi+\dfrac {1}{2} \cancel{\dfrac {\partial^{2}\overline {P}}{\partial \tau^2}}\pi^{2}
+P\left(\varphi_0( \tau+\pi)={\varphi_0}+ {{\varphi_0}}' \pi,\overline{X}+ \delta X_1+\delta X_2 \right) =\overline{P}\left( \varphi( \tau),\overline {X}\right) 
++ {\dfrac {\partial\overline {P}}{\partial \varphi_0}} \pi+\dfrac {1}{2} {\dfrac {\partial^{2}\overline {P}}{\partial \varphi_0^2}}\pi^{2}
 +
 \dfrac {\partial\overline {P}}{\partial\overline {X}}\delta X_1+\dfrac {1}{2}\dfrac {\partial P}{\partial X^{2}}\delta X_1^{2} +\dfrac {1}{2}\dfrac {\partial P}{\partial X^{2}}\delta X_2 + \mathcal{O}(\epsilon^3).
 \ee
-The term $\dfrac {\partial\overline {P}}{\partial \tau}$ cancels since  $\dfrac {\partial\overline {P}}{\partial \tau}=\dfrac {\partial\overline {P}}{\partial  {\varphi}} \dfrac{\partial {\varphi}}{\partial \tau}+ \dfrac {\partial\overline {P}}{\partial  {X}} \dfrac{\partial {X}}{\partial \tau} =0$. Because $\varphi$ and $\partial_{\mu} \varphi$ are independent variables not function of $\tau$. \\
+%The term $\dfrac {\partial\overline {P}}{\partial \tau}$ becomes  $\dfrac {\partial\overline {P}}{\partial \tau}=\dfrac {\partial\overline {P}}{\partial  {\varphi}} \dfrac{\partial {\varphi}}{\partial \tau}+ \dfrac {\partial\overline {P}}{\partial  {X}} \dfrac{\partial {X}}{\partial \tau} =P_{,\varphi} \dot{\bar{\varphi}} + \bar{P}_{\bar{X}}$. Because $\varphi$ and $\partial_{\mu} \varphi$ are independent variables not function of $\tau$. \\
 The adiabatic sound speed ({\color{red}why?!}) is defined as below,
 \be
 %c^{2}_{s}\equiv \frac{\delta P}{\delta \rho} =\dfrac {\bar{P}_{,X} \delta X + \bar{P}_{,\varphi} \delta \varphi}{\bar{\rho}_{,X} \delta X  +\bar{\rho}_{,\varphi} \delta  \varphi}=\dfrac {\bar{P}_{,X}}{\bar{\rho}_{,X}}=\dfrac {\bar{P}_{,X}}{\bar{P}_{,X}+2\bar{X}\bar{P}_{,XX}} 
@@ -239,19 +239,45 @@ So according to \ref{22} and \ref{23}\\
 \be
 \bar{P}=  3 M_{pl}^2 H^2 \Omega \, \omega = \frac{ 3 M_{pl}^2 \mathcal{H}^2 \Omega\, \omega }{a^2} \label{Pbar}
 \ee
+Moreover,
+\be
+\frac{\bar{P}'}{\bar{P}}=\frac{2 \mathcal{H}' }{\mathcal{H}} + \frac{\Omega'}{\Omega} + \cancel{\frac{w'}{w} }- 2\mathcal{H}
+\ee
+Where according to continuity equation \ref{Conteqgg}, we can write,
+\be
+\frac{\bar{P}'}{\bar{P}}=-3 (1+w) \mathcal{H}- \mathcal{H}
+\ee
+where we have assumed that $w'=0$ and we have used the below relation,
+\be
+2 \frac{\Omega'}{\Omega}=- (1+3  w) \mathcal{H}- \frac{2 \mathcal{H}}{\mathcal{H}}
+\ee
+Also we have the relation for $\bar{P}'_{,X}$ as following,
+\be
+\frac{\bar{P}'_{,X}}{\bar{P}_{,X}}=\frac{\bar{P}'}{\bar{P}}+\mathcal{H}=-3 \mathcal{H} (1+w)
+\ee
+So we have,
+\begin{align}
+-a^2 \bar{P}'  + \bar{P}'_{,X}=& {a^2 \bar{P}} \Big[3 (1+w) \mathcal{H}  + \mathcal{H}    -3 \mathcal{H} (1+w) (1+ \frac{1}{w})  \Big]  \nonumber \\&=
+a^2 \frac{-3(1+w)}{w}   \mathcal{H} \bar{P}
+\end{align}
 The relation between Hubble and conformal Hubble is;
 \be
 \mathcal{H} (\tau)=\frac{1}{a(\tau) }\frac{d a(\tau)}{d \tau }= \frac{1}{a(t) } \frac{d a (t) }{d t} \frac{d t }{ d\tau}= a H(t)
 \ee
+and for the derivative,
+\begin{align}
+& \dot{H}= \frac{-\mathcal{H}^2+ \mathcal{H}'}{a^2} \nonumber \\ &
+\mathcal{H}'=a^2 \Big[ H^2 + \dot{H}\Big ]
+\end{align}
 Now we can construct stress tensor up to first order in Gevolution's perturbation scheme,
 \begin{align} \label{eqTmunuI}
-T_{\mu \nu} &= P g_{\mu \nu} + P_{,X} \partial_{\mu} \varphi \partial_{\nu} \varphi \\ \nonumber & =(\bar{g}_{\mu \nu} + \delta g^{(1)}_{\mu \nu}) (\bar{P}+\bar{P}_{,X} \delta X_1) + (\bar{P}_{,X}+\bar{P}_{,XX} \delta X_1) \partial_{\mu} (\tau+ \pi) \partial_\nu (\tau+\pi)+ \ldots
+T_{\mu \nu} &= P g_{\mu \nu} + P_{,X} \partial_{\mu} \varphi \partial_{\nu} \varphi \\ \nonumber & =(\bar{g}_{\mu \nu} + \delta g^{(1)}_{\mu \nu}) (\bar{P}+\bar{P}' \pi+\bar{P}_{,X} \delta X_1) + (\bar{P}_{,X}+\bar{P}'_{,X} \pi+\bar{P}_{,XX} \delta X_1) \partial_{\mu} (\tau+ \pi) \partial_\nu (\tau+\pi)+ \ldots
 \\ \nonumber & 
 = \Big[ \bar{g}_{\mu \nu} \bar{P} 
 +
  \bar{P}_{,X} \partial_{\mu} \tau \partial_{\nu} \tau \Big] \epsilon ^0 
 +
-\Big[ \bar{g}_{\mu \nu}  \bar{P}_{,X} \delta X_1 
+\Big[( \bar{g}_{\mu \nu} \bar{P}'+ \bar{P}'_{,X} )\pi+\bar{g}_{\mu \nu}  \bar{P}_{,X} \delta X_1 
 +
  \delta g^{(1)}_{\mu \nu} \bar{P} 
  +
@@ -268,7 +294,7 @@ T_{\mu \nu} &= P g_{\mu \nu} + P_{,X} \partial_{\mu} \varphi \partial_{\nu} \var
  \; \; \;+ \mathcal {O}(\epsilon^{2}) 
 \end{align}
 %\newpage
-\section{$T_{00}$ component of energy momentum tensor}
+\subsection{$T_{00}$ component of energy momentum tensor}
 According to previous equation $T_{00} $ component is,
 \begin{align} \label{T00}
 T_{00} &=
@@ -276,7 +302,7 @@ T_{00} &=
 +
  \bar{P}_{,X} \partial_{0} \tau \partial_{0} \tau \Big] \epsilon ^0 
 +
-\Big[ \bar{g}_{0 0}  \bar{P}_{,X} \delta X_1 
+\Big[( -a^2 \bar{P}' +\bar{P}'_{,X})\pi+\bar{g}_{0 0}  \bar{P}_{,X} \delta X_1 
 +
  \delta g^{(1)}_{0 0} \bar{P} 
  +
@@ -298,7 +324,7 @@ T_{00} &=
 +
  \bar{P}_{,X}  ] \epsilon ^0 
 +
-\Big[ - a^2 \bar{P}_{,X} \delta X_1 
+\Big[ (-a^2 \bar{P}' +\bar{P}'_{,X} )\pi- a^2 \bar{P}_{,X} \delta X_1 
 -
  2 a^2 \Psi \bar{P} 
  +
@@ -317,7 +343,7 @@ T_{00} &=
 +
 a^2 \bar{P}  (1+\frac{1}{w}) ] \epsilon ^0 
 +
-\Big[ - a^4 \bar{P}  (1+\frac{1}{w})  \delta X_1 
+\Big[(-a^2 \bar{P}' +\bar{P}'_{,X} ) \pi- a^4 \bar{P}  (1+\frac{1}{w})  \delta X_1 
 -
  2 a^2  \Psi \bar{P} 
  +
@@ -334,7 +360,7 @@ a^2 \bar{P}  (1+\frac{1}{w}) ] \epsilon ^0
   =
  \frac{ a^2 \bar{P}}{w} \,\epsilon ^0 
 +
-\frac{ a^2\bar{ P}}{w}   \Big[ - a^2   (1+w)  \delta X_1 
+\frac{ a^2\bar{ P}}{w}   \Big[ - 3(1+w) \mathcal{H} \pi- a^2   (1+w)  \delta X_1 
 -
  2   w \Psi
  +
@@ -351,7 +377,7 @@ a^2 \bar{P}  (1+\frac{1}{w}) ] \epsilon ^0
   =
 \frac{a^2 \bar{ P}}{w} \,\epsilon ^0 
 +
-\frac{a^2 \bar{ P}}{w}   \Big[  a^2 (1+w) (\frac{1}{c_s^2}- 2)  \delta X_1 
+\frac{a^2 \bar{ P}}{w}   \Big[ - 3(1+w) \mathcal{H} \pi+  a^2 (1+w) (\frac{1}{c_s^2}- 2)  \delta X_1 
 -
  2 w \Psi
  +
@@ -366,7 +392,7 @@ a^2 \bar{P}  (1+\frac{1}{w}) ] \epsilon ^0
   =
 3 M_{pl}^2 \mathcal{H}^2 \Omega  \,\epsilon ^0 
 +
-3 M_{pl}^2  \mathcal{H}^2 \Omega    \Bigg[  (1+w) (\frac{1}{c_s^2}- 2)  \Big[ -\Psi+{\pi'}-  \frac{(\vec{\nabla} \pi)^2}{2} \Big ]
+3 M_{pl}^2  \mathcal{H}^2 \Omega    \Bigg[ - 3(1+w)\mathcal{H} \, \pi+ (1+w) (\frac{1}{c_s^2}- 2)  \Big[ -\Psi+{\pi'}-  \frac{(\vec{\nabla} \pi)^2}{2} \Big ]
 -
  2 w \Psi
  +
@@ -379,7 +405,7 @@ a^2 \bar{P}  (1+\frac{1}{w}) ] \epsilon ^0
  \\
   &
   =
-3 M_{pl}^2  \mathcal{H}^2 \Omega \Bigg[  1+ \Psi \Big (- (1+w) (\frac{1}{c_s^2}- 2)-2 w  \Big ) + {\pi'} \Big ( (1+w) (\frac{1}{c_s^2}- 2 )+2 (1+w)   \Big)  - \frac{(\vec{\nabla} \pi)^2}{2}  \Big ( (1+w) (\frac{1}{c_s^2}- 2 )  \Big )
+3 M_{pl}^2  \mathcal{H}^2 \Omega \Bigg[  1 - 3(1+w)\mathcal{H} \, \pi+ \Psi \Big (- (1+w) (\frac{1}{c_s^2}- 2)-2 w  \Big ) + {\pi'} \Big ( (1+w) (\frac{1}{c_s^2}- 2 )+2 (1+w)   \Big)  - \frac{(\vec{\nabla} \pi)^2}{2}  \Big ( (1+w) (\frac{1}{c_s^2}- 2 )  \Big )
  \Bigg]
  %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -387,17 +413,17 @@ a^2 \bar{P}  (1+\frac{1}{w}) ] \epsilon ^0
  \\
   &
   =
-3 M_{pl}^2  \mathcal{H}^2 \Omega \Bigg[  1+ \Psi \Big (2 - \frac{1+w}{c_s^2}  \Big ) + {\pi'} \Big ( \frac{1+w}{c_s^2}   \Big)  - \frac{(\vec{\nabla} \pi)^2}{2}   \Big ( (1+w) (\frac{1}{c_s^2}- 2 )  \Big )
+3 M_{pl}^2  \mathcal{H}^2 \Omega \Bigg[  1- 3(1+w)\mathcal{H} \pi+ \Psi \Big (2 - \frac{1+w}{c_s^2}  \Big ) + {\pi'} \Big ( \frac{1+w}{c_s^2}   \Big)  - \frac{(\vec{\nabla} \pi)^2}{2}   \Big ( (1+w) (\frac{1}{c_s^2}- 2 )  \Big )
  \Bigg]+  \mathcal {O}(\epsilon^{2}) 
 \end{align}
 Where we have used \ref{Pbarder} and \ref{Pbar}.
 Finaly the $T_{00}$ component is;
 \be
 T_{00}=  
-3 M_{pl}^2   \mathcal{H}^2\Omega \Bigg[  1+ \Psi \Big (2 - \frac{1+w}{c_s^2}  \Big ) + {\pi'} \Big ( \frac{1+w}{c_s^2}   \Big)  -  \frac{(\vec{\nabla} \pi)^2}{2}   \Big ( (1+w) (\frac{1}{c_s^2}- 2 )  \Big )
+3 M_{pl}^2   \mathcal{H}^2\Omega \Bigg[  1-3(1+w)\mathcal{H} \pi+ \Psi \Big (2 - \frac{1+w}{c_s^2}  \Big ) + {\pi'} \Big ( \frac{1+w}{c_s^2}   \Big)  -  \frac{(\vec{\nabla} \pi)^2}{2}   \Big ( (1+w) (\frac{1}{c_s^2}- 2 )  \Big )
  \Bigg]+  \mathcal {O}(\epsilon^{2}) 
 \ee
-\section{$T_{0i}$ component of energy momentum tensor}
+\subsection{$T_{0i}$ component of energy momentum tensor}
 According to the equation \ref{eqTmunuI} we can calculate $T_{0i}$ component of energy momentum tensor
 \begin{align}
 T_{\mu \nu} &
@@ -405,7 +431,7 @@ T_{\mu \nu} &
 +
  \bar{P}_{,X} \partial_{\mu} \tau \partial_{\nu} \tau \Big] \epsilon ^0 
 +
-\Big[ \bar{g}_{\mu \nu}  \bar{P}_{,X} \delta X_1 
+\Big[\bar{g}_{\mu \nu} \bar{P}' \pi + \bar{g}_{\mu \nu}  \bar{P}_{,X} \delta X_1 
 +
  \delta g^{(1)}_{\mu \nu} \bar{P} 
  +
@@ -424,11 +450,11 @@ T_{\mu \nu} &
 So $T_{0i}$ reads;
 \begin{align} \label{T0i}
 T_{0 i} &
-= \Big[ \cancel{\bar{g}_{0 i}} \bar{P} 
+= \Big[\cancel{\bar{g}_{0 i}} \bar{P} 
 +
  \bar{P}_{,X} \partial_{0} \tau \partial_{i} \tau \Big] \epsilon ^0 
 +
-\Big[ \cancel{\bar{g}_{0 i}}  \bar{P}_{,X} \delta X_1 
+\Big[ \cancel{\bar{g}_{0 i}} \bar{P}' \pi+ \cancel{\bar{g}_{0 i}}  \bar{P}_{,X} \delta X_1 
 +
  \delta g^{(1)}_{0 i} \bar{P} 
  +
@@ -467,7 +493,7 @@ T_{0 i} &
 %\label{eqTmunu}
 \end{align}
 Note that $T_{0i}=T_{i0}$.
-\section{$T_{ij}$ component of energy momentum tensor}
+\subsection{$T_{ij}$ component of energy momentum tensor}
 Again using the equation \ref{eqTmunuI}
 \begin{align}
 T_{\mu \nu} &
@@ -475,7 +501,7 @@ T_{\mu \nu} &
 +
  \bar{P}_{,X} \partial_{\mu} \tau \partial_{\nu} \tau \Big] \epsilon ^0 
 +
-\Big[ \bar{g}_{\mu \nu}  \bar{P}_{,X} \delta X_1 
+\Big[ ({\bar{g}_{\mu \nu}} \bar{P}' +\bar{P}'_{,X})\pi+ \bar{g}_{\mu \nu}  \bar{P}_{,X} \delta X_1 
 +
  \delta g^{(1)}_{\mu \nu} \bar{P} 
  +
@@ -498,7 +524,7 @@ T_{i j} &
 +
  \bar{P}_{,X} \cancel{ \partial_{i} \tau}\partial_{j} \tau \Big] \epsilon ^0 
 +
-\Big[ \bar{g}_{i j}  \bar{P}_{,X} \delta X_1 
+\Big[ ({\bar{g}_{i j}} \bar{P}' +\cancel{\bar{P}'_{,X}} \partial_{i} (\tau+\pi) \partial_{j}(\tau+\pi))\pi+ \bar{g}_{i j}  \bar{P}_{,X} \delta X_1 
 +
  \delta g^{(1)}_{i j} \bar{P} 
  +
@@ -516,7 +542,7 @@ T_{i j} &
 = \Big[ a^2 \delta_{ij} \bar{P} 
  \Big] \epsilon ^0 
 +
-\Big[a^2  \delta_{ij}   \bar{P}_{,X} \delta X_1 
+\Big[ a^2  \delta_{ij}  \bar{P}' \pi+ a^2  \delta_{ij}   \bar{P}_{,X} \delta X_1 
 -
  2 a^2 \Phi \delta_{ij} \bar{P} 
      +
@@ -528,7 +554,7 @@ T_{i j} &
 = \frac{ a^2 \bar{P}}{w}   \Big[ w \delta_{ij} 
 \Big] \epsilon ^0 
 +
-\frac{ a^2  \bar{P}}{w} \Big[  \delta_{ij}   (1+w)  \Big (-\Psi+{\pi'}- \frac{ (\vec{\nabla} \pi)^2 }{2 } \Big ) 
+\frac{ a^2  \bar{P}}{w} \Big[ w   \delta_{ij}  \bar{P}'  /\bar{P} \pi+  \delta_{ij}   (1+w)  \Big (-\Psi+{\pi'}- \frac{ (\vec{\nabla} \pi)^2 }{2 } \Big ) 
 -
  2  w \Phi \delta_{ij} 
      +
@@ -537,7 +563,7 @@ T_{i j} &
 \nonumber \\ & 
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-=3 M_{pl}^2 \mathcal{H}^2 \Omega    \Bigg[  w \delta_{ij} 
+=3 M_{pl}^2 \mathcal{H}^2 \Omega    \Bigg[w \delta_{ij} - w (\mathcal{H}+3 (1+w)\mathcal{H}) \pi \delta_{ij} 
 +
  \delta_{ij}   (1+w)  \Big (-\Psi+{\pi'}- \frac{(\vec{\nabla} \pi)^2  }{2 }  \Big )
 -
@@ -548,21 +574,21 @@ T_{i j} &
 \nonumber \\ & 
 %:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: 
 %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-=3 M_{pl}^2 \mathcal{H}^2 \Omega    \Bigg[  w \delta_{ij} 
+=3 M_{pl}^2 \mathcal{H}^2 \Omega    \Bigg[  w \delta_{ij} - w (1+3 (1+w))\mathcal{H} \pi \delta_{ij} 
 -
  2 w \Phi \,  \delta_{ij} - (1+w) \Psi \, \delta_{ij}+  (1+w) {\pi'} \, \delta_{ij} - \frac{1+w}{2}   (\vec{\nabla} \pi)^2 \, \delta_{ij} +{(1+w)}  \partial_{i} \pi \partial_{j} \pi    \Bigg ] 
      + \mathcal {O}(\epsilon^{2}) 
 \end{align}
 As a result we can write;
 \be
-T_{ij}=3 M_{pl}^2 \mathcal{H}^2 \Omega  \Bigg[  w \delta_{ij} 
+T_{ij}=3 M_{pl}^2 \mathcal{H}^2 \Omega  \Bigg[  w \delta_{ij} -w(1+3 (1+w))\mathcal{H} \pi  \delta_{ij}
 -
  2 w \Phi \,  \delta_{ij} - (1+w) \Psi \, \delta_{ij}+  (1+w) {\pi'} \, \delta_{ij} - \frac{1+w}{2 }   (\vec{\nabla} \pi)^2 \, \delta_{ij} +({1+w}  )\partial_{i} \pi \partial_{j} \pi    \Bigg ] 
      + \mathcal {O}(\epsilon^{2}) 
 \ee
 The diagonal components read; 
 \be
-T_{ii}=3 M_{pl}^2 \mathcal{H}^2 \Omega   \Bigg[   w 
+T_{ii}=3 M_{pl}^2 \mathcal{H}^2 \Omega   \Bigg[   w  -w(1+3 (1+w))\mathcal{H}  \pi 
 -
  2 w  \, \Phi  - (1+w)  \, \Psi +  (1+w) \,  {\pi'} 
  + \frac{1+w}{2 }    (\vec{\nabla} \pi)^2    \Bigg ] 
@@ -573,7 +599,7 @@ The off diagonal components are;
 T_{ij}=3 M_{pl}^2 \mathcal{H}^2 \Omega (1+w)   \,   \partial_{i} \pi \partial_{j} \pi   
      + \mathcal {O}(\epsilon^{3/2}) 
 \ee
-\section{The constraint equations from stress energy tensor}
+\section{The constraints from stress energy tensor}
 Here we use the stress tensor conservation to obtain the field evolution. Easy way of obtaining the equations (Euler and continuity) is to derive the equations for a general fluid  then calculate it for the special case of k-essence.
 We define the energy-momentum tensor as,
 \begin{align} \label{tmunu22}
@@ -589,32 +615,33 @@ T_{i0}=- a^2(\bar{\rho}^d + \bar{P}^d) v_i=  T_{0i}\\ \nonumber &
 T_{ji}=a^2 (\bar{P}^{d}+\delta P^{d} - 2  \bar{P}^{d} \Phi) \delta_{ij} +a^2 \Sigma_{j i}, 
 \end{align}
 According to equation \ref{T00}, we have,
-\be
+\be \label{rhobar}
 \bar{\rho}^{d}= \frac{3 M_{pl}^2   \mathcal{H}^2\Omega}{a^2}, \; \; 
-\;  \; \; \;   \delta \rho^{d}=\frac{3 M_{pl}^2   \mathcal{H}^2\Omega (1+w)}{c_s^2 \, a^2} \Bigg[ - \Psi+   {\pi'}  -  \Big(1-2 c_s^2 \Big) 
+\;  \; \; \;   \delta \rho^{d}=\frac{3 M_{pl}^2   \mathcal{H}^2\Omega (1+w)}{c_s^2 \, a^2} \Bigg[ -  3 c_s^2  \mathcal{H} \pi- \Psi+   {\pi'}  -  \Big(1-2 c_s^2 \Big) 
  \frac{(\vec{\nabla} \pi)^2}{2}   \Bigg]
 \ee 
 Using equation \ref{T0i} we have,
 \be
-u_{i}^{d}= -\frac{3 M_{pl}^2   \mathcal{H}^2\Omega}{a^2} \Big[1+ \pi' +(\frac{1}{c_s^2} -1) \Big(-\Psi +\pi' - \frac{(\vec{\nabla} \pi)^2}{2}  \Big ) \Big ] \partial _i \pi  , \; \; 
+u_{i}^{d}= -\Big[1+ \pi' +(\frac{1}{c_s^2} -1) \Big(-\Psi +\pi' - \frac{(\vec{\nabla} \pi)^2}{2}  \Big ) \Big ] \partial _i \pi  , \; \; 
 \;  \; \; \; \bar{P}^d= w  \bar{\rho}^d 
 \ee
 and from equation \ref{Tij}
 \be
- \delta P ^{d} = \frac{3 M_{pl}^2   \mathcal{H}^2\Omega (1+w)}{a^2}  \Big [ - \Psi + \pi' +  \frac{(\vec{\nabla} \pi)^2}{2}   \Big ], \; \; 
+ \delta P ^{d} = \frac{3 M_{pl}^2   \mathcal{H}^2\Omega(1+ w)}{a^2}  \Big [ - \frac{w}{1+w} \mathcal{H} \pi- 3  \mathcal{H} w \pi - \Psi + \pi' +  \frac{(\vec{\nabla} \pi)^2}{2}   \Big], \; \; 
 \;  \; \; \; 
 \Sigma_{ij}=\frac{3 M_{pl}^2   \mathcal{H}^2\Omega (1+w) \partial_i \pi \partial_j \pi}{a^2}
 \ee
 It is important to note that,
 \be
-  \delta P ^{d} -  c_s^2 \delta \rho^{d} =\frac{6 M_{pl}^2   \mathcal{H}^2\Omega (1+w) ( 1- c_s^2  ) }{a^2} \frac{(\vec{\nabla} \pi)^2}{2}   
+  \delta P ^{d} -  c_s^2 \delta \rho^{d} =\frac{3 M_{pl}^2   \mathcal{H}^2\Omega (1+w)}{a^2} \Bigg (\Big( - \frac{w}{1+w}+3(c_s^2-w) \Big)\mathcal {H} \pi + (1-c_s^2) (\vec{\nabla} \pi)^2 \Bigg)
 \ee
+The top equations seem correct according to comparison with equations (147-150) of \url{https://arxiv.org/pdf/1411.3712.pdf}. \\
 According to energy-momentum conservation,
 \be
 T^{\mu}_{ \nu \, ; \mu }= \partial_{\mu} T_{ \nu} ^{\mu}+ \Gamma^{\mu}_{\rho \mu} T_{\nu}^{ \rho}-\Gamma^{\rho}_{\mu \nu} T_{\rho} ^{ \mu}  =0
 \ee
 The background constraint is,
-\be
+\be \label{conteq}
 \bar{\rho}'^{d}+3 \mathcal{H}(\bar{\rho}^{d} + \bar{P}^{d})=0
 \ee
 Defining the below variables;
@@ -623,16 +650,17 @@ Defining the below variables;
 \ee
 The Euler and continuity equations in Fourier space read,
 \begin{align}
- & \dot{\delta}^{d} = -(1+w) (\theta^{d}  + 3 \Phi ') -3 \mathcal{H} \Big({\delta P^{d}/\delta \rho^{d}} -w \Big)\delta^{d}  
+ & {\delta'}^{d} = -(1+w) (\theta^{d}  + 3 \Phi ') -3 \mathcal{H} \Big({\delta P^{d}/\delta \rho^{d}} -w \Big)\delta^{d}  
      \\  \nonumber &
- \dot{\theta}^{d} = -\mathcal{H} \Big( 1 - 3 w   \Big )  \theta^{d} - \frac{{w'}}{1+w} \theta ^{d}+ \frac{\delta P^{d} \delta \rho^{d}}{1+w} \, k^2 \delta^{d}  - k^2 \sigma +k^2 \Psi
+ {\theta'}^{d} = -\mathcal{H} \Big( 1 - 3 w   \Big )  \theta^{d} - \frac{{w'}}{1+w} \theta ^{d}+ \frac{\delta P^{d} \delta \rho^{d}}{1+w} \, k^2 \delta^{d}  - k^2 \sigma +k^2 \Psi
+ \label{eqEul}
 \end{align}
 
 where  $\delta \rho^{d}= \rho^{d} -\bar{\rho}^{d}$, $\delta P^{d} =P ^{d}-\bar{P}^{d}$, $\theta= i \vec{k}. \vec{u}$. \\
 \subsection{Euler and continuity equations}
 We can write Euler and continuity equations for k-essence case easily just by substituting the below quantities into the general equations.
 \begin{align}
- & \delta^{d} =\frac{\rho^d -\bar{\rho }^d}{\bar{\rho}^d} =  \frac{1+w}{c_s^2} \Bigg[ - \Psi+   {\pi'}  -  \Big(1-2 c_s^2 \Big) 
+ & \delta^{d} =\frac{\rho^d -\bar{\rho }^d}{\bar{\rho}^d} =  \frac{1+w}{c_s^2} \Bigg[ - 3 \, c_s^2 \mathcal{H} \pi- \Psi+   {\pi'}  -  \Big(1-2 c_s^2 \Big) 
  \frac{(\vec{\nabla} \pi)^2}{2}   \Bigg] 
  \nonumber
    \\ 
@@ -641,26 +669,153 @@ We can write Euler and continuity equations for k-essence case easily just by su
   \nonumber
    \\ 
    &
-   \frac{\delta P ^{d} }{ \delta \rho^{d} }=c_s^2 + \frac{6 M_{pl}^2   \mathcal{H}^2\Omega (1+w) ( 1- c_s^2  ) }{a^2} \frac{(\vec{\nabla} \pi)^2}{2 \delta \rho^{d}   } =   c_s^2 \Bigg [1 + \frac{ (1-c_s^2) (\vec{\nabla} \pi)^2}{- \Psi+   {\pi'}  -  \Big(1-2 c_s^2 \Big) 
- \frac{(\vec{\nabla} \pi)^2}{2}  } \Bigg ]
+   \frac{\delta P ^{d} }{ \delta \rho^{d} }=  c_s^2 \Bigg [1 +\frac{ \Big( - \frac{w}{1+w}+3(c_s^2-w) \Big)\mathcal {H} \pi+ (1-c_s^2) (\vec{\nabla} \pi)^2  }{ - 3c_s^2 \mathcal{H} \pi- \Psi+   {\pi'}  -  \Big(1-2 c_s^2 \Big) 
+ \frac{(\vec{\nabla} \pi)^2}{2}  }
+\Bigg ]
    \nonumber
    \\ 
    &
    \sigma=\frac{(\delta ^{kj} \partial_i \partial_k )\Sigma_j^i}{(\bar{\rho} +\bar{P} )} =\partial^2 \pi \partial^2 \pi
  \end{align}
-\section{Mathematica code tests:}
-In the first step we try to recover eqs 3.14 and 3.15 of {\color{red}{https://arxiv.org/pdf/1504.05481.pdf}}. We neglect the interaction between scalar field and matter sector, ie. $Q_I=0$ in eq 3.4. \\
-Using metric 3.10 and Stress tensor definition 3.11-3.13 we try to obtain Continuity and Euler equations (3.14-3.15).
-
-
-
+ {\color{red} {Strange relation for $\delta P/\delta \rho?$}} \\
+ Background part of Continuity equation read \\
+ \be \label{Conteqgg}
+ \mathcal{H}' + \frac{1+3 w}{2} \mathcal{H}^2 + \frac{\Omega'}{\Omega} \mathcal{H}=0
+ \ee
+ It is easy to check that if we substitute the value of $\bar{\rho}$ eq.\ref{rhobar} in the continuity equation \ref{conteq} we get the result. \\
+ To get first order continuity equation we write $\delta^d$ as following,
+ \begin{align}
+ \delta'^{d}= \frac{1+w}{c_s^2} \pi''+ \delta'^{r} 
+ \end{align} 
+ where $\delta^ r$ is all other terms in $\delta^{d}$ except $\pi'$. We separate since this is the only second derivative in the constraint, so we can use Runge Kutta method and easily implement without having the equation completely. So we can write,
+ \be
+ \pi'' = \frac{c_s^2}{1+w} \Bigg[ -\delta'^r-(1+w) (\theta^{d}  + 3 \Phi ') -3 \mathcal{H} \Big({\delta P^{d}/\delta \rho^{d}} -w \Big)\delta^{d}     \Bigg]
+ \ee
+ Since we know the values of fluid quantities in terms of $\pi, \Psi...$ we can easily implement in the code without getting the equation explicitly. \\
+ {\color{red}{We should check that this equation gives the same constraint as field constraint in EFT form for k-essence case.}} \\
+ Moreover, we do not need to consider Euler equation since it does not give any extra equations.
+\subsection{Mathematica code tests:}
+To test mathematica code, we have obtained the Euler and continuity equations eq. \ref{eqEul}.
 \section{Field transfer function}
 Before trying to get the field transfer function we try to do some tests on different results in order to catch all the physics we are dealing with.
-\subsection{Comparison the $\alpha$ from hi-class and density transfer function in the class}
-Using the equation \ref{deltarho} we can get the density contrast as following,
+\subsection{Gauge transformation}
+Before going forward we introduce the gauge transformation for different quantities. \\
+Considering a general coordinate transformation from coordinate system $x^{\mu}$ to another $\hat{x} ^{\mu}$ 
 \be
-\delta=\frac{\rho- \bar{\rho}}{\bar{\rho}}=\frac{1+w}{c_s^2} \Big ( -\Psi+\pi' -  \frac{\vec{(\nabla} \pi)^2}{2} \Big )
+x^{\mu} \longrightarrow {\hat{x}}^{\mu}  = x^{\mu} + \epsilon^{\mu} (x)
 \ee
+The metric tensor will be transformed as,
+\be
+\hat{g}_{\mu \nu} (\hat{x})=  \frac{\partial x^{\lambda}}{\partial \hat{x}^{\mu} } \frac{\partial x^{\rho}}{\partial \hat{x}^{\nu} } g _{\rho \lambda} (x)
+\ee
+This is a pure coordinate transformation which changes background and perturbation quantities in general. It is more convenient to work with "gauge transformation" which affect only the perturbations. So after coordinate transformation we relabel coordinates by dropping the prime on the coordinate argument, which means that we are dealing with two different points, since $x$ in two coordinates are assigned with two different but near physical points. Moreover gauge transformation guarantees that the background quantities remain unchanged. Since it is built to consider the points in different coordinates which have the same background values.\\ 
+So the gauge transformation on the metric tensor gives 
+\begin{align}
+\Delta h_{\mu \nu} (x)   \equiv  &\hat{g}_{\mu \nu}(x) - g_{\mu \nu} (x) \\ \nonumber &
+=\hat{g}_{\mu \nu}(\hat{x}^{ \kappa} -\epsilon^{\kappa}) - g_{\mu \nu} (x) =\hat{g}_{\mu \nu}(\hat{x} ) - \partial_{\rho } g_{\mu \nu} (x^{}) \epsilon^{\rho}  - g_{\mu \nu} (x)
+ \\ \nonumber &
+ =   \frac{\partial x^{\lambda}}{\partial( x^{\mu} +\epsilon ^{\mu}) } \frac{\partial x^{\rho}}{\partial( x^{\nu} +\epsilon ^{\mu})} g_{\rho \lambda} (x) - g_{\mu \nu} (x) - \partial_{\rho } g_{\mu \nu} (x^{}) \epsilon^{\rho}  - g_{\mu \nu} (x)
+  \\ \nonumber &
+ = - \bar{g} _{\lambda \mu} (x) \frac{\partial \epsilon ^{\lambda} (x) }{\partial x^{\nu}} -  \bar{g} _{\lambda \nu} (x) \frac{\partial \epsilon ^{\lambda} (x) }{\partial x^{\mu}} - \frac{\partial \bar{g}_{\mu \nu} (x)  }{\partial x^{\lambda } } \epsilon^{\lambda} (x) 
+\end{align}
+We denote the gauge transformation with $\Delta$. It is obvious that the background metric under gauge transformation remains unchanged ({\color{red}{How?}}), but it may contribute in first order which is taken into account in the previous equation.
+\be
+\Delta \bar{g} _{\mu \nu}= \hat{\bar{g}}_{\mu \nu} (t) -  \bar{g} _{\mu \nu} (t) = 0 + \mathcal{O } (\epsilon)
+\ee 
+\\
+If we consider the coordinate transformation as following,
+\begin{align}
+& {\hat{x}}^0 = x^ 0 + \alpha ,  \nonumber \\ &
+{\hat{\vec{x}}} ={\vec{x}} +\vec{\nabla} \beta(\tau,x) + \vec{\epsilon } (\tau,x), \; \; \; \; \; \vec{\nabla} . \vec{\epsilon}=0
+\end{align}
+We get
+\be
+{\hat{g}_{\mu \nu }}  (x)=  g_{\mu \nu } (x) - g_{\mu \beta } (x) \partial _{\nu} \epsilon^{\beta} -  g_{\alpha \nu } (x) \partial _{\mu} \epsilon^{\alpha}-\epsilon^{\alpha} \partial _{\alpha} g_{\mu \nu } (x) 
+\ee
+We easily can obtain the transformed metric perturbations in the new gauge (synchronous),
+\begin{align}
+&\hat {\Psi} (\tau,\vec{x}) = \Psi(\tau,\vec{x}) - \alpha' (\tau,\vec{x})- \mathcal{H} \alpha(\tau,\vec{x}) \nonumber \\ &
+\hat {\Phi} (\tau,\vec{x}) = \Phi(\tau,\vec{x}) \frac{1}{3} \nabla^2 \beta(\tau,\vec{x})  + \mathcal{H} \alpha(\tau,\vec{x}) 
+\end{align}
+Where $\Phi$ and $\Psi$ are metric perturbations in Newtonian gauge. To find the gauge transformation for fluid quantities, we use,
+\be
+T^{\mu} _ {\nu}(Sync) = \frac{\partial {\hat{x}} ^{\mu} }{\partial {x} ^{\sigma}} \frac{\partial {x} ^{\rho}}{\partial {\hat{x}} ^{\nu}} T^{\rho} _ {\sigma}(Newt) 
+\ee
+where ${\hat{x}}^{\mu}$ and $x^{\mu}$ denote he synchronous and Newtonian coordinates respectively. It follows to linear order that
+\begin{align}
+& T_0^0 (Sync) =T_0^0 (Newt),\\
+\nonumber &
+  T_0^j (Sync) =T_0^j (Newt) + i k_j \alpha (\bar{\rho} + \bar{P}) \\
+\nonumber &
+   T_i^j (Sync) =T_i^j (Newt)
+ \end{align}
+  where $\alpha = {\hat{x}}^0 - x^0=({h'} + 6 {\eta'})/2 k^2$ in terms of Synchronous gauge perturbations, it is useful since we want to use hi-class which is written in synchronous gauge. \\
+From the definition of the density contrast $\delta = \delta \rho /\bar{\rho} = - \delta T_0^0 /\bar{\rho} $ we obtain,
+\begin{align}
+& \delta (Sync) = \delta (Newt) -\alpha \frac{\dot{\bar{\rho}}}{\rho}
+ \\
+\nonumber & 
+\theta (Sync) = \theta (Newt) - \alpha k ^2 \\
+\nonumber &
+\delta P (Sync) = \delta P (Newt) - \alpha \dot{\bar{P}}  \\ 
+\nonumber &
+\sigma  (Sync) = \sigma  (Newt)
+\end{align}
+The obtain the gauge transformation for the scalar field and its derivative, we use the fact that it is a scalar under the general coordinate transformation $\hat{\varphi }({\hat{x}}^{\mu})=\varphi ({x}^{\mu})$ , where $\varphi  (x^{\mu} ) =t + \pi (x^{\mu})$ according to our time slicing.
+\begin{align}
+\Delta \varphi (x) \equiv &\hat{ \varphi}(x) - \varphi (x) = \hat{\varphi}(\hat{x} - \epsilon) -\varphi (x) \\ \nonumber &
+=  \hat{\varphi} (\hat{x}) - \partial _ {\mu} \varphi \, \epsilon ^{\mu} - \varphi (x)= - \partial _ {\mu} \varphi \, \epsilon ^{\mu}
+ \\ \nonumber &
+ =- \partial_{\mu} (t+ \pi (x)) \epsilon^{\mu} = \epsilon ^0 = -\alpha  
+\end{align}
+To gauge transform the derivative of scalar field we should notice first how it transforms under coordinate transformation and using the fact that $\varphi$ is a scalar.
+\begin{align}
+ \frac{ \partial \hat{\varphi} (\hat{x})}{ \partial \hat{x}^0} & = \frac{ \partial \varphi  (x)}{ \partial x ^{\mu}}   \frac{\partial x^{\mu}}{\partial \hat{x}^0}
+ = \frac{ \partial (t+ \pi (x))}{ \partial x ^{\mu}}   \frac{1}{\partial_{\mu} x^0 + \partial_{\mu} \alpha}
+ \\ \nonumber &
+ = (\delta_{\mu} ^0 + \partial_{\mu} \pi (x)) \left(\delta^{\mu}_0 - \partial_{\mu } \alpha \right)= 1+ \pi'(x) -  \alpha' (x)
+\end{align}
+\be
+\hat{\pi}'(\hat{x})= \pi '(x) -\alpha '  (x)
+\ee
+where " $'$ " means time derivative.
+So the gauge transformation on $\varphi '$ gives,
+\begin{align}
+\Delta { \varphi'(x)}\equiv & \hat{\varphi} ' (x)-  \varphi ' (x)=\hat{\varphi} ' (\hat{x}-\epsilon) -  \varphi ' (x) 
+ \\ \nonumber &
+ =\hat{\varphi'} (\hat{x}) - \partial _ {\mu} \varphi' \, \epsilon ^{\mu} - \varphi' (x)=- \alpha' - \cancel{\partial_{\mu} (1+ \pi '(x)) \epsilon^{\mu}}
+\end{align}
+\be
+\pi_{Sync}=\pi_{Newt} - \alpha
+\ee
+\be
+\pi'_{Sync}=\pi'_{Newt} -\alpha'
+\ee
+\subsection{Comparison the $\alpha$ from hi-class and density transfer function in the class}
+\subsubsection{$\delta \rho$ transfer function}
+According to equation \ref{eq10} we can write,
+\begin{align}
+\rho &=2 (\bar{X}+\delta X)(\bar{P}_{,X} +\bar{P}_{,X} + \bar{P}_{,XX} \delta X)- \bar{P} - \bar{P}_{,X} \delta X  \\
+\nonumber &
+=(2 \bar{X}\bar{P}_{,X}- \bar{P} )+(2 \bar{X}  \bar{P}_{,XX} + \bar{P}_{,X}) \delta X
+\nonumber  \\&
+=\Big ( \frac{2}{ 2 a^2} a^2 \bar{P} (1+\frac{1}{w})-\bar{P} \Big)+ \Bigg(  \frac{1}{a^2}a^4 \bar{P} (1+\frac{1}{w} )(\frac{1}{c_s^2}-1) + a^2 \bar{P} (\frac{1}{w}+1) \Bigg) \delta X
+\nonumber  \\&
+= \frac{\bar{P}}{w}+ \frac{\bar{P}}{w} \Big(  a^2  (1+w) (\frac{1}{c_s^2}-1) + a^2 (1+w) \Big) \delta X
+\nonumber  \\&
+= \frac{\bar{P}}{w} \Bigg[1+  \Big( (1+w) (\frac{1}{c_s^2}-1) +  (1+w) \Big) \Big( -\Psi +\pi ' \Big) \Bigg]
+\nonumber  \\&
+= \frac{\bar{P}}{w} \Bigg[1+  \frac{1+w}{c_s^2} \Big( -\Psi +\pi ' \Big) \Bigg]
+\end{align}
+where we have used equation \ref{Pbarder}-\ref{Pbar} and we have neglected $(\nabla \pi)^2$ term.
+Finally we can get the density contrast  as following,
+\be
+\delta_{newt}=\frac{\rho- \bar{\rho}}{\bar{\rho}}=\frac{1+w}{c_s^2} \Big ( -\Psi+\pi' _{newt}\Big )
+\ee
+%Using the equation \ref{deltarho} we can get the density contrast as following,
+%\be
+%\delta=\frac{\rho- \bar{\rho}}{\bar{\rho}}=\frac{1+w}{c_s^2} \Big ( -\Psi+\pi' -  \frac{\vec{(\nabla} \pi)^2}{2} \Big )
+%\ee
 where $\bar{\rho}= \frac{\bar{P}}{w}$. The last relation shows that density contrast transfer function is obtained from time derivative of the field and the metric not the field . It is a good test to check that we can recover density contrast transfer function from field derivative and metric $\Psi$ transfer functions. The transfer function is defined as below:
 \be
 T_{kessence}(k,z_i)=\frac{\delta_{kessence} (k,z=z_i)}{\mathcal{R}(k,z=\infty)}
@@ -669,13 +824,13 @@ Note that the notation here is the same as class and hi-class and in the hi-clas
 One good test of the obtained field transfer function from hi-class is comparing the density transfer function which calculated from the last formula with the one we get from class fluid description.\\
 The field equations are written in Synchronous gauge in the hi-class while we have calculated density contrast transfer function in the Newtonian gauge. So wee need to calculate density contrast transfer function in Newtonian gauge in terms of Synchronous gauge variable as following,
 \begin{align}
-\delta_{Newt}&=\frac{1+w}{c_s^2} \Big ( -\Psi+\pi' \Big )= \frac{1+w}{c_s^2} \Big ( -\alpha ' - \mathcal{H} \alpha+\pi' \Big )
+\delta_{Newt}&=\frac{1+w}{c_s^2} \Big ( -\Psi_{newt}+\pi'_{newt} \Big )= \frac{1+w}{c_s^2} \Big ( -\alpha ' - \mathcal{H} \alpha+\pi'_{synch} +\alpha' \Big ) = \frac{1+w}{c_s^2}\Big (- \mathcal{H} \alpha+\pi'_{synch} \Big )
 \nonumber \\ 
 &
 =\delta_{Syn} + \alpha \frac{{\bar{\rho'}}}{\bar{\rho}}
 \label{deltaeq}
 \end{align}
-where $\alpha=({h'} + 6 {\eta'})/k^2$, $\Psi=\frac{1}{k^2} \Big [ {h^{''}}+ 6 {\eta^{''}} + \frac{a'}{a}  (h'+6 \eta ') \Big]$ according to equation 18 of  {\color{blue}{https://arxiv.org/pdf/astro-ph/9506072.pdf}} \\
+where $\alpha=({h'} + 6 {\eta'})/2 k^2$, $\Psi=\frac{1}{2 k^2} \Big [ {h^{''}}+ 6 {\eta^{''}} + \frac{a'}{a}  (h'+6 \eta ') \Big]= {\alpha' + \mathcal{H}\alpha.}$  according to equation 18 of  {\color{blue}{https://arxiv.org/pdf/astro-ph/9506072.pdf}} \\
 Here we want to compare the calculated $\delta _{Newt}$ from the field and metric perturbations in the hi-class with the class output in both Newtonian and Synchronous gauge.\\ 
 According to the background equations ${\rho'} + 3 \mathcal{H} (\rho + w \rho)=0 $ for constant $w$ we have,
 \be
@@ -702,18 +857,41 @@ First we compare  $\frac{(\delta_{Newt} - \delta_{Syn})}{-3 (1+w) \mathcal{H}}$ 
 %%\label{plt2}
 %\end{center}
 %\end{figure}
-\subsection{Comparing the  $\dot{\pi}$ transfer function directly from hi-class and EFTcamb and what we get from class indirectly}
+So we have,
+\be
+\delta_{Newt}= \frac{1+w}{c_s^2} \Big ( - \mathcal{H} \alpha+\pi'_{synch}  \Big )
+\ee
+\be
+\delta_{Synch}= -3 (1+w) \mathcal{H} + \frac{1+w}{c_s^2} \Big ( - \mathcal{H} \alpha+\pi'_{synch}  \Big )
+\ee
+\subsection{comparing the $\Psi$ function in Newtonian and synchronous gauge in class and hi-class}
+Here we compare the metric fluctuation $\Psi$  in Newtonian gauge with one we obtain from Synchronous gauge parameters in class and hi-class codes to make sure we are dealing with the same functions. The $\Psi$ in Synchronous gauge reads as following,
+\be
+\Psi=\frac{1}{k^2} \Big [ {h^{''}}+ 6 {\eta^{''}} + \frac{a'}{a}  (h'+6 \eta ') \Big]= \alpha' + \mathcal{H}\alpha
+\ee
+In the figure \ref{psicomp} we compare the $\Psi$ in Newtonian gauge from what we get in terms of Synchronous gauge quantities.
+\begin{figure}[H]
+\begin{center}
+\captionsetup{,margin=1cm}
+\includegraphics[width=0.60\textwidth]{psi_comp.jpg} 
+\caption{$\Psi$ in Newtonian gauge and synchronous gauge in class and hi-class are compared. They all agree. }
+\label{psicomp}
+\end{center}
+\end{figure}
+
+\subsection{Comparing the  $\dot{\pi}$ transfer function directly from hi-class and what we get from class indirectly}
 We calculate field derivative transfer function in the class as following, since we know density contrast transfer function and $\Psi$ according to \ref{deltaeq} we can write,
 \be
-\pi'=\frac{c_s^2}{1+w} \delta_{newt} + \Psi 
+\pi'_{newt}=\frac{c_s^2}{1+w} \delta_{newt} + \Psi  \; \; \; \text{(class)}
 \ee
-The normalization factor in EFTcamb is assumed $\mathcal{H}$ and in class and hi-class the transfer function is assumed to be normalized to curvature function $\mathcal{R}$. So in the figure we have multiplied the EFTcamb result to $\mathcal{H}$ , hi-class and class result to $\delta_{\mathcal{R}}(k)= \frac{\sqrt{2 \pi^2 A_s(\frac{k}{k_p})^{n_s-1}}}{k^{3/2}}$.
+We assume two different models, one with $w_0=-0.9, c_s^2=1$ and the other with $w_0=-0.9, c_s^2=10^{-4}$ and we compare the results in both gauges. We tried $c_s^2=10^{-8}$ we got bad results, we guess its because the code deals with large numbers!
+%The normalization factor in EFTcamb is assumed $\mathcal{H}$ and in class and hi-class the transfer function is assumed to be normalized to curvature function $\mathcal{R}$. So in the figure we have multiplied the EFTcamb result to $\mathcal{H}$ , hi-class and class result to $\delta_{\mathcal{R}}(k)= \frac{\sqrt{2 \pi^2 A_s(\frac{k}{k_p})^{n_s-1}}}{k^{3/2}}$.
 \begin{figure}[H]
 \begin{center}
 \captionsetup{,margin=1cm}
 \includegraphics[width=0.60\textwidth]{field_derivative_comparison} 
-\caption{Density contrast comparison in class and hi-class in Newtonian gauge.}
-\label{plt2}
+\caption{Density contrast derivative comparison in class and hi-class in Newtonian gauge for $w_0=-0.9, c_s^2=10^{-8}$.}
+%\label{plt2}
 \end{center}
 \end{figure}
 
@@ -742,20 +920,6 @@ Now we try to compare the density transfer functions in the class and hi-class i
 %\label{plt2}
 \end{center}
 \end{figure}
-\subsection{comparing the $\Psi$ function in Newtonian and synchronous gauge in class and hi-class}
-Here we compare the metric fluctuation $\Psi$  in Newtonian gauge with one we obtain from Synchronous gauge parameters in class and hi-class codes to make sure we are dealing with the same functions. The $\Psi$ in Synchronous gauge reads as following,
-\be
-\Psi=\frac{1}{k^2} \Big [ {h^{''}}+ 6 {\eta^{''}} + \frac{a'}{a}  (h'+6 \eta ') \Big]= \alpha' + \mathcal{H}\alpha
-\ee
-In the figure \ref{psicomp} we compare the $\Psi$ in Newtonian gauge from what we get in terms of Synchronous gauge quantities.
-\begin{figure}[H]
-\begin{center}
-\captionsetup{,margin=1cm}
-\includegraphics[width=0.60\textwidth]{psi_comp.jpg} 
-\caption{$\Psi$ in Newtonian gauge and synchronous gauge in class and hi-class are compared. They all agree. }
-\label{psicomp}
-\end{center}
-\end{figure}
 
 
 \subsection{Test 2: Density transfer in the limit of $c_s^2 \rightarrow 0 , w \rightarrow -1$ which should be the same as matter density transfer function}
@@ -780,6 +944,31 @@ First of all the relation between field in Synchronous gauge with the field in N
 \be
 \pi_{New}=\pi_{Synch} + \alpha
 \ee
+\be
+\pi'_{New}=\pi'_{Synch} +\alpha'
+\ee
+\section{Recovering field transfer from $\theta$ transfer function}
+\be
+\theta _{Sync}=\theta _{Newt} - \alpha k^2
+\ee
+\be
+ \theta^d (k)= k^2 \Big[1+ \pi' +(\frac{1}{c_s^2} -1) \Big(-\Psi +\pi' \Big ) \Big ]  \pi  (k)
+\ee
+Where we have neglected $ - \frac{(\vec{\nabla} \pi)^2}{2} $ term since in high redshifts is irrelevant.
+So we can recover the field transfer function as following from the class
+\be
+\pi=\frac{1}{k^2} \Big ( 1-  \pi' -(\frac{1}{c_s^2} -1) \Big(-\Psi +\pi' \Big ) \Big )
+\ee
+and $\pi'$ is defined as,
+\be
+\pi'=\frac{c_s^2 \delta}{1+w_0} +\Psi
+\ee
+Now we want to compare the $\pi$ and $\pi'$ indirectly we calculate  from class output with the one we get directly from hi-class EFTcamb. \\
+For transforming the $\pi'$ in synchronous to Newtonian, we get $\alpha'$ as following,
+\be
+\alpha'= \Psi - \mathcal{H} \alpha
+\ee
+
 \subsection{Comparison of field transfer functions in the hi-class and the EFTcamb}
 
 \subsection{EFTcamb}
@@ -945,6 +1134,19 @@ else
 %& \frac{\pi^{n}_{i-1,j,k}+\pi^{n+1}_{i+1,j,k} +\pi^{n+1}_{i,j-1,k} +\pi^{n+1}_{i,j+1,k}+\pi^{n+1}_{i,j,k-1}+\pi^{n+1}_{i,j,k+1} -6 \pi^{n+1}_{i,j,k}  }{dx^2} -  \frac{\pi^{n+1} _{i,j,k} - \pi ^{n}_{i,j,k}  + \pi ^{n-1}_{i,j,k}  }{dt ^2}\nonumber \\ &  -3 \frac{\Phi^{n}_{i,j,k} }{d t} - \frac{(3 H^2+2 \dot{H}) (1+3 w) }{H (1+w)} \Phi^{n}_{i,j,k} -2 H  \frac{(\pi_{v  \; {i,j,k}}^{n+1/2} -\pi_{v \; {i,j,k}}^{n-1/2} )}{dt} +  \frac{ 6H w}{ 1+w} \Psi ^{n+1}_{i,j,k}
 %\end{align}
 \begin{appendices}
+\section{Todo}
+\subsection{ Gauge transformation}
+-https://arxiv.org/pdf/0809.4944.pdf Gauge transformation \\
+-Liddle and Wands -GT \\
+-Amendola \\
+-Weinberg \\
+-Ma and Bertchinger \\ 
+-Mukhanov Cosmological pertubations \\
+To grasp the complete idea of Gauge transformation, passive, active and the different approach to it.\\
+\subsection{Important papers}
+-Martin and Sapone \\
+- k-essence Filippo, Mukhanov ... \\
+-EFT derivation for inflation and DE \\
 \section{Derivative of determinant} \label{A1}
 Assume an invertible matrix M,
 \be
