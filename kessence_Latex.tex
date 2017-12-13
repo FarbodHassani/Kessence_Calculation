@@ -132,6 +132,11 @@
   \tableofcontents
 
   \flushbottom
+  \section{Questions:}
+  - I get $- \mathcal{H} (1+w) $ in my calculation of $T_{00}$ instead of $-3 \mathcal{H}(1+w)$\\
+  - A mistake in gauge transformation, where is it? \\
+  - Is equation 108 true?\\
+  
 \section{Energy momentum tensor} 
 The most general action for a scalar field coupled to Einstein gravity is;
 \be
@@ -661,8 +666,8 @@ The Euler and continuity equations in Fourier space read,
 where  $\delta \rho^{d}= \rho^{d} -\bar{\rho}^{d}$, $\delta P^{d} =P ^{d}-\bar{P}^{d}$, $\theta= i \vec{k}. \vec{u}$. \\
 \subsection{Euler and continuity equations}
 We can write Euler and continuity equations for k-essence case easily just by substituting the below quantities into the general equations.
-\begin{align}
- & \delta^{d} =\frac{\rho^d -\bar{\rho }^d}{\bar{\rho}^d} =  \frac{1+w}{c_s^2} \Bigg[ - 3 \, c_s^2 \mathcal{H} \pi- \Psi+   {\pi'}  -  \Big(1-2 c_s^2 \Big) 
+\begin{align} 
+ & \delta^{d} =\frac{\rho^d -\bar{\rho }^d}{\bar{\rho}^d} =  \frac{1+w}{c_s^2} \Bigg[ -  \, c_s^2 \mathcal{H} \pi- \Psi+   {\pi'}  -  \Big(1-2 c_s^2 \Big) 
  \frac{(\vec{\nabla} \pi)^2}{2}   \Bigg] 
  \nonumber
    \\ 
@@ -678,7 +683,7 @@ We can write Euler and continuity equations for k-essence case easily just by su
    \\ 
    &
    \sigma=\frac{(\delta ^{kj} \partial_i \partial_k )\Sigma_j^i}{(\bar{\rho} +\bar{P} )} =\partial^2 \pi \partial^2 \pi
- \end{align}
+ \end{align} \label{imp_2}
  {\color{red} {Strange relation for $\delta P/\delta \rho?$}} \\
  Background part of Continuity equation read \\
  \begin{align} \label{Conteqgg}
@@ -718,6 +723,9 @@ m_3^3(t) \longrightarrow m_3^3(t) +  \dot{m_3^3} (t) \pi+ \frac{1}{2} \ddot{m_3^
 \be
 g^{00} \longrightarrow g^{00} + 2 g^{0 \mu} \partial_{\mu} \pi + g^{\rho \nu} \partial_{\rho} \partial_{\nu} \pi
 \ee
+\begin{align}
+\delta K  \longrightarrow &   \delta K -3 \left ( \dot{H} \pi +\frac{1}{2} \ddot{H} \pi^2 \right ) - (1-\dot{\pi}) N h^{ij} \partial_i \partial_j \pi +\frac{1}{2} \partial_i h^{ij} \partial_j \pi  \nonumber \\ &+\frac{H}{2 a^2} \delta ^{ij}\partial_i \pi \partial_j \pi + \frac{2}{a^2} \delta ^{ij} \partial_i  \pi  \partial_j    \dot{\pi} -\frac{2}{a^2} \delta ^{ij} \partial_i N \partial_j \pi
+\end{align}
 \begin{align}
 \frac{1}{\sqrt{-g}} \frac{\delta S}{\delta \pi}|_{\text{First order} }&=  B_{\Psi} \Psi+  B_{\dot{\Psi}} \dot{\Psi} +
 B_{\Phi} \Phi + B_{\dot{\Phi}} \dot{\Phi}  + B_{\ddot{\Phi}} \ddot{\Phi}+B_{\pi} \pi +   B_{\dot{\pi}} \dot{\pi} + B_{\ddot{\pi}} \ddot{\pi}  
@@ -773,7 +781,7 @@ B^{(4)}_{{\pi}}=
 \ee
 The relevant second order terms in Fourier space are,
 \begin{align}
-\frac{1}{\sqrt{-g}} \frac{\delta S}{\delta \pi}|_{\text{second order} }&=  \int \int d^3k d^3 k' e^{i(\vec{k}+\vec{k}') . \vec{x}}  \Bigg [   -\frac{k^2}{a^2} C^{(2)}_{\Psi \Psi} \Psi \Psi  -\frac{k^2}{a^2} C^{(2)}_{\Psi \Phi} \Psi \Phi   -\frac{k^2}{a^2} C^{(2)}_{\Psi \pi} \Psi \pi 
+\frac{1}{\sqrt{-g}} \frac{\delta S}{\delta \pi}|_{\text{post newtonian} }&=  \int \int d^3k d^3 k' e^{i(\vec{k}+\vec{k}') . \vec{x}}  \Bigg [   -\frac{k^2}{a^2} C^{(2)}_{\Psi \Psi} \Psi \Psi  -\frac{k^2}{a^2} C^{(2)}_{\Psi \Phi} \Psi \Phi   -\frac{k^2}{a^2} C^{(2)}_{\Psi \pi} \Psi \pi 
   -\frac{k^2}{a^2} C^{(2)}_{\Phi \Psi} \Phi \Psi  -\frac{k^2}{a^2} C^{(2)}_{\Phi \Phi} \Phi \Phi   -\frac{k^2}{a^2} C^{(2)}_{\Phi \pi} \Phi \pi 
 \nonumber  \\& 
    -\frac{k^2}{a^2} C^{(2)}_{\pi \Psi} \pi \Psi  -\frac{k^2}{a^2} C^{(2)}_{\pi \Phi} \pi \Phi   -\frac{k^2}{a^2} C^{(2)}_{\pi \pi} \pi \pi 
@@ -875,12 +883,13 @@ For the k-essence case we have (note below equation 85 in \url{https://arxiv.org
 \alpha_K=\frac{2\bar{X} P _X + 4 \bar{X}^2 P_{XX}}{M^2 H^2 }  \nonumber \\ &
 c_s^2=\frac{-2 \dot{H}}{\alpha_K H^2 } - \frac{\rho + P}{\alpha_K M^2 H^2}
 \end{align}
-After translation between two different language according to table 1 of  \url{https://arxiv.org/pdf/1411.3712.pdf}, we get,
+After translation between two different language according to table 1 of  \url{https://arxiv.org/pdf/1411.3712.pdf} and equation 24-25 of \url{https://arxiv.org/pdf/1210.0201.pdf} we get,
 \begin{align}
- & m_4^2=\tilde{m}_4^2=0 \nonumber  \\ &
- f=1 \longrightarrow M^2=3M_{pl}^2,  \;  \;  m_3^3=0 , \;  \; \alpha_k=\frac{2c +4 M_2^4}{M^2 H^2}=  \frac{\Omega (1+w)}{c_s^2}
+ & m_4^2=\tilde{m}_4^2=\bar{\lambda}=0 \nonumber  \\ &
+ f=1 \longrightarrow M^2=3M_{pl}^2,  \;  \;  m_3^3=0 , \;  \; \alpha_k=\frac{2c +4 M_2^4}{M^2 H^2}=  \frac{\Omega (1+w)}{c_s^2} \\ \nonumber &
+ \Lambda= -\frac{\bar{\rho} (1-w)}{2}, \; \; c=\frac{\bar{\rho} (1+w)}{2}, \; \; 4 M_2^4=\bar{\rho} (1+w) (\frac{1}{c_s^2}-1)
 \end{align}
-So the field equation is,
+{\color{red}{\large{Todo:}  Field constraint!}}
 \begin{align}
 \
 \end{align}
@@ -996,20 +1005,21 @@ According to equation \ref{eq10} we can write,
 \begin{align}
 \rho &=2 (\bar{X}+\delta X)(\bar{P}_{,X} +\bar{P}'_{,X} \pi + \bar{P}_{,XX} \delta X)- \bar{P} - \bar{P}_{,X} \delta X -  \bar{P}' \pi\\
 \nonumber &
-=(2 \bar{X}\bar{P}_{,X}- \bar{P} )+(2 \bar{X}  \bar{P}_{,XX} + \bar{P}_{,X}) \delta X + 2 \bar{X} \bar{P}'_{,X} \pi
+=(2 \bar{X}\bar{P}_{,X}- \bar{P} )+(2 \bar{X}  \bar{P}_{,XX} + \bar{P}_{,X}) \delta X + 2 \bar{X} \bar{P}'_{,X} \pi -\bar{P}' \pi
 \nonumber  \\&
-=\Big ( \frac{2}{ 2 a^2} a^2 \bar{P} (1+\frac{1}{w})-\bar{P} \Big)+ \Bigg(  \frac{1}{a^2}a^4 \bar{P} (1+\frac{1}{w} )(\frac{1}{c_s^2}-1) + a^2 \bar{P} (\frac{1}{w}+1) \Bigg) \delta X
+=\Big ( \frac{2}{ 2 a^2} a^2 \bar{P} (1+\frac{1}{w})-\bar{P} \Big)+ \Bigg(  \frac{1}{a^2}a^4 \bar{P} (1+\frac{1}{w} )(\frac{1}{c_s^2}-1) + a^2 \bar{P} (\frac{1}{w}+1) \Bigg) \delta X- \frac{\bar{P}}{w} (1+w)\mathcal{H} \pi
 \nonumber  \\&
-= \frac{\bar{P}}{w}+ \frac{\bar{P}}{w} \Big(  a^2  (1+w) (\frac{1}{c_s^2}-1) + a^2 (1+w) \Big) \delta X
+= \frac{\bar{P}}{w}+ \frac{\bar{P}}{w} \Big(  a^2  (1+w) (\frac{1}{c_s^2}-1) + a^2 (1+w) \Big) \delta X-\frac{\bar{P}}{w} (1+w)\mathcal{H} \pi
 \nonumber  \\&
-= \frac{\bar{P}}{w} \Bigg[1+  \Big( (1+w) (\frac{1}{c_s^2}-1) +  (1+w) \Big) \Big( -\Psi +\pi ' \Big) \Bigg]
-\nonumber  \\&
-= \frac{\bar{P}}{w} \Bigg[1+  \frac{1+w}{c_s^2} \Big( -\Psi +\pi ' \Big) \Bigg]
+= \frac{\bar{P}}{w} \Bigg[1+  \Big( (1+w) (\frac{1}{c_s^2}-1) +  (1+w) \Big) \Big( -\Psi +\pi ' \Big) \Bigg] - \frac{\bar{P}}{w} (1+w)\mathcal{H} \pi
+\nonumber
+  \\&
+= \frac{\bar{P}}{w} \Bigg[1- \mathcal{H} (1+w) \pi+ \frac{1+w}{c_s^2} \Big( -\Psi +\pi ' \Big) \Bigg]
 \end{align}
 where we have used equation \ref{Pbarder}-\ref{Pbar} and we have neglected $(\nabla \pi)^2$ term.
 Finally we can get the density contrast  as following,
 \be
-\delta_{newt}=\frac{\rho- \bar{\rho}}{\bar{\rho}}=\frac{1+w}{c_s^2} \Big ( -\Psi+\pi' _{newt}\Big )
+\delta_{newt}=\frac{\rho- \bar{\rho}}{\bar{\rho}}=\frac{1+w}{c_s^2} \Big ( -c_s^2 \mathcal{H} \pi_{newt}-\Psi_{newt}+\pi' _{newt}\Big )
 \ee
 %Using the equation \ref{deltarho} we can get the density contrast as following,
 %\be
@@ -1023,7 +1033,9 @@ Note that the notation here is the same as class and hi-class and in the hi-clas
 One good test of the obtained field transfer function from hi-class is comparing the density transfer function which calculated from the last formula with the one we get from class fluid description.\\
 The field equations are written in Synchronous gauge in the hi-class while we have calculated density contrast transfer function in the Newtonian gauge. So wee need to calculate density contrast transfer function in Newtonian gauge in terms of Synchronous gauge variable as following,
 \begin{align}
-\delta_{Newt}&=\frac{1+w}{c_s^2} \Big ( -\Psi_{newt}+\pi'_{newt} \Big )= \frac{1+w}{c_s^2} \Big ( -\alpha ' - \mathcal{H} \alpha+\pi'_{synch} +\alpha' \Big ) = \frac{1+w}{c_s^2}\Big (- \mathcal{H} \alpha+\pi'_{synch} \Big )
+\delta_{Newt}&=\frac{1+w}{c_s^2} \Big (  -c_s^2 \mathcal{H} \pi_{newt}-\Psi_{newt}+\pi'_{newt} \Big )= \frac{1+w}{c_s^2} \Big ( -c_s^2 \mathcal{H} (\pi_{synch} + \alpha)-\alpha ' - \mathcal{H} \alpha+\pi'_{synch} +\alpha' \Big ) \\ \nonumber
+&
+= \frac{1+w}{c_s^2}\Big (-c_s^2 \mathcal{H} \pi_{synch}- \mathcal{H} \alpha (1+c_s^2)+\pi'_{synch} \Big )
 \nonumber \\ 
 &
 =\delta_{Syn} + \alpha \frac{{\bar{\rho'}}}{\bar{\rho}}
@@ -1058,10 +1070,10 @@ First we compare  $\frac{(\delta_{Newt} - \delta_{Syn})}{-3 (1+w) \mathcal{H}}$ 
 %\end{figure}
 So we have,
 \be
-\delta_{Newt}= \frac{1+w}{c_s^2} \Big ( - \mathcal{H} \alpha+\pi'_{synch}  \Big )
+\delta_{Newt}= \frac{1+w}{c_s^2} \Big ( -c_s^2 \mathcal{H} (\pi_{synch} + \alpha)- \mathcal{H} \alpha+\pi'_{synch}  \Big )
 \ee
 \be
-\delta_{Synch}= -3 (1+w) \mathcal{H} + \frac{1+w}{c_s^2} \Big ( - \mathcal{H} \alpha+\pi'_{synch}  \Big )
+\delta_{Synch}= \delta_{newt} + 3 \mathcal{H} (1+w) \alpha
 \ee
 \subsection{comparing the $\Psi$ function in Newtonian and synchronous gauge in class and hi-class}
 Here we compare the metric fluctuation $\Psi$  in Newtonian gauge with one we obtain from Synchronous gauge parameters in class and hi-class codes to make sure we are dealing with the same functions. The $\Psi$ in Synchronous gauge reads as following,
@@ -1078,44 +1090,22 @@ In the figure \ref{psicomp} we compare the $\Psi$ in Newtonian gauge from what w
 \end{center}
 \end{figure}
 
-\subsection{Comparing the  $\dot{\pi}$ transfer function directly from hi-class and what we get from class indirectly}
-We calculate field derivative transfer function in the class as following, since we know density contrast transfer function and $\Psi$ according to \ref{deltaeq} we can write,
+\subsection{Comparing the  ${\pi}$ transfer function directly from hi-class and what we get from class indirectly}
+From the equation for $\theta$, equation \ref{imp_2} we can obtain $\pi$ in Fourier space,
 \be
-\pi'_{newt}=\frac{c_s^2}{1+w} \delta_{newt} + \Psi  \; \; \; \text{(class)}
+\pi_{newt}=\frac{\theta_k\text{(newt)}}{k^2}  \; \; \; \text{(class)}
 \ee
-We assume two different models, one with $w_0=-0.9, c_s^2=1$ and the other with $w_0=-0.9, c_s^2=10^{-4}$ and we compare the results in both gauges. We tried $c_s^2=10^{-8}$ we got bad results, we guess its because the code deals with large numbers!
-%The normalization factor in EFTcamb is assumed $\mathcal{H}$ and in class and hi-class the transfer function is assumed to be normalized to curvature function $\mathcal{R}$. So in the figure we have multiplied the EFTcamb result to $\mathcal{H}$ , hi-class and class result to $\delta_{\mathcal{R}}(k)= \frac{\sqrt{2 \pi^2 A_s(\frac{k}{k_p})^{n_s-1}}}{k^{3/2}}$.
+while in the hi-class we can easily obtain $\pi_{newt}$ by gauge transformation as following,
+\be
+\pi_{newt}= \pi_{synch}+ \alpha
+\ee
+An important key is that k in hi-class internally is in $1/Mpc$ unit while is class output is $h/Mpc$.\\
+We assume two different models, one with $w_0=-0.9, c_s^2=1$ and the other with $w_0=-0.9, c_s^2=10^{-6}$ and we compare the results in both gauges. %The normalization factor in EFTcamb is assumed $\mathcal{H}$ and in class and hi-class the transfer function is assumed to be normalized to curvature function $\mathcal{R}$. So in the figure we have multiplied the EFTcamb result to $\mathcal{H}$ , hi-class and class result to $\delta_{\mathcal{R}}(k)= \frac{\sqrt{2 \pi^2 A_s(\frac{k}{k_p})^{n_s-1}}}{k^{3/2}}$.
 \begin{figure}[H]
 \begin{center}
 \captionsetup{,margin=1cm}
-\includegraphics[width=0.60\textwidth]{field_derivative_comparison} 
-\caption{Density contrast derivative comparison in class and hi-class in Newtonian gauge for $w_0=-0.9, c_s^2=10^{-8}$.}
-%\label{plt2}
-\end{center}
-\end{figure}
-
-\begin{figure}[H]
-\begin{center}
-\captionsetup{,margin=1cm}
-\includegraphics[width=0.60\textwidth]{newt_comp} 
-\caption{Density contrast comparison in class and hi-class in Newtonian gauge.}
-\label{plt2}
-\end{center}
-\end{figure}
-\begin{figure}[H]
-\begin{center}
-\captionsetup{,margin=1cm}
-\includegraphics[width=0.60\textwidth]{sync_comp} 
-\caption{Density contrast comparison in class and hi-class in Synchronous gauge. {\color{red}{which one is correct?!}}}
-%\label{plt2}
-\end{center}
-\end{figure}
-Now we try to compare the density transfer functions in the class and hi-class in two gauges,
-\begin{figure}[H]
-\begin{center}
-\captionsetup{,margin=1cm}
-\includegraphics[width=0.60\textwidth]{pitransfer} 
-\caption{Field transfer function in Newtonian gauge for quintessence model is plotted in different redshift}
+\includegraphics[width=0.60\textwidth]{pi_comp} 
+\caption{$\pi$ comparison in Newtonian gauge for $w_0=-0.9, c_s^2=1$. Note that here we have use wrong gauge transformation for $\pi$ with different sign}
 %\label{plt2}
 \end{center}
 \end{figure}
@@ -1132,49 +1122,35 @@ We expect the same behaviour for the obtained k-essence field from hi-class or E
 %\label{psicomp}
 \end{center}
 \end{figure}
-Now we want to compare the result of density contrast transfer function of k-essence field in EFTcamb and hi-class with density contrast transfer of  fluid in the class.
-The density constrast $\delta$ in the EFTcamb and hi-class is calculated,
+Now we want to compare the result of density contrast transfer function of k-essence field in EFTcamb and hi-class with density contrast transfer of  fluid in the class. \\
+I do not need to do this part, since I get good results in previous section.
+%The density constrast $\delta$ in the EFTcamb and hi-class is calculated,
+%\be
+%\delta=\frac{1+w_0}{c_s^2} (\pi'- \Psi) =10^4 (\pi'- \Psi)
+%\ee
+%As we have checked $\Psi$ is the same in Class and hi-class so we can use $\Psi$ to obtain the $\delta$ of EFTcamb as well.
+\subsection{Comparing the  ${\pi'}$ transfer function directly from hi-class and what we get from class indirectly}
+Here we use $\delta$ transfer function from the Class output to construct $\pi'$ in Newtonian gauge. We get help of equation \ref{deltaeq} to reconstruct $\pi'$ as following,
 \be
-\delta=\frac{1+w_0}{c_s^2} (\pi'- \Psi) =10^4 (\pi'- \Psi)
+\pi'_{newt}= \frac{c_s^2}{1+w} \delta_{newt} + c_s^2 \mathcal{H} \frac{\theta_{newt}}{k^2} +\Psi
 \ee
-As we have checked $\Psi$ is the same in Class and hi-class so we can use $\Psi$ to obtain the $\delta$ of EFTcamb as well.
-\subsection{Comparison of $\dot{\pi}$ in hi-class from which we take from fluid description in the class}
-First of all the relation between field in Synchronous gauge with the field in Newtonian gauge is given by:
+The we compare the result with what we get from the hi-class after gauge transformation as following,
 \be
-\pi_{New}=\pi_{Synch} + \alpha
+\pi'_{Newt} =\pi'_{Sync}+\alpha'
 \ee
-\be
-\pi'_{New}=\pi'_{Synch} +\alpha'
-\ee
-\section{Recovering field transfer from $\theta$ transfer function}
-\be
-\theta _{Sync}=\theta _{Newt} - \alpha k^2
-\ee
-\be
- \theta^d (k)= k^2 \Big[1+ \pi' +(\frac{1}{c_s^2} -1) \Big(-\Psi +\pi' \Big ) \Big ]  \pi  (k)
-\ee
-Where we have neglected $ - \frac{(\vec{\nabla} \pi)^2}{2} $ term since in high redshifts is irrelevant.
-So we can recover the field transfer function as following from the class
-\be
-\pi=\frac{1}{k^2} \Big ( 1-  \pi' -(\frac{1}{c_s^2} -1) \Big(-\Psi +\pi' \Big ) \Big )
-\ee
-and $\pi'$ is defined as,
-\be
-\pi'=\frac{c_s^2 \delta}{1+w_0} +\Psi
-\ee
-Now we want to compare the $\pi$ and $\pi'$ indirectly we calculate  from class output with the one we get directly from hi-class EFTcamb. \\
-For transforming the $\pi'$ in synchronous to Newtonian, we get $\alpha'$ as following,
-\be
-\alpha'= \Psi - \mathcal{H} \alpha
-\ee
-
 \subsection{Comparison of field transfer functions in the hi-class and the EFTcamb}
-
-\subsection{EFTcamb}
-Now we want to use EFTcamb results for the quintessence which is straightforward to check the consistency of the result, \\
-{\color{red} If we use pureEFT flag in EFTcamb, what are the related parameters for k-essence case?  since the translation between the standard language with EFTcamb is not trivial according to table 1 of   \url{https://arxiv.org/pdf/1411.3712.pdf} }
-In the beginning we use minimally coupled quintessence flag in the EFTcamb to check the consistency, then we should try the pureEFT flag. We choose the quintessence flag according to \url{http://www.eftcamb.org/images/EFTCAMB_structure.pdf} in the second part.
-
+Now we want to use EFTcamb results for the k-essence which is straightforward to get the output , \\
+%{\color{red} If we use pureEFT flag in EFTcamb, what are the related parameters for k-essence case?  since the translation between the standard language with EFTcamb is not trivial according to table 1 of   \url{https://arxiv.org/pdf/1411.3712.pdf} }
+%In the beginning we use minimally coupled quintessence flag in the EFTcamb to check the consistency, then we should try the pureEFT flag. We choose the quintessence flag according to \url{http://www.eftcamb.org/images/EFTCAMB_structure.pdf} in the second part.
+The result of comparison is shown in the following plot which shows that the two plot do not agree.
+\begin{figure}[H]
+\begin{center}
+\captionsetup{,margin=1cm}
+\includegraphics[width=0.60\textwidth]{eft_hiclass.jpg} 
+\caption{EFTcamb and hi-class comparison.Here we compare the $\pi$ in Synchronous gauge. $1/\mathcal{H}$ is used as a  normalization factor for EFTcamb and k in hiclass is divided by h to be measures in $h/Mpc$.}
+%\label{psicomp}
+\end{center}
+\end{figure}
 
 \section{Gevolution}
 All the transfer functions in the class and hi-class are normalized to one curvature perturbation. Curvature perturbation is obtained from powerspectrum as following,
