@@ -126,6 +126,17 @@
 %    %backgroundcolor=\color{black!5}, % set backgroundcolor
 %    basicstyle=\footnotesize,% basic font setting
 %}
+
+\usepackage{amsmath}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+
+\newtcbox{\mymath}[1][]{%
+    nobeforeafter, math upper, tcbox raise base,
+    enhanced, colframe=yellow!30!black,
+    colback=yellow!30, boxrule=1pt,
+    #1}
+
 \begin{document}
 
   \maketitle
@@ -133,10 +144,17 @@
 
   \flushbottom
   \section{Questions:}
+    -Is $X$ function of (t,x) or the field? since if it is the function of field derivative and field derivative is independent of field so $\partial X/\partial \varphi=0$. It is not allowed to take $X (t,\vec{x})$ when we know its functionality and it is not a function of $\varphi$  \\
   - I get $- \mathcal{H} (1+w) $ in my calculation of $T_{00}$ instead of $-3 \mathcal{H}(1+w)$\\
   - A mistake in gauge transformation, where is it? \\
   - Is equation 108 true?\\
-  
+  \section{Todo:}
+  - Completing the field equation, comparing the first order with the papers! \\
+  - Check $\dot{\rho} + 3 H \rho=0$ for X without dependence on $\varphi$ \\ 
+  - Check stress tensor turning on vector elliptic, what is vector elliptic...? \\
+  - Check the IC for $\pi'$ in Gevolution. \\
+  - The IC in hi-class, do some checks! \\
+  - Write down the full field update equation in theory and implement in the code and track the transfer function!
 \section{Energy momentum tensor} 
 The most general action for a scalar field coupled to Einstein gravity is;
 \be
@@ -424,11 +442,13 @@ a^2 \bar{P}  (1+\frac{1}{w}) ] \epsilon ^0
 \end{align}
 Where we have used \ref{Pbarder} and \ref{Pbar}.
 Finaly the $T_{00}$ component is;
-\be
+\begin{empheq}[box=\mymath]{equation*}
+\begin{align}
 T_{00}=  
 3 M_{pl}^2   \mathcal{H}^2\Omega \Bigg[  1+(2 \frac{\mathcal{H}'}{\mathcal{H}}+ \frac{\Omega'}{\Omega} + 2 \mathcal{H} w ) \pi+ \Psi \Big (2 - \frac{1+w}{c_s^2}  \Big ) + {\pi'} \Big ( \frac{1+w}{c_s^2}   \Big)  -  \frac{(\vec{\nabla} \pi)^2}{2}   \Big ( (1+w) (\frac{1}{c_s^2}- 2 )  \Big )
  \Bigg]+  \mathcal {O}(\epsilon^{2}) 
-\ee
+\end{align}
+\end{empheq}
 \subsection{$T_{0i}$ component of energy momentum tensor}
 According to the equation \ref{eqTmunuI} we can calculate $T_{0i}$ component of energy momentum tensor
 \begin{align}
@@ -498,6 +518,17 @@ T_{0 i} &
 + \mathcal {O}(\epsilon^{2}) 
 %\label{eqTmunu}
 \end{align}
+\begin{empheq}[box=\mymath]{equation*}
+\begin{align}
+T_{0i}= 
+3 M_{pl}^2 \mathcal{H}^2 \Omega \Bigg[
+ w \, \frac{\delta g^{(1)}_{0 i} }{a^2}
+ +
+   (1+w )\,  \partial_{i} \pi + (1+w) \, \pi' \partial_{i} \pi  +(1+ w)(\frac{1}{c_s^2}-1)  \Big (-\Psi+ \pi' -\frac{(\vec{\nabla} \pi)^2}{2} \Big) \partial_{i} \pi 
+   \Bigg ]
++ \mathcal {O}(\epsilon^{2}) 
+\end{align}
+\end{empheq}
 Note that $T_{0i}=T_{i0}$.
 \subsection{$T_{ij}$ component of energy momentum tensor}
 Again using the equation \ref{eqTmunuI}
@@ -586,12 +617,16 @@ T_{i j} &
      + \mathcal {O}(\epsilon^{2}) 
 \end{align}
 As a result we can write;
-\be
-T_{ij}=3 M_{pl}^2 \mathcal{H}^2 \Omega  \Bigg[  w \delta_{ij} +w (\frac{2 \mathcal{H}' }{\mathcal{H}} + \frac{\Omega'}{\Omega} - 2\mathcal{H}) \pi \delta_{ij}
+\begin{empheq}[box=\mymath]{equation*}
+\begin{align}
+T_{ij}=&3 M_{pl}^2 \mathcal{H}^2 \Omega  \Bigg[  w \delta_{ij} +w (\frac{2 \mathcal{H}' }{\mathcal{H}} + \frac{\Omega'}{\Omega} - 2\mathcal{H}) \pi \delta_{ij}
 -
- 2 w \Phi \,  \delta_{ij} - (1+w) \Psi \, \delta_{ij}+  (1+w) {\pi'} \, \delta_{ij} - \frac{1+w}{2 }   (\vec{\nabla} \pi)^2 \, \delta_{ij} +({1+w}  )\partial_{i} \pi \partial_{j} \pi    \Bigg ] 
+ 2 w \Phi \,  \delta_{ij} - (1+w) \Psi \, \delta_{ij}+  (1+w) {\pi'} \, \delta_{ij} 
+ \nonumber  \\ &
+ - \frac{1+w}{2 }   (\vec{\nabla} \pi)^2 \, \delta_{ij} +({1+w}  )\partial_{i} \pi \partial_{j} \pi    \Bigg ] 
      + \mathcal {O}(\epsilon^{2}) 
-\ee
+\end{align}
+\end{empheq}
 The diagonal components read; 
 \be
 T_{ii}=3 M_{pl}^2 \mathcal{H}^2 \Omega   \Bigg[   w +w (\frac{2 \mathcal{H}' }{\mathcal{H}} + \frac{\Omega'}{\Omega} - 2\mathcal{H}) \pi
@@ -701,209 +736,6 @@ We can write Euler and continuity equations for k-essence case easily just by su
  Since we know the values of fluid quantities in terms of $\pi, \Psi...$ we can easily implement in the code without getting the equation explicitly. \\
  {\color{red}{We should check that this equation gives the same constraint as field constraint in EFT form for k-essence case.}} \\
  Moreover, we do not need to consider Euler equation since it does not give any extra equations.
-\section{K-essence field equation from EFT action}
-Here we use the second order EFT action and vary it with respect to the field and we obtain the equations with leading order post Newtonian corrections, \\
-The action is as following,
-\be
-S=\sqrt{-g} \left [ \frac{M_*^2}{2} f(t) R -\Lambda (t) -c(t) g^{00} +\frac{M_2^4(t)}{2} \left (g^{00} + \frac{1}{\bar{N}^2} \right )    -  \frac{m_3^3(t)}{2} \delta K  \left (g^{00} + \frac{1}{\bar{N}^2} \right )    \right ]
-\ee
-We recover the full covariance with second order Stuckelberg trick,
-\be
-f(t) \longrightarrow f(t) +  \dot{f} (t) \pi+ \frac{1}{2} \ddot{f }(t) \pi^2  + \frac{1}{6} \dddot{f }(t) \pi^3
-\ee
-\be
-\Lambda(t) \longrightarrow \Lambda(t) +  \dot{\Lambda} (t) \pi+ \frac{1}{2} \ddot{\Lambda}(t) \pi^2 + \frac{1}{6} \dddot{\Lambda }(t) \pi^3
-\ee
-\be
-M_2^4(t) \longrightarrow M_2^4(t) +  \dot{ M_2^4} (t) \pi+ \frac{1}{2}    \ddot{ M_2^4 }(t)  \pi^2 + \frac{1}{6} \dddot{M_2^4 }(t) \pi^3
-\ee
-\be
-m_3^3(t) \longrightarrow m_3^3(t) +  \dot{m_3^3} (t) \pi+ \frac{1}{2} \ddot{m_3^3}(t) \pi^2 + \frac{1}{6} \dddot{m_3^3 }(t) \pi^3
-\ee
-\be
-g^{00} \longrightarrow g^{00} + 2 g^{0 \mu} \partial_{\mu} \pi + g^{\rho \nu} \partial_{\rho} \partial_{\nu} \pi
-\ee
-\begin{align}
-\delta K  \longrightarrow &   \delta K -3 \left ( \dot{H} \pi +\frac{1}{2} \ddot{H} \pi^2 \right ) - (1-\dot{\pi}) N h^{ij} \partial_i \partial_j \pi +\frac{1}{2} \partial_i h^{ij} \partial_j \pi  \nonumber \\ &+\frac{H}{2 a^2} \delta ^{ij}\partial_i \pi \partial_j \pi + \frac{2}{a^2} \delta ^{ij} \partial_i  \pi  \partial_j    \dot{\pi} -\frac{2}{a^2} \delta ^{ij} \partial_i N \partial_j \pi
-\end{align}
-\begin{align}
-\frac{1}{\sqrt{-g}} \frac{\delta S}{\delta \pi}|_{\text{First order} }&=  B_{\Psi} \Psi+  B_{\dot{\Psi}} \dot{\Psi} +
-B_{\Phi} \Phi + B_{\dot{\Phi}} \dot{\Phi}  + B_{\ddot{\Phi}} \ddot{\Phi}+B_{\pi} \pi +   B_{\dot{\pi}} \dot{\pi} + B_{\ddot{\pi}} \ddot{\pi}  
-\nonumber  \\& 
-+ \frac{k^2}{a^2} \left( B^{(2)}_{\Psi}\Psi +  B^{(2)}_{\Phi}\Phi+ B^{(2)}_{\dot{\Phi}} \dot{\Phi} + B^{(2)}_{\pi}\pi \right) + \frac{k^4}{a^4} \left(B^{(4)}_{\Phi}\Phi +B^{(4)}_{\pi}\pi  \right)
-\end{align}
-where,
-\be
-B_{\Psi}=12 c H+2 \dot{c} +3 m_3^3 (3H^2+2\dot{H}) -6 M_*^2\dot{f} (\dot{H} + 2H^2) + 3H \left[ 4M_2^4 -2 M_4^2 \dot{H}+\dot{(m_3^3)}\right]+4 \dot{(M_2^4)}
-\ee
-The last equation is different with Essential building paper, because of a typo in the paper.
-\be
-B_{\dot{\Psi}}=2c + 4 M_2^4 +3 H (m_3^3 -M_*^2 \dot{f})
-\ee
-\be
-B_{\Phi}=0
-\ee
-\be
-B_{\dot{\Phi}}=3 \left[ 2c +3 H m_3^3-4 H M_*^2 \dot{f} -2 M_4^2 \dot{H} +\dot{m_3^3}\right]
-\ee
-\be
-B_{\ddot{\Phi}}=3( m_3^3 -M_*^2 \dot{f})
-\ee
-\be
-B_{{\pi}}=- \Big[ 6 M_4^2 \dot{H}^2 -3\dot{m_3^3} \dot{H} + 6 \dot{H} c + 3 M_*^2 (\ddot{H} +4 H \dot{H})\dot{f} - 9 H \dot{H} m_3^3- 3 m_3^3 \ddot{H}  \Big]
-\ee
-\be
-B_{\dot{\pi}}=- 2\Big[ 3 H (c+ 2 M_2^4) +\dot{c} + 2\dot{M_2^4} \Big]
-\ee
-\be
-B_{\ddot{\pi}}=- 2\Big[  c+ 2 M_2^4 \Big]
-\ee
-\be
-B^{(2)}_{{\Psi}}=- \Big[  m_3^3 + H (-2 M_4 ^2- 6 H \bar{m}_5+4 \tilde{m}_4^2) - M_*^2 \dot{f}\Big]
-\ee
-\be
-B^{(2)}_{{\Phi}}=- 2\Big[ 2 H \tilde{m}_4^2 + M_*^2 \dot{f}-3 \bar{m}_5 \dot{H} + 2 \dot{(\tilde{m}}_4^2) \Big]
-\ee
-\be
-B^{(2)}_{\dot{\Phi}}=
-2M_4^2 + 6H \bar{m}_5 - 4 \tilde{m}_4^2
-\ee
-\be
-B^{(2)}_{{\pi}}=
-- \Big[ 2c - 4 M_4^2 \dot{H} + 4 \tilde{m}_4^2 \dot{H} + \dot{m_3^3}+ 4 H^2 \tilde{m}_4^2+ H m_3^3 -12 \bar{m}_5 H \dot{H} + 4 H \dot{(\tilde{m}}_4^2)\Big]
-\ee
-\be
-B^{(4)}_{{\Phi}}=-2 \bar{m} _5 + 16 H \bar{\lambda}
-\ee
-\be
-B^{(4)}_{{\pi}}=
--2(\bar{m}_4^2 +2 H \bar{m}_5)+ 16 H^2 \bar{\lambda}
-\ee
-The relevant second order terms in Fourier space are,
-\begin{align}
-\frac{1}{\sqrt{-g}} \frac{\delta S}{\delta \pi}|_{\text{post newtonian} }&=  \int \int d^3k d^3 k' e^{i(\vec{k}+\vec{k}') . \vec{x}}  \Bigg [   -\frac{k^2}{a^2} C^{(2)}_{\Psi \Psi} \Psi \Psi  -\frac{k^2}{a^2} C^{(2)}_{\Psi \Phi} \Psi \Phi   -\frac{k^2}{a^2} C^{(2)}_{\Psi \pi} \Psi \pi 
-  -\frac{k^2}{a^2} C^{(2)}_{\Phi \Psi} \Phi \Psi  -\frac{k^2}{a^2} C^{(2)}_{\Phi \Phi} \Phi \Phi   -\frac{k^2}{a^2} C^{(2)}_{\Phi \pi} \Phi \pi 
-\nonumber  \\& 
-   -\frac{k^2}{a^2} C^{(2)}_{\pi \Psi} \pi \Psi  -\frac{k^2}{a^2} C^{(2)}_{\pi \Phi} \pi \Phi   -\frac{k^2}{a^2} C^{(2)}_{\pi \pi} \pi \pi 
-  -\frac{k^2}{a^2} C^{(2)}_{\dot{\Psi} \Psi} \dot{\Psi} \Psi  -\frac{k^2}{a^2} C^{(2)}_{\dot{\Psi} \Phi} \dot{\Psi} \Phi   -\frac{k^2}{a^2} C^{(2)}_{\dot{\Psi} \pi} \dot{\Psi} \pi 
-\nonumber   \\&
- -\frac{k^2}{a^2} C^{(2)}_{\dot{\Phi} \Psi} \dot{\Phi} \Psi  -\frac{k^2}{a^2} C^{(2)}_{\dot{\Phi} \Phi} \dot{\Phi} \Phi   -\frac{k^2}{a^2} C^{(2)}_{\dot{\Phi} \pi} \dot{\Phi} \pi 
-  +C_{ \dot{\pi}\dot{\pi}}  \dot{\pi}\dot{\pi}  -\frac{k^2}{a^2} C^{(2)}_{\dot{\pi} \Psi} \dot{\pi} \Psi  -\frac{k^2}{a^2} C^{(2)}_{\dot{\pi} \Phi} \dot{\pi} \Phi   -\frac{k^2}{a^2} C^{(2)}_{\dot{\pi} \pi} \dot{\pi} \pi \text{ .}
-    \nonumber \\&
-  -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\Psi \Phi} \Psi \Phi  -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\Psi \pi} \Psi \pi  -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\Phi \pi} \Phi \pi  -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\pi \pi} \pi \pi   -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\Psi \Psi} \Psi \Psi -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\Phi \Phi} \Phi \Phi    
-  \nonumber \\ &
- + C_{\ddot{\Psi}} (\Psi,\Phi,\pi) \ddot{\Psi} + C_{\ddot{\Phi}} (\Psi,\Phi,\pi) \ddot{\Phi}+ C_{\ddot{\pi}} (\Psi,\Phi,\pi) \ddot{\pi} \Bigg ] 
-  \text{ .}
-\end{align}
-Where;
-\be
-C^{(2)}_{\Psi \Psi}=  - m_3^3 \text{ .}
-\ee
-\be
-C^{(2)}_{\Psi \Phi}= 0 \text{ .}
-\ee
-\be
-C^{(2)}_{\Psi \pi}=  -4 H m_3^3 - 4 M_2^4  \text{ .}
-\ee
-\be
-C^{(2)}_{\Phi \Psi}= 2 (m_3^3 -M_*^2 \dot{f})  \text{ .}
-\ee
-\be
-C^{(2)}_{\Phi \Phi}= 4 M_*^2 \dot{f} \text{ .}
-\ee
-\be
-C^{(2)}_{\Phi \pi}= 2 \left ( m_3^3 H + 2 c +\dot{m_3^3}  \right )   \text{ .}
-\ee
-\be
-C^{(2)}_{\pi \Psi}= \dot{m_3^3} - M_*^2 \ddot{f} \text{ .}
-\ee
-\be
-C^{(2)}_{\pi \Phi}= 2 M_*^2 \ddot{f} \text{ .}
-\ee
-\be
-C^{(2)}_{\pi \pi}=  -3m_3^3 \dot{H} +  H \dot{m_3^3} + 2 \dot{c} +  \ddot{m_3^3}   \text{ .}
-\ee
-\be
-C^{(2)}_{\dot{\Psi} \Psi}= 0\text{ .}
-\ee
-\be
-C^{(2)}_{\dot{\Psi} \Phi}=0 \text{ .}
-\ee
-\be
-C^{(2)}_{\dot{\Psi} \pi}= -m_3^3 \text{ .}
-\ee
-\be
-C^{(2)}_{\dot{\Phi} \Psi}=0 \text{ .}
-\ee
-\be
-C^{(2)}_{\dot{\Phi} \Phi}=0 \text{ .}
-\ee
-\be
-C^{(2)}_{\dot{\Phi} \pi}= -4 m_3^3 \text{ .}
-\ee
-\be
-C^{(2)}_{\dot{\pi} \Psi}= m_3^3   \text{ .}
-\ee
-\be
-C^{(2)}_{\dot{\pi} \Phi}= 0 \text{ .}
-\ee
-\be
-C^{(2)}_{\dot{\pi} \pi}= 4 M_2^4 \text{ .}
-\ee
-\be
-C^{1,1}_{\Psi \Phi}= - (m_3^3 -M_*^2 \dot{f}) \text{ .}
-\ee
-\be
-C^{1,1}_{\Psi \pi}=  2 (-m_3^3 H + c- 2 M_2^4 +\dot{m_3^3 })    \text{ .}
-\ee
-\be
-C^{1,1}_{\Phi \pi}= - \left (  m_3^3 H + 2c + \dot{m_3^3}  \right )      \text{ .}
-\ee
-\be
-C^{1,1}_{\Phi \Phi}=	- M_*^2 \dot{f}	\text{ .}
-\ee
-\be
-C^{1,1}_{\pi \pi}= \frac{1}{2} \left (  3 m_3^3 H^2 + 2 (\dot{c} +2  \dot{M_2^4})+ 4 M_2^4 H - H \dot{m_3^3 }  -4 {m_3^3}  (H^2 +\dot{H}) \right )	\text{ .}
-\ee
-\be
-C^{1,1}_{\Psi \Psi}= - M_*^2 \dot{f}	\text{ .}
-\ee
-\be
-C_{\ddot{\Psi}} (\Psi,\Phi,\pi)=0	\text{ .}
-\ee
-\be
-C_{\ddot{\Phi}} (\Psi,\Phi,\pi)= 0 \text{ .}
-\ee
-\be
-C_{\ddot{\pi}} (\Psi,\Phi,\pi)= 	- m_3^3 \frac{k^2}{a^2} \tilde{\pi} \text{ .}
-\ee
-For the k-essence case we have (note below equation 85 in \url{https://arxiv.org/pdf/1411.3712.pdf})
-\begin{align}
-& \alpha_B= \alpha_H=\alpha_M=\alpha_T=0 \nonumber \\ &
-\alpha_K=\frac{2\bar{X} P _X + 4 \bar{X}^2 P_{XX}}{M^2 H^2 }  \nonumber \\ &
-c_s^2=\frac{-2 \dot{H}}{\alpha_K H^2 } - \frac{\rho + P}{\alpha_K M^2 H^2}
-\end{align}
-After translation between two different language according to table 1 of  \url{https://arxiv.org/pdf/1411.3712.pdf} and equation 24-25 of \url{https://arxiv.org/pdf/1210.0201.pdf} we get,
-\begin{align}
- & m_4^2=\tilde{m}_4^2=\bar{\lambda}=0 \nonumber  \\ &
- f=1 \longrightarrow M^2=3M_{pl}^2,  \;  \;  m_3^3=0 , \;  \; \alpha_k=\frac{2c +4 M_2^4}{M^2 H^2}=  \frac{\Omega (1+w)}{c_s^2} \\ \nonumber &
- \Lambda= -\frac{\bar{\rho} (1-w)}{2}, \; \; c=\frac{\bar{\rho} (1+w)}{2}, \; \; 4 M_2^4=\bar{\rho} (1+w) (\frac{1}{c_s^2}-1)
-\end{align}
-{\color{red}{\large{Todo:}  Field constraint!}}
-\begin{align}
-\
-\end{align}
-\subsection{Friedmann equations}
-In this language the Friedman equations are,
-\be
-3{H}^2 M_{pl}^2= \rho_m + \rho_{scf}
-\ee
-and 
-\begin{align}
-&\frac{\ddot{a}}{a} = - \frac{1}{6M^2_{pl}} \left (\rho_{tot} +3 P_{tot}\right ) \\ \nonumber &
-3 H^2 + 2\dot{H} = \frac{-1}{M^2_{pl}} \left( P_{m} + P_{scf} (X, \varphi) \right)
-\end{align}
-which is the same as equation 3.5 of \url{https://arxiv.org/pdf/1404.3713.pdf} 
 \section{Field transfer function}
 Before trying to get the field transfer function we try to do some tests on different results in order to catch all the physics we are dealing with.
 \subsection{Gauge transformation}
@@ -941,10 +773,13 @@ We get
 {\hat{g}_{\mu \nu }}  (x)=  g_{\mu \nu } (x) - g_{\mu \beta } (x) \partial _{\nu} \epsilon^{\beta} -  g_{\alpha \nu } (x) \partial _{\mu} \epsilon^{\alpha}-\epsilon^{\alpha} \partial _{\alpha} g_{\mu \nu } (x) 
 \ee
 We easily can obtain the transformed metric perturbations in the new gauge (synchronous),
+\begin{empheq}[box=\tcbhighmath]{equation*}
 \begin{align}
 &\hat {\Psi} (\tau,\vec{x}) = \Psi(\tau,\vec{x}) - \alpha' (\tau,\vec{x})- \mathcal{H} \alpha(\tau,\vec{x}) \nonumber \\ &
 \hat {\Phi} (\tau,\vec{x}) = \Phi(\tau,\vec{x}) +\frac{1}{3} \nabla^2 \beta(\tau,\vec{x})  + \mathcal{H} \alpha(\tau,\vec{x}) 
 \end{align}
+\end{empheq}
+
 Where $\Phi$ and $\Psi$ are metric perturbations in Newtonian gauge. To find the gauge transformation for fluid quantities, we use,
 \be
 T^{\mu} _ {\nu}(Sync) = \frac{\partial {\hat{x}} ^{\mu} }{\partial {x} ^{\sigma}} \frac{\partial {x} ^{\rho}}{\partial {\hat{x}} ^{\nu}} T^{\rho} _ {\sigma}(Newt) 
@@ -959,6 +794,7 @@ where ${\hat{x}}^{\mu}$ and $x^{\mu}$ denote he synchronous and Newtonian coordi
  \end{align}
   where $\alpha = {\hat{x}}^0 - x^0=({h'} + 6 {\eta'})/2 k^2$ in terms of Synchronous gauge perturbations, it is useful since we want to use hi-class which is written in synchronous gauge. \\
 From the definition of the density contrast $\delta = \delta \rho /\bar{\rho} = - \delta T_0^0 /\bar{\rho} $ we obtain,
+\begin{empheq}[box=\tcbhighmath]{equation*}
 \begin{align}
 & \delta (Sync) = \delta (Newt) -\alpha \frac{\dot{\bar{\rho}}}{\rho}
  \\
@@ -969,6 +805,7 @@ From the definition of the density contrast $\delta = \delta \rho /\bar{\rho} = 
 \nonumber &
 \sigma  (Sync) = \sigma  (Newt)
 \end{align}
+\end{empheq}
 The obtain the gauge transformation for the scalar field and its derivative, we use the fact that it is a scalar under the general coordinate transformation $\hat{\varphi }({\hat{x}}^{\mu})=\varphi ({x}^{\mu})$ , where $\varphi  (x^{\mu} ) =t + \pi (x^{\mu})$ according to our time slicing.
 \begin{align}
 \Delta \varphi (x) \equiv &\hat{ \varphi}(x) - \varphi (x) = \hat{\varphi}(\hat{x} - \epsilon) -\varphi (x) \\ \nonumber &
@@ -1153,6 +990,7 @@ The result of comparison is shown in the following plot which shows that the two
 \end{figure}
 
 \section{Gevolution}
+\subsection{Initial condition}
 All the transfer functions in the class and hi-class are normalized to one curvature perturbation. Curvature perturbation is obtained from powerspectrum as following,
 \be
 {\langle \mathcal{R} (k)  \mathcal{R} (k')\rangle} = (2 \pi )^3 \delta_D(k-k') P_{\mathcal{R}} (k)= (2 \pi )^3 \delta_D(k-k')  \frac{2 \pi^2}{k^3} \mathcal{P}_{\mathcal{R}}(k) =  (2 \pi )^3 \delta_D(k-k')   \frac{2 \pi^2}{k^3} A_s (\frac{k}{k_p})^{n_s-1}
@@ -1205,7 +1043,22 @@ If we turn off the following part we get completely different solution for the f
 \begin{lstlisting}
 plan_pi_k->execute(FFT_FORWARD); 
 \end{lstlisting}
- 
+ \subsection{Stress tensor}
+{ \color{red}{ Todo: How to add stress tensor?}} \\
+Should  
+{\begin{lstlisting}
+projection_init(&source); 
+\end{lstlisting}}
+contains the scalar field in it?\\
+- what is source and where it is calculated? \\
+- Is it $T_\mu^{\nu}$ or $T_{\mu \nu} $in Gevolution?\\
+-what is the meaning of below lines before the functions definitions.
+{\begin{lstlisting}
+-template<typename part, typename part_info, typename part_dataType>
+template <class FieldType>
+\end{lstlisting}}
+ \subsection{Field equation and transfer}
+ { \color{red}{ Todo: use the correct field equation and check the transfer function in time?}}
  \subsection{Some tests on Gevolution:}
  We want to test if the initial powerspectrum is the same as realized field powerspectrum in gevolution. \\
  In the figure \ref{comparehi-gev} the powerspectrum of the field from Gevolution's output is compared with the one which is made by hand. We make the dimensionless powerspectrum by hand from the initial transfer function as following,
@@ -1224,7 +1077,354 @@ plan_pi_k->execute(FFT_FORWARD);
 \end{center}
 \end{figure}
  
-\section{Numerical solution to the k-essence equation }
+ \section{K-essence field equation from EFT action}
+Here we use the second order EFT action and vary it with respect to the field and we obtain the equations with leading order post Newtonian corrections, \\
+The action is as following,
+\be
+S=\sqrt{-g} \left [ \frac{M_*^2}{2} f(t) R -\Lambda (t) -c(t) g^{00} +\frac{M_2^4(t)}{2} \left (g^{00} + \frac{1}{\bar{N}^2} \right )    -  \frac{m_3^3(t)}{2} \delta K  \left (g^{00} + \frac{1}{\bar{N}^2} \right )    \right ]
+\ee
+We recover the full covariance with second order Stuckelberg trick,
+\be
+f(t) \longrightarrow f(t) +  \dot{f} (t) \pi+ \frac{1}{2} \ddot{f }(t) \pi^2  + \frac{1}{6} \dddot{f }(t) \pi^3
+\ee
+\be
+\Lambda(t) \longrightarrow \Lambda(t) +  \dot{\Lambda} (t) \pi+ \frac{1}{2} \ddot{\Lambda}(t) \pi^2 + \frac{1}{6} \dddot{\Lambda }(t) \pi^3
+\ee
+\be
+M_2^4(t) \longrightarrow M_2^4(t) +  \dot{ M_2^4} (t) \pi+ \frac{1}{2}    \ddot{ M_2^4 }(t)  \pi^2 + \frac{1}{6} \dddot{M_2^4 }(t) \pi^3
+\ee
+\be
+m_3^3(t) \longrightarrow m_3^3(t) +  \dot{m_3^3} (t) \pi+ \frac{1}{2} \ddot{m_3^3}(t) \pi^2 + \frac{1}{6} \dddot{m_3^3 }(t) \pi^3
+\ee
+\be
+g^{00} \longrightarrow g^{00} + 2 g^{0 \mu} \partial_{\mu} \pi + g^{\rho \nu} \partial_{\rho} \partial_{\nu} \pi
+\ee
+\begin{align}
+\delta K  \longrightarrow &   \delta K -3 \left ( \dot{H} \pi +\frac{1}{2} \ddot{H} \pi^2 \right ) - (1-\dot{\pi}) N h^{ij} \partial_i \partial_j \pi +\frac{1}{2} \partial_i h^{ij} \partial_j \pi  \nonumber \\ &+\frac{H}{2 a^2} \delta ^{ij}\partial_i \pi \partial_j \pi + \frac{2}{a^2} \delta ^{ij} \partial_i  \pi  \partial_j    \dot{\pi} -\frac{2}{a^2} \delta ^{ij} \partial_i N \partial_j \pi
+\end{align}
+\begin{align}
+\frac{1}{\sqrt{-g}} \frac{\delta S}{\delta \pi}|_{\text{First order} }&=  B_{\Psi} \Psi+  B_{\dot{\Psi}} \dot{\Psi} +
+B_{\Phi} \Phi + B_{\dot{\Phi}} \dot{\Phi}  + B_{\ddot{\Phi}} \ddot{\Phi}+B_{\pi} \pi +   B_{\dot{\pi}} \dot{\pi} + B_{\ddot{\pi}} \ddot{\pi}  
+\nonumber  \\& 
++ \frac{k^2}{a^2} \left( B^{(2)}_{\Psi}\Psi +  B^{(2)}_{\Phi}\Phi+ B^{(2)}_{\dot{\Phi}} \dot{\Phi} + B^{(2)}_{\pi}\pi \right) + \frac{k^4}{a^4} \left(B^{(4)}_{\Phi}\Phi +B^{(4)}_{\pi}\pi  \right)
+\end{align}
+where,
+\be
+B_{\Psi}=12 c H+2 \dot{c} +3 m_3^3 (3H^2+2\dot{H}) -6 M_*^2\dot{f} (\dot{H} + 2H^2) + 3H \left[ 4M_2^4 +\dot{(m_3^3)}\right]+4 \dot{(M_2^4)}
+\ee
+The last equation is different with Essential building paper, because of a typo in the paper.
+\be
+B_{\dot{\Psi}}=2c + 4 M_2^4 +3 H (m_3^3 -M_*^2 \dot{f})
+\ee
+\be
+B_{\Phi}=0
+\ee
+\be
+B_{\dot{\Phi}}=3 \left[ 2c +3 H m_3^3-4 H M_*^2 \dot{f} +\dot{m_3^3}\right]
+\ee
+\be
+B_{\ddot{\Phi}}=3( m_3^3 -M_*^2 \dot{f})
+\ee
+\be
+B_{{\pi}}=- \Big[ -3\dot{m_3^3} \dot{H} + 6 \dot{H} c + 3 M_*^2 (\ddot{H} +4 H \dot{H})\dot{f} - 9 H \dot{H} m_3^3- 3 m_3^3 \ddot{H}  \Big]
+\ee
+\be
+B_{\dot{\pi}}=- 2\Big[ 3 H (c+ 2 M_2^4) +\dot{c} + 2\dot{M_2^4} \Big]
+\ee
+\be
+B_{\ddot{\pi}}=- 2\Big[  c+ 2 M_2^4 \Big]
+\ee
+\be
+B^{(2)}_{{\Psi}}=- \Big[  m_3^3 + H (- 6 H \bar{m}_5+4 \tilde{m}_4^2) - M_*^2 \dot{f}\Big]
+\ee
+\be
+B^{(2)}_{{\Phi}}=- 2\Big[ 2 H \tilde{m}_4^2 + M_*^2 \dot{f}-3 \bar{m}_5 \dot{H} + 2 \dot{(\tilde{m}}_4^2) \Big]
+\ee
+\be
+B^{(2)}_{\dot{\Phi}}=
+  6H \bar{m}_5 - 4 \tilde{m}_4^2
+\ee
+\be
+B^{(2)}_{{\pi}}=
+- \Big[ 2c + 4 \tilde{m}_4^2 \dot{H} + \dot{m_3^3}+ 4 H^2 \tilde{m}_4^2+ H m_3^3 -12 \bar{m}_5 H \dot{H} + 4 H \dot{(\tilde{m}}_4^2)\Big]
+\ee
+\be
+B^{(4)}_{{\Phi}}=-2 \bar{m} _5 + 16 H \bar{\lambda}
+\ee
+\be
+B^{(4)}_{{\pi}}=
+-2(\bar{m}_4^2 +2 H \bar{m}_5)+ 16 H^2 \bar{\lambda}
+\ee
+The relevant second order terms in Fourier space are,
+\begin{align}
+\frac{1}{\sqrt{-g}} \frac{\delta S}{\delta \pi}|_{\text{post newtonian} }&=  \int \int d^3k d^3 k' e^{i(\vec{k}+\vec{k}') . \vec{x}}  \Bigg [   -\frac{k^2}{a^2} C^{(2)}_{\Psi \Psi} \Psi \Psi  -\frac{k^2}{a^2} C^{(2)}_{\Psi \Phi} \Psi \Phi   -\frac{k^2}{a^2} C^{(2)}_{\Psi \pi} \Psi \pi 
+  -\frac{k^2}{a^2} C^{(2)}_{\Phi \Psi} \Phi \Psi  -\frac{k^2}{a^2} C^{(2)}_{\Phi \Phi} \Phi \Phi   -\frac{k^2}{a^2} C^{(2)}_{\Phi \pi} \Phi \pi 
+\nonumber  \\& 
+   -\frac{k^2}{a^2} C^{(2)}_{\pi \Psi} \pi \Psi  -\frac{k^2}{a^2} C^{(2)}_{\pi \Phi} \pi \Phi   -\frac{k^2}{a^2} C^{(2)}_{\pi \pi} \pi \pi 
+  -\frac{k^2}{a^2} C^{(2)}_{\dot{\Psi} \Psi} \dot{\Psi} \Psi  -\frac{k^2}{a^2} C^{(2)}_{\dot{\Psi} \Phi} \dot{\Psi} \Phi   -\frac{k^2}{a^2} C^{(2)}_{\dot{\Psi} \pi} \dot{\Psi} \pi 
+\nonumber   \\&
+ -\frac{k^2}{a^2} C^{(2)}_{\dot{\Phi} \Psi} \dot{\Phi} \Psi  -\frac{k^2}{a^2} C^{(2)}_{\dot{\Phi} \Phi} \dot{\Phi} \Phi   -\frac{k^2}{a^2} C^{(2)}_{\dot{\Phi} \pi} \dot{\Phi} \pi 
+  +C_{ \dot{\pi}\dot{\pi}}  \dot{\pi}\dot{\pi}  -\frac{k^2}{a^2} C^{(2)}_{\dot{\pi} \Psi} \dot{\pi} \Psi  -\frac{k^2}{a^2} C^{(2)}_{\dot{\pi} \Phi} \dot{\pi} \Phi   -\frac{k^2}{a^2} C^{(2)}_{\dot{\pi} \pi} \dot{\pi} \pi \text{ .}
+    \nonumber \\&
+  -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\Psi \Phi} \Psi \Phi  -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\Psi \pi} \Psi \pi  -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\Phi \pi} \Phi \pi  -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\pi \pi} \pi \pi   -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\Psi \Psi} \Psi \Psi -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\Phi \Phi} \Phi \Phi    
+  \nonumber \\ &
+ + C_{\ddot{\Psi}} (\Psi,\Phi,\pi) \ddot{\Psi} + C_{\ddot{\Phi}} (\Psi,\Phi,\pi) \ddot{\Phi}+ C_{\ddot{\pi}} (\Psi,\Phi,\pi) \ddot{\pi} \Bigg ] 
+  \text{ .}
+\end{align}
+Where;
+\be
+C^{(2)}_{\Psi \Psi}=  - m_3^3 \text{ .}
+\ee
+\be
+C^{(2)}_{\Psi \Phi}= 0 \text{ .}
+\ee
+\be
+C^{(2)}_{\Psi \pi}=  -4 H m_3^3 - 4 M_2^4  \text{ .}
+\ee
+\be
+C^{(2)}_{\Phi \Psi}= 2 (m_3^3 -M_*^2 \dot{f})  \text{ .}
+\ee
+\be
+C^{(2)}_{\Phi \Phi}= 4 M_*^2 \dot{f} \text{ .}
+\ee
+\be
+C^{(2)}_{\Phi \pi}= 2 \left ( m_3^3 H + 2 c +\dot{m_3^3}  \right )   \text{ .}
+\ee
+\be
+C^{(2)}_{\pi \Psi}= \dot{m_3^3} - M_*^2 \ddot{f} \text{ .}
+\ee
+\be
+C^{(2)}_{\pi \Phi}= 2 M_*^2 \ddot{f} \text{ .}
+\ee
+\be
+C^{(2)}_{\pi \pi}=  -3m_3^3 \dot{H} +  H \dot{m_3^3} + 2 \dot{c} +  \ddot{m_3^3}   \text{ .}
+\ee
+\be
+C^{(2)}_{\dot{\Psi} \Psi}= 0\text{ .}
+\ee
+\be
+C^{(2)}_{\dot{\Psi} \Phi}=0 \text{ .}
+\ee
+\be
+C^{(2)}_{\dot{\Psi} \pi}= -m_3^3 \text{ .}
+\ee
+\be
+C^{(2)}_{\dot{\Phi} \Psi}=0 \text{ .}
+\ee
+\be
+C^{(2)}_{\dot{\Phi} \Phi}=0 \text{ .}
+\ee
+\be
+C^{(2)}_{\dot{\Phi} \pi}= -4 m_3^3 \text{ .}
+\ee
+\be
+C^{(2)}_{\dot{\pi} \Psi}= m_3^3   \text{ .}
+\ee
+\be
+C^{(2)}_{\dot{\pi} \Phi}= 0 \text{ .}
+\ee
+\be
+C^{(2)}_{\dot{\pi} \pi}= 4 M_2^4 \text{ .}
+\ee
+\be
+C^{1,1}_{\Psi \Phi}= - (m_3^3 -M_*^2 \dot{f}) \text{ .}
+\ee
+\be
+C^{1,1}_{\Psi \pi}=  2 (-m_3^3 H + c- 2 M_2^4 +\dot{m_3^3 })    \text{ .}
+\ee
+\be
+C^{1,1}_{\Phi \pi}= - \left (  m_3^3 H + 2c + \dot{m_3^3}  \right )      \text{ .}
+\ee
+\be
+C^{1,1}_{\Phi \Phi}=	- M_*^2 \dot{f}	\text{ .}
+\ee
+\be
+C^{1,1}_{\pi \pi}= \frac{1}{2} \left (  3 m_3^3 H^2 + 2 (\dot{c} +2  \dot{M_2^4})+ 4 M_2^4 H - H \dot{m_3^3 }  -4 {m_3^3}  (H^2 +\dot{H}) \right )	\text{ .}
+\ee
+\be
+C^{1,1}_{\Psi \Psi}= - M_*^2 \dot{f}	\text{ .}
+\ee
+\be
+C_{\ddot{\Psi}} (\Psi,\Phi,\pi)=0	\text{ .}
+\ee
+\be
+C_{\ddot{\Phi}} (\Psi,\Phi,\pi)= 0 \text{ .}
+\ee
+\be
+C_{\ddot{\pi}} (\Psi,\Phi,\pi)= 	- m_3^3 \frac{k^2}{a^2} \tilde{\pi} \text{ .}
+\ee
+For the k-essence case we have (note below equation 85 in \url{https://arxiv.org/pdf/1411.3712.pdf})
+\begin{align}
+& \alpha_B= \alpha_H=\alpha_M=\alpha_T=0 \nonumber \\ &
+\alpha_K=\frac{2\bar{X} P _X + 4 \bar{X}^2 P_{XX}}{M^2 H^2 }  \nonumber \\ &
+c_s^2=\frac{-2 \dot{H}}{\alpha_K H^2 } - \frac{\rho + P}{\alpha_K M^2 H^2}
+\end{align}
+After translation between two different language according to table 1 of  \url{https://arxiv.org/pdf/1411.3712.pdf} and equation 24-25 of \url{https://arxiv.org/pdf/1210.0201.pdf} we get,
+\begin{align}
+ & m_4^2=\tilde{m}_4^2=\bar{\lambda}=0 \nonumber  \\ &
+ f=1 \longrightarrow M^2=3M_{pl}^2,  \;  \;  m_3^3=0 , \;  \; \alpha_k=\frac{2c +4 M_2^4}{M^2 H^2}=  \frac{\Omega (1+w)}{c_s^2} \\ \nonumber &
+ \Lambda= -\frac{\bar{\rho} (1-w)}{2}, \; \; c=\frac{\bar{\rho} (1+w)}{2}, \; \; 4 M_2^4=\bar{\rho} (1+w) (\frac{1}{c_s^2}-1)
+\end{align}
+\subsection{questions:}
+Is $T[0,i]$ in the code $T_0^i$ or opposite? \\ 
+
+\subsection{Friedmann equations}
+In this language the Friedman equations are,
+\be
+3{H}^2 M_{pl}^2= \rho_m + \rho_{scf}
+\ee
+and 
+\begin{align}
+&\frac{\ddot{a}}{a} = - \frac{1}{6M^2_{pl}} \left (\rho_{tot} +3 P_{tot}\right ) \\ \nonumber &
+3 H^2 + 2\dot{H} = \frac{-1}{M^2_{pl}} \left( P_{m} + P_{scf} (X, \varphi) \right)
+\end{align}
+Equivalently it can be written,
+\be
+\dot{H}= \frac{-(2 \bar{X} P_{,X} + \rho_m+ P_m)}{6 M^2_{pl}}
+\ee
+where
+\be
+\bar{X}=\frac{1}{2} \; \; P_{,X} = \bar{\rho} (1+w)
+\ee
+which is the same as equation 3.5 of \url{https://arxiv.org/pdf/1404.3713.pdf} 
+The non-zero terms are:\\
+{\color{red} Note that it is assumed that "w" is constant, $\bar{\rho}$ is density of k-essence field and continuity equation for k-essence field is $\dot{\bar{\rho}} +3 H \bar{\rho} (1+w)=0 $}
+\be
+B_{\Psi}=12 c H+2 \dot{c}  + 3H ( 4M_2^4)+4 \dot{(M_2^4)} =  \frac{\dot{\bar{\rho}} (1+w)}{c_s^2} + 3 {H} \bar{\rho} (1+w) \Big( \frac{1}{c_s^2}+1 \Big)=3 {H} \bar{\rho} (1+w) \Big( 1- \frac{w}{c_s^2} \Big )
+\ee
+\be
+B_{\dot{\Psi}}=2c + 4 M_2^4 =  \frac{\bar{\rho} (1+w)}{c_s^2}
+\ee
+\be
+B_{\dot{\Phi}}=6 c = 3 \bar{\rho} (1+w)
+\ee
+\be
+B_{{\pi}}=- 6 \dot{H} c= - 3 \dot{H} \bar{\rho} (1+w)
+\ee
+\be
+B_{\dot{\pi}}=- 2\Big[ 3 H (c+ 2 M_2^4) +\dot{c} + 2\dot{M_2^4} \Big] = \frac{3 H w (1+w) \bar{\rho} }{c_s^2}
+\ee
+\be
+B_{\ddot{\pi}}=- 2\Big[  c+ 2 M_2^4 \Big]=- \frac{  \bar{\rho}(1+w) }{c_s^2}
+\ee
+\be
+B^{(2)}_{{\pi}}=
+- 2c  =-\bar{\rho}(1+w) 
+\ee
+\be
+C^{(2)}_{\Psi \pi}=  -\bar{\rho} (1+w) (\frac{1}{c_s^2}-1)
+  \text{ .}
+\ee
+\be
+C^{(2)}_{\Phi \pi}= 4 c =  2 \bar{\rho} (1+w) \text{ .}
+\ee
+\be
+C^{(2)}_{\pi \pi}=    2 \dot{c} =\dot{\bar{\rho}}(1+w) =-3 H  \bar{\rho} (1+w) ^2  \text{ .}
+\ee
+\be
+C^{(2)}_{\dot{\pi} \pi}=\bar{\rho} (1+w) (\frac{1}{c_s^2}-1) \text{ .}
+\ee
+\be
+C^{1,1}_{\Psi \pi}=  2  c- 4 M_2^4 = \bar{\rho} (1+w) (2-\frac{1}{c_s^2})   \text{ .}
+\ee
+\be
+C^{1,1}_{\Phi \pi}=-2c = -   \bar{\rho} (1+w)   \text{ .}
+\ee
+\be
+C^{1,1}_{\pi \pi}= \frac{1}{2} \left (  2 (\dot{c} +2  \dot{M_2^4})+ 4 M_2^4 H\right )= -\frac{\bar{\rho} H (1+w)} {2 c_s^2} \Big(2+3w+c_s^2  \Big) 	\text{ .}
+\ee
+The final equation is:
+\begin{align} 
+ &3 {H} \bar{\rho} (1+w) \Big( 1- \frac{w}{c_s^2} \Big )
+ \Psi + \frac{ \bar{\rho} (1+w)}{c_s^2} \dot{\Psi} + 3 \bar{\rho} (1+w) \dot{\Phi} -3 \dot{H} \bar{\rho} (1+w) \pi + \frac{3 {H} \bar{\rho} (1+w) w}{c_s^2} \dot{\pi} -\frac{  \bar{\rho} (1+w)}{c_s^2} \ddot{\pi} + \bar{\rho} (1+w) \frac{\nabla^2 \pi}{a^2} \nonumber \\ 
+ &
+  -\bar{\rho} (1+w) (\frac{1}{c_s^2}-1)\pi \frac{\nabla^2 \Psi }{a^2} + 2\bar{\rho} (1+w) \pi \frac{\nabla^2 \Phi }{a^2}   - 3 H \bar{\rho} (1+w)^2 \pi \frac{\nabla^2 \pi }{a^2}    +  \bar{\rho} (1+w) (\frac{1}{c_s^2}-1)
+   \pi \frac{\nabla^2 \dot{\pi }}{a^2}   
+    \nonumber \\ &
+   +\bar{\rho} (1+w) (2-\frac{1}{c_s^2}) \frac{\nabla  \Psi . \nabla \pi }{a^2}   
+ - \bar{\rho} (1+w) \frac{\nabla  \Phi . \nabla \pi } {a^2}   -\frac{\bar{\rho} H (1+w)} {2 c_s^2} \Big(2+3w+c_s^2  \Big)\frac{\nabla  \pi . \nabla \pi } {a^2}     =0
+  \end{align}
+Simplifying the expression gives,
+\begin{align} 
+ & 3 {H}  \Big( 1- \frac{w}{c_s^2} \Big )
+\Psi + \frac{ 1}{c_s^2} \dot{\Psi} + 3 \dot{\Phi} -3 \dot{H} \pi + \frac{3 {H} w}{c_s^2} \dot{\pi} -\frac{  1}{c_s^2} \ddot{\pi} + \frac{\nabla^2 \pi }{a^2}
+     - (\frac{1}{c_s^2}-1)\pi \frac{\nabla^2 \Psi }{a^2} + 2 \pi \frac{\nabla^2 \Phi }{a^2}   - 3 H (1+w) \pi \frac{\nabla^2 \pi }{a^2}   
+       \nonumber
+   \\
+    & +  (\frac{1}{c_s^2}-1)
+   \pi \frac{\nabla^2 \dot{\pi }}{a^2}   
+   + (2-\frac{1}{c_s^2}) \frac{\nabla  \Psi . \nabla \pi }{a^2}   
+ - \frac{\nabla  \Phi . \nabla \pi } {a^2}   -\frac{H} {2 c_s^2} \Big(2+3w+c_s^2  \Big)\frac{\nabla  \pi . \nabla \pi } {a^2}     =0 \label{fineq}
+%  -(\frac{1}{c_s^2}-1) \nabla^2 \Psi \pi+ 2 \nabla^2 \Phi \pi - 3 H (1+w) \pi \nabla^2 \pi  + (\frac{1}{c_s^2}-1) \pi \nabla^2 \dot{\pi}   \nonumber \\ &+ (2-\frac{1}{c_s^2})\nabla \Psi \nabla \pi - \nabla \Phi \nabla \pi -\frac{H} {2 c_s^2} \Big(2+3w+c_s^2  \Big) \nabla \pi \nabla \pi =0
+  \end{align} 
+  We have checked that the top equation agrees with equation 113 of \url{https://arxiv.org/pdf/1411.3712.pdf} up to first order. 
+  \subsection{The equation in terms of conformal time}
+  To express the last expression in terms of conformal time we only need to follow the following transformations, \\
+  \be
+  a d \tau= dt
+  \ee
+  The relation between Hubble and conformal Hubble is;
+\be
+\mathcal{H} (\tau)=\frac{1}{a(\tau) }\frac{d a(\tau)}{d \tau }= \frac{1}{a(t) } \frac{d a (t) }{d t} \frac{d t }{ d\tau}= a H(t)
+\ee
+and for the derivative,
+\begin{align}
+& \dot{H}= \frac{-\mathcal{H}^2+ \mathcal{H}'}{a^2} \nonumber \\ &
+\mathcal{H}'=a^2 \Big[ H^2 + \dot{H}\Big ]
+\end{align}
+The time derivative of any function of time like $\pi(t)$ transforms as,
+\be
+\pi(x,t)=\pi(x,\tau)
+\ee
+\be
+\dot{\pi}=\frac{\partial \pi}{\partial \tau}  \frac{\partial \tau}{\partial t} = \frac{1}{a(\tau)} \pi '
+\ee
+\be
+\ddot{\pi}=\frac{\partial \tau}  {\partial t} \frac{\partial }{\partial \tau} (\frac{1}{a}\pi ' ) = \frac{1}{a} (-\frac{a ' \pi'}{a^2}+ \frac{\pi''}{a})= \frac{1}{a^2} \Big(- \mathcal{H} \pi' + \pi'' \Big)
+\ee
+So the equation \ref{fineq} becomes,
+\begin{align} 
+ & 3 \frac{\mathcal{H}
+}{a} \Big( 1- \frac{w}{c_s^2} \Big )\Psi + \frac{ 1}{c_s^2} \frac{\Psi'}{a}+ 3 \frac{\Phi'}{a} -3  \frac{-\mathcal{H}^2 + \mathcal{H}'}{a^2} \pi + \frac{3 \mathcal{H} w}{ a c_s^2} \frac{\pi'}{a}  -\frac{  1}{ a^2 c_s^2} \Big(- \mathcal{H} \pi' + \pi'' \Big) + \frac{\nabla^2 \pi }{a^2}
+     - (\frac{1}{c_s^2}-1)\pi \frac{\nabla^2 \Psi }{a^2} + 2 \pi \frac{\nabla^2 \Phi }{a^2}   - 3 H (1+w) \pi \frac{\nabla^2 \pi }{a^2}   
+       \nonumber
+   \\
+    & +  (\frac{1}{c_s^2}-1)
+   \pi \frac{\nabla^2\pi ' }{a^3}   
+   + (2-\frac{1}{c_s^2}) \frac{\nabla  \Psi . \nabla \pi }{a^2}   
+ - \frac{\nabla  \Phi . \nabla \pi } {a^2}   -\frac{\mathcal{H}} {2 a c_s^2} \Big(2+3w+c_s^2  \Big)\frac{\nabla  \pi . \nabla \pi } {a^2}     =0 \label{fineq}
+%  -(\frac{1}{c_s^2}-1) \nabla^2 \Psi \pi+ 2 \nabla^2 \Phi \pi - 3 H (1+w) \pi \nabla^2 \pi  + (\frac{1}{c_s^2}-1) \pi \nabla^2 \dot{\pi}   \nonumber \\ &+ (2-\frac{1}{c_s^2})\nabla \Psi \nabla \pi - \nabla \Phi \nabla \pi -\frac{H} {2 c_s^2} \Big(2+3w+c_s^2  \Big) \nabla \pi \nabla \pi =0
+  \end{align} 
+  Multiplying to $-a^2 c_s^2$ gives:
+  \begin{empheq}[box=\tcbhighmath]{equation*}
+ \begin{align} 
+ &\pi'' - \mathcal{H} \Big (1+ 3w \Big)\pi' -3 {a c_s^2 \mathcal{H}}\Big( 1- \frac{w}{c_s^2} \Big )\Psi -a \, {\Psi'}- 3 c_s^2 a \,{\Phi'} 
+  +3  c_s^2 \Big({-\mathcal{H}^2 + \mathcal{H}'} \Big) \pi 
+ - c_s^2 {\nabla^2 \pi }
+     + (1-c_s^2)\pi {\nabla^2 \Psi }
+      - 2 c_s^2 \pi {\nabla^2 \Phi }
+            \nonumber
+   \\
+    &
+      + 3 c_s^2  H (1+w)\pi {\nabla^2 \pi }   
+  -  (1-c_s^2)
+   \pi \frac{\nabla^2\pi ' }{a}   
+   - (2 c_s^2-1) {\nabla  \Psi . \nabla \pi }
+ + c_s^2 {\nabla  \Phi . \nabla \pi }  
+   +\frac{\mathcal{H}} {2 a } \Big(2+3w+c_s^2  \Big) \,{\nabla  \pi . \nabla \pi }     =0 
+%  -(\frac{1}{c_s^2}-1) \nabla^2 \Psi \pi+ 2 \nabla^2 \Phi \pi - 3 H (1+w) \pi \nabla^2 \pi  + (\frac{1}{c_s^2}-1) \pi \nabla^2 \dot{\pi}   \nonumber \\ &+ (2-\frac{1}{c_s^2})\nabla \Psi \nabla \pi - \nabla \Phi \nabla \pi -\frac{H} {2 c_s^2} \Big(2+3w+c_s^2  \Big) \nabla \pi \nabla \pi =0
+  \end{align} 
+\end{empheq}
+
+ \section{Numerical solution to the k-essence equation }
+In Gevolution we should use $3 M^2_{pl}= 1/8 \pi G$.\\
+The normalization factor is $1/\rho_{crit}$
+%And it seems the normalization factor is $-3 \mathcal{H}_0^2T_0^0/8\pi G$ \\
+So we have:
+\be
+T_0^0 (Gev)=-a^3 \dfrac{T_{0}^{0}}{\rho_{crit}}= -\frac{ a^3 (1+w)}{ c_s^2 \,} \Bigg[-  \mathcal{H}c_s^2 \pi- \Psi+   {\pi'}  -  \Big(1-2 c_s^2 \Big) 
+ \frac{(\vec{\nabla} \pi)^2}{2}   \Bigg ]
+\ee
 The obtained equation from energy-momentum constraint $T^{\mu 0}_{;\mu}$ is written as below pertubatively;
 \begin{align}
 &-3 M_{pl}^2  \Omega_{kessence}  \Big [ 3 H^3 (w-1)-2 H \dot{H} \Big]  \epsilon^0   + 3 M_{pl}^2 H \Omega_{kessence} \Bigg[  -\Big(  (1+3w) H^2 +3 H \dot{w}    \nonumber \\&  +  2 (H^2 + \dot{H})(1+3 w)  \Big )  \Psi + \Big( -2\dot{H} (w+1)+H \dot{w}   \Big) \dot{\pi} - 3 H (1+w)\dot{ \Psi} + H (1+w) \frac{\nabla^2 \pi}{a^2} + H(1+w) \ddot{\pi} \Bigg] \epsilon \label{eq1}+ \mathcal{O}({\epsilon^2})=0
@@ -1273,9 +1473,10 @@ To calculate $\dot{\Psi}$ we save two $\Psi$ in each loop. \\
 \dot{H}_{(n)}= \frac{3}{2} H^2 _{(n)} (w-1)
 \ee
 Gevolution works with conformal time $\tau$ and light velocity equal to one $c=1$, which imposes 
+
+
 \section{Programming issues}
-One the programming issue is related to the fact that we want to separate background updates of the particles with background updates of the k-essence field. We define another scale factor in the code "a-kess" which takes the value of the scale factor, then it updates the field. In order to match the two background scale factor, we must pay the cost that in the first loop the velocity field is updated only by half step not more. If we want to break the half step updating into some sub steps, it does not work, since the background for particles update are not updated by half step in the first loop! So two scale factors mismatch. \\
-Moreover because we calculate the field derivative in half step using the scale factor in previous half step, we have an error relating to the fact that the velocity field is constructed from the scale factor in different time! \\
+One the programming issue is related to the fact that we want to separate background updates of the particles with background updates of the k-essence field. We define another scale factor in the code "a-kess" which takes the value of the scale factor, then it updates the field. In order to match the two background scale factor, we should notice that we update the background after each updating the field and the velocity of the field. Now the only point is that the updated field using the background value in the last half step, so the question is whether this procedure is leap frog or not? {\color{red} To me is not clear enough so to update field by one step we use the value of the back ground in the half step while we must use the value in the last step (n-1)}  \\
 The procedure is explained as following,
 \begin{lstlisting}
 if(cycle==0)
@@ -1291,8 +1492,9 @@ else
 	for (i=0;i<sim.nKe_numsteps;i++)
 	{
 		update_pi_k( dtau  / sim.nKe_numsteps);
+		rungekutta4bg(a_kess, fourpiG, cosmo,  0.5*dtau  / sim.nKe_numsteps)
 		update_pi_k_v( dtau  / sim.nKe_numsteps);
-		rungekutta4bg(a_kess, fourpiG, cosmo,  dtau  / sim.nKe_numsteps);
+		rungekutta4bg(a_kess, fourpiG, cosmo,  0.5*dtau  / sim.nKe_numsteps);
 		pi_k.updateHalo();
 		pi_v_k.updateHalo();
 	}
@@ -1308,6 +1510,9 @@ else
 %\begin{align}
 %& \frac{\pi^{n}_{i-1,j,k}+\pi^{n+1}_{i+1,j,k} +\pi^{n+1}_{i,j-1,k} +\pi^{n+1}_{i,j+1,k}+\pi^{n+1}_{i,j,k-1}+\pi^{n+1}_{i,j,k+1} -6 \pi^{n+1}_{i,j,k}  }{dx^2} -  \frac{\pi^{n+1} _{i,j,k} - \pi ^{n}_{i,j,k}  + \pi ^{n-1}_{i,j,k}  }{dt ^2}\nonumber \\ &  -3 \frac{\Phi^{n}_{i,j,k} }{d t} - \frac{(3 H^2+2 \dot{H}) (1+3 w) }{H (1+w)} \Phi^{n}_{i,j,k} -2 H  \frac{(\pi_{v  \; {i,j,k}}^{n+1/2} -\pi_{v \; {i,j,k}}^{n-1/2} )}{dt} +  \frac{ 6H w}{ 1+w} \Psi ^{n+1}_{i,j,k}
 %\end{align}
+{\color{red}{\text{Todo:}
+The updating metric/ particles in the sub steps of field update.
+}}
 \begin{appendices}
 \section{Todo}
 \subsection{ Gauge transformation}
