@@ -144,17 +144,19 @@
 
   \flushbottom
   \section{Questions:}
-    -Is $X$ function of (t,x) or the field? since if it is the function of field derivative and field derivative is independent of field so $\partial X/\partial \varphi=0$. It is not allowed to take $X (t,\vec{x})$ when we know its functionality and it is not a function of $\varphi$  \\
-  - I get $- \mathcal{H} (1+w) $ in my calculation of $T_{00}$ instead of $-3 \mathcal{H}(1+w)$\\
+    -Is $X$ function of (t,x) or the field? since if it is the function of field derivative and field derivative is independent of field so $\partial X/\partial \varphi=0$. It is not allowed to take $X (t,\vec{x})$ when we know its functionality and it is not a function of $\varphi$. Why we cant write the equations 6,16-20? so the difference is   $- \mathcal{H} (1+w) $ in my calculation of $T_{00}$ instead of $-3 \mathcal{H}(1+w)$\\
   - A mistake in gauge transformation, where is it? \\
-  - Is equation 108 true?\\
-  Is $T[0,i]$ in the code $T_0^i$ or opposite? \\ 
+  - Are the equations in box are true?\\
+  - The difference between "parabolic" and "elliptic" vector method? Since  I want to define "$T_i^0$" of k-essence... \\
+  - What are the checks should be done? Gevolution transfer function at z=0 compared with hi-class results? The effect of k-essence field on matter power? Stability tests? what should be done exactly for stability tests? \\
+   -vector elliptic, The difference between vector elliptic and parabolic?\\
+  - $\mathcal{H}'$  in the code?! does $(\mathcal{H}^{(n+1)}-\mathcal{H}^{n})/d\tau$ makes sense? \\
+ - Why in Gevolution source, $\Phi$ and $\chi$ has the same name in Fourier space? "scalarFT"? \\
+ -According to the equation of 120, we need to have two mode $k$ and $k'$ in Fourier space to solve the field equation?! How we should solve it?!
   \section{Todo:}
-  - Completing the field equation, comparing the first order with the papers! \\
-  - Check $\dot{\rho} + 3 H \rho=0$ for X without dependence on $\varphi$ \\ 
   - Check stress tensor turning on vector elliptic, what is vector elliptic...? \\
-  - Check the IC for $\pi'$ in Gevolution. \\
-  - The IC in hi-class, do some checks! \\
+  - Implement the IC for $\pi'$ in Gevolution. \\
+  - The IC from hi-class, do some checks to find where it goes crazy! \\
   - Write down the full field update equation in theory and implement in the code and track the transfer function!\\
   {\color{red}{\text{Todo:}
 The updating metric/ particles in the sub steps of field update.
@@ -241,7 +243,7 @@ We do not need to calculate $X_2$ since the energy momentum constraint adds at m
 P\left(\varphi_0( \tau+\pi)={\varphi_0}+ {{\varphi_0}}' \pi,\overline{X}+ \delta X_1+\delta X_2 \right) =\overline{P}\left( \varphi( \tau),\overline {X}\right) 
 + {\dfrac {\partial\overline {P}}{\partial \varphi_0}} \pi+\dfrac {1}{2} {\dfrac {\partial^{2}\overline {P}}{\partial \varphi_0^2}}\pi^{2}
 +
-\dfrac {\partial\overline {P}}{\partial\overline {X}}\delta X_1+\dfrac {1}{2}\dfrac {\partial P}{\partial X^{2}}\delta X_1^{2} +\dfrac {1}{2}\dfrac {\partial P}{\partial X^{2}}\delta X_2 + \mathcal{O}(\epsilon^3).
+\dfrac {\partial\overline {P}}{\partial\overline {X}}\delta X_1+\dfrac {1}{2}\dfrac {\partial P}{\partial X^{2}}\delta X_1^{2}+\dfrac {\partial^2 P}{\partial X \partial \varphi_0}\delta X_1 \pi +\dfrac {1}{2}\dfrac {\partial P}{\partial X^{2}}\delta X_2 + \mathcal{O}(\epsilon^3).
 \ee
 %The term $\dfrac {\partial\overline {P}}{\partial \tau}$ becomes  $\dfrac {\partial\overline {P}}{\partial \tau}=\dfrac {\partial\overline {P}}{\partial  {\varphi}} \dfrac{\partial {\varphi}}{\partial \tau}+ \dfrac {\partial\overline {P}}{\partial  {X}} \dfrac{\partial {X}}{\partial \tau} =P_{,\varphi} \dot{\bar{\varphi}} + \bar{P}_{\bar{X}}$. Because $\varphi$ and $\partial_{\mu} \varphi$ are independent variables not function of $\tau$. \\
 The adiabatic sound speed ({\color{red}why?!}) is defined as below,
@@ -1507,11 +1509,12 @@ The last equation cannot be solved in real space using the discrete lattice. So 
     \Bigg]
 \end{align}
 Simplifying the expression we get,
+\noindent
 \begin{empheq}[box={\mymath [after=\vspace{0.5cm}]}]{equation}
 \begin{align} 
-  \pi_v ^{n+\frac{1}{2}} 
+  \pi_v ^{n+\frac{1}{2}} (k)
    = &
-   \pi_v ^{n-\frac{1}{2}} \Bigg [ 1+{ (1+ 3w ) \mathcal{H}^{(n)} {d \tau }- k^2  (1-c_s^2)
+   \pi_v ^{n-\frac{1}{2}} (k) \Bigg [ 1+{ (1+ 3w ) \mathcal{H}^{(n)} {d \tau }- k^2  (1-c_s^2)
    \pi^{(n)}  \frac{d \tau }{a^{(n)}}}    \Bigg]
    - d \tau \Bigg ( 1+{ (1+ 3w ) \mathcal{H}^{(n)} \frac{d \tau }{2}- k^2  (1-c_s^2)
    \pi^{(n)}  \frac{d \tau }{2 a^{(n)}}}    \Bigg)        \nonumber
@@ -1535,10 +1538,15 @@ Simplifying the expression we get,
     + c_s^2 {\nabla  \Phi ^{(n)} . \nabla \pi^{(n)}  }      +\frac{\mathcal{H}^{(n)}} {2 a^{(n)} } \Big(2+3w+c_s^2  \Big) \,{\nabla  \pi^{(n)} . \nabla \pi^{(n)} }  
     \Bigg]
 \end{align}
+\noindent
 \end{empheq}
-Where we have taken $\pi_{v  \; {i,j,k}}^{n} =\frac{(\pi_{v  \; {i,j,k}}^{n+\frac{1}{2}} +\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} )}{2} $ \\
-Then we need to calculate $\mathcal{H}'$, ${\Psi}'$ and  ${\Phi}'$ in each loop. \\
-To calculate ${\Psi}'$ we save two $\Psi$ in each loop. \\
+Note that on discrete lattice $k^2$ is defined as,
+\begin{align} 
+& k^2=- \Big(\frac{4}{dx^2} \sin^2(\pi k_x/L)+\frac{4}{dx^2} \sin^2(\pi k_y/L)+\frac{4}{dx^2} \sin^2(\pi k_z/L) \Big ) \nonumber \\
+&
+2\sin^2x=1-\cos(2x)
+\end{align}
+ We have taken $\pi_{v  \; {i,j,k}}^{n} =\frac{(\pi_{v  \; {i,j,k}}^{n+\frac{1}{2}} +\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} )}{2} $. Then we need to calculate $\mathcal{H}'$, ${\Psi}'$ and  ${\Phi}'$ in each loop, to calculate ${\Psi}'$ we save two $\Psi$ in each loop. \\
  On the other hand we have $\mathcal{H}'$ according to the Friedman equation, where we try to save $\mathcal{H}'$ from $a''$  and $\mathcal{H}$
 %Gevolution works with conformal time $\tau$ and light velocity equal to one $c=1$, which imposes 
 \section{Programming issues}
