@@ -1,0 +1,1726 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   DRAFT - DEFLECTION ANGLES 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,11pt]{article}
+\pdfoutput=1
+\usepackage{jcappub}
+\usepackage{bbold}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{eufrak}
+\usepackage{etoolbox}
+\usepackage{amsmath}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage[most]{tcolorbox}
+\newtcbox{\mymath}[1][]{%
+    nobeforeafter, math upper, tcbox raise base,
+    enhanced, colframe=yellow!30!black,
+    colback=yellow!30, boxrule=1pt,
+    #1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\be{\begin{equation}}
+\def\ee{\end{equation}}
+\def\bea{\begin{eqnarray}}
+\def\eea{\end{eqnarray}}
+\def\bean{\begin{eqnarray*}}
+\def\eean{\end{eqnarray*}}
+\def\cd{\cdot}
+\def\vp{\varphi}
+\def\l {\langle}
+\def\re {\rangle}
+\def \dd {\partial}
+\def \ra {\rightarrow}
+\def \la {\lambda}
+\def \La {\Lambda}
+\def \De {\Delta}
+\def \DH {\Delta_{\rm HI}}
+\newcommand{\de}{\delta}
+\def \b {\beta}
+\def \al {\alpha}
+\def \ka {\kappa}
+\def \Ga {\Gamma}
+\def \ga {\gamma}
+\def \si {\sigma}
+\def \Si {\Sigma}
+\def \ep {\epsilon}
+\def \om {\omega}
+\def \Om {\Omega}
+\def \lap {\triangle}
+\def \ep {\epsilon}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Special definitions for this paper
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\MyRed}{\color [rgb]{0.8,0,0}}
+\newcommand{\MyGreen}{\color [rgb]{0,0.7,0}}
+\newcommand{\MyBlue}{\color [rgb]{0,0,0.8}}
+\newcommand{\MyBrown}{\color [rgb]{0.8,0.4,0.1}}
+\newcommand{\MyPurple}{\color [rgb]{0.6,0.0,0.6}}
+\def\GV#1{{\MyRed [GV: #1]}}
+\def\RD#1{{\MyGreen [RD:  {\tt #1}]}} 
+\def\RDt#1{{\MyGreen #1}}   
+\def\GM#1{{\MyBlue [GM: #1]}}  
+\def\GF#1{{\MyPurple [GF: #1]}}    
+
+
+
+\newcommand{\ie}{\emph{i. e.}}
+\newcommand{\cf}{\emph{cf.}}
+\newcommand{\etal}{\emph{et al.}\xspace}
+\newcommand{\eg}{\emph{e. g.}}
+
+\newcommand{\Scal}{\mathcal S}
+\newcommand{\DD}{\mathcal D}
+\newcommand{\EE}{\mathcal E}
+\newcommand{\MM}{\mathcal M}
+\newcommand{\HH}{\mathcal H}
+
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\bn}{\boldsymbol{n}}
+\newcommand{\bv}{\boldsymbol{v}}
+\newcommand{\bx}{\boldsymbol{x}}
+\newcommand{\bnabla}{\boldsymbol{\nabla}}
+\newcommand{\bell}{\boldsymbol{\ell}}
+\newcommand{\bal}{\boldsymbol{\alpha}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\title{N-body simulation of Kessence  }
+
+\author[a]{.}
+\author[a]{, .}
+\author[a]{, .}
+\author[a]{,.}
+%\author[a]{, Francesco Montanari}
+
+
+\affiliation[a]{
+Universit\'e de Gen\`eve, D\'epartement de Physique Th\'eorique and CAP,
+24 quai Ernest-Ansermet, CH-1211 Gen\`eve 4, Switzerland
+}
+%\affiliation[b]{Dipartimento di Fisica, Universit\`a di Bari, 
+%Via G. Amendola 173, 70126 Bari, Italy}
+%\affiliation[c]{Osservatorio Astronomico di Trieste, Universit\`a degli Studi di Trieste, Via Tiepolo 11, 34143 Trieste, Italy}
+
+\emailAdd{farbod.hassani@unige.ch}
+\emailAdd{martin.kunz@unige.ch}
+\emailAdd{..}
+\emailAdd{..}
+
+\abstract{
+}
+
+
+
+%\keywords{
+%Cosmology: 
+%\vskip13pt plus8pt minus11pt
+%\noindent{\bfseries\large\sffamily{Preprints:}} CERN-PH-TH-2015-132
+%}
+
+\begin{document}
+
+\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+\label{Sec1}
+\setcounter{equation}{0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Question:}
+{\color{red} What is $\delta P/\delta\rho$ here and is it comparable with other papers?} \\
+Discuss with Martin about the red term $P_{XX}$ why we do not agree? \\
+What about "a" factor from physical to conformal perturbation in Stress tensor??  No we dont need it since from the begining everyhthing is in conformal time! \\
+-Scale factror difference in $T_{0i}$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Todo:}
+-Is $X$ function of (t,x) or the field? since if it is the function of field derivative and field derivative is independent of field so $\partial X/\partial \varphi=0$. It is not allowed to take $X (t,\vec{x})$ when we know its functionality and it is not a function of $\varphi$. Why we cant write the equations 6,16-20? so the difference is   $- \mathcal{H} (1+w) $ in my calculation of $T_{00}$ instead of $-3 \mathcal{H}(1+w)$\\
+  - A mistake in gauge transformation, where is it? \\
+  - Are the equations in box are true?\\
+  - The difference between "parabolic" and "elliptic" vector method? Since  I want to define "$T_i^0$" of k-essence... \\
+  - What are the checks should be done? Gevolution transfer function at z=0 compared with hi-class results? The effect of k-essence field on matter power? Stability tests? what should be done exactly for stability tests? \\
+   -vector elliptic, The difference between vector elliptic and parabolic?\\
+  - $\mathcal{H}'$  in the code?! does $(\mathcal{H}^{(n+1)}-\mathcal{H}^{n})/d\tau$ makes sense? \\
+ - Why in Gevolution source, $\Phi$ and $\chi$ has the same name in Fourier space? "scalarFT"? \\
+ -According to the equation of 120, we need to have two mode $k$ and $k'$ in Fourier space to solve the field equation?! How we should solve it?!
+  - Check stress tensor turning on vector elliptic, what is vector elliptic...? \\
+  - Implement the IC for $\pi'$ in Gevolution. \\
+  - The IC from hi-class, do some checks to find where it goes crazy! \\
+  - Write down the full field update equation in theory and implement in the code and track the transfer function!\\
+The updating metric/ particles in the sub steps of field update. \\
+- Background results.
+- Perturbation results, for $\phi$ and $T_{\mu \nu}$  \\
+-Try to solve the differential equation in mathematica in 1D, for $c_s^2 ->0$. \\
+-Check estimator method, what is the error? \\
+- Do the calculation for  kessence $T_{\mu \nu}$, discuss about perturbation in conformal time and physical time. \\
+- Compare the linear solution with hi-class results. \\
+-Then do non linear run and compare \\
+- Solve the initial condition problem. \\
+- Put the result for initial condition which is produced by Gevolution. \\
+-Fix the problem of kessence $T_{\mu \nu}$ \\
+-Solve the differential equation for $\phi$ and see how it should behave. \\
+- Add Lorenzo's file for looking at the field. \\
+- compute $\delta_{\pi}$ and $\theta_{\pi}$ \\
+%\label{Sec2}
+%\setcounter{equation}{0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ \section{K-essence field equation from EFT action}
+ 
+ We take the metric in ADM form as below,
+  \be
+  ds^2= -N (t,\vec{x}) ^2 d t^2+ h_{ij } (t,\vec{x}) \Big( dx^i+N^i (t,\vec{x}) dt   \Big) \Big( dx^j+N^j (t,\vec{x}) dt   \Big)
+  \ee
+  where 
+  \be
+  N(t,\vec{x})= \bar{N} (t) e^{\epsilon \delta N (t,\vec{x})}
+  \ee
+  \be
+  N^i=\epsilon \sigma^{0i} (t,\vec{x})
+  \ee
+  \be
+    h_{ij}=a^2 \Big( e^{2 \zeta (t,\vec{x}) \epsilon} \delta_{ij} + \epsilon \sigma_{ij} (t,\vec{x})   \Big)
+  \ee
+  $\epsilon$ shows the order of terms in the scheme.\\
+  For the first order equations we can define $\sigma_{ij}=(\partial_i \partial_j- \frac{\nabla^2}{3} \delta_{ij}) B(t,\vec{x}) \epsilon$ and $N^i=\delta ^{ij} \partial_j \psi (t,\vec{x}) \epsilon$  since we can separate the scalar, vector and tensor equations. \\
+  On the other hand in second order equations we do observe the mixing of the scalar, vector and tensor equations according to $ T^{\mu \nu} \frac{\delta g_{\mu \nu}}{\delta (scalars)}$, which cannot be written as a derivative of a scalar equation and suggest general definition of  $\sigma_{ij}$ with four degrees of freedom (1 scalar, 1 vector and 2 tensor degrees of freedom). Since here we are only interested in  scalar field equation we do not care about the details of $\sigma_{ij}$.
+  \section{Definitions}
+ The inverse of the metric is defined by the inverse of the  matrix.
+\be
+N_i=h_{ij} N^j
+\ee
+Christoffel symbols:
+\be
+\Gamma_{\zeta \rho}^{\mu}= \frac{g^{\mu \xi }}{2} \left(  g_{\xi \zeta ,\rho }+ g_{\xi \rho ,\zeta } - g_{\rho \zeta ,\xi }   \right )
+\ee
+\be
+K_{ij}=\frac{1}{2 N (t,\vec{x})} \left [  \dot{h}_{ij} - \nabla_{i} N_{j} - \nabla_{j} N_{i}  \right ]= \frac{1}{2 N (t,\vec{x})} \left [  \dot{h}_{ij} - \partial_{i} N_{j} - \partial_{j} N_{i} -2  \Gamma_{i j}^{l} N_l  \right ] 
+\ee
+\be
+\delta K= K_i^i(t,\vec{x}) -\bar {K}_i^i (t)
+\ee
+Full metric,
+\be
+g_{00}= -N^2(t,\vec{x})+ h_{ij} N^i N^j \,,\, g_{ij}=h_{ij} \, , \, g_{0i}=g_{i0}=h_{ij}N^j
+\ee
+Riemann tensor
+\be
+R^{\rho}_{\sigma \mu \zeta}= \partial_{\mu} \Gamma_{\zeta \sigma}^{\rho}- \partial_{\zeta} \Gamma_{\mu \sigma}^{\rho} + \Gamma_{\mu \lambda}^{\rho} \Gamma_{\zeta \sigma}^{\lambda} -  \Gamma_{\zeta \lambda}^{\rho} \Gamma_{\mu \sigma}^{\lambda}
+\ee
+Ricci tensor;
+\be
+R_{\mu \rho}=R ^{\eta}_{\mu  \eta  \rho}
+\ee
+Ricci scalar;
+\be
+R=g^{\mu \rho} R_{\mu \rho}
+\ee
+ 
+ \subsection{Stuckelberg trick}
+\be
+f(t) \longrightarrow f(t) +  \dot{f} (t) \pi+ \frac{1}{2} \ddot{f }(t) \pi^2  + \frac{1}{6} \dddot{f }(t) \pi^3
+\ee
+\be
+\Lambda(t) \longrightarrow \Lambda(t) +  \dot{\Lambda} (t) \pi+ \frac{1}{2} \ddot{\Lambda}(t) \pi^2 + \frac{1}{6} \dddot{\Lambda }(t) \pi^3
+\ee
+\be
+M_2^4(t) \longrightarrow M_2^4(t) +  \dot{ M_2^4} (t) \pi+ \frac{1}{2}    \ddot{ M_2^4 }(t)  \pi^2 + \frac{1}{6} \dddot{M_2^4 }(t) \pi^3
+\ee
+\be
+m_3^3(t) \longrightarrow m_3^3(t) +  \dot{m_3^3} (t) \pi+ \frac{1}{2} \ddot{m_3^3}(t) \pi^2 + \frac{1}{6} \dddot{m_3^3 }(t) \pi^3
+\ee
+\be
+g^{00} \longrightarrow g^{00} + 2 g^{0 \mu} \partial_{\mu} \pi + g^{\rho \nu} \partial_{\rho} \partial_{\nu} \pi
+\ee
+\be
+\partial_0 \longrightarrow \left( 1- \dot{\pi} - \dot{\pi}^2\right) \partial_0
+\ee
+\be
+\partial_i \longrightarrow \partial_i-  \left( 1- \dot{\pi} \right) \partial_i \pi \partial_0
+\ee
+\be
+N \longrightarrow N \left(1-\dot{\pi} + \dot{\pi}^2+N^i\partial_i \pi + \frac{1}{2} N^2 h^{ij} \partial_i \pi \partial_j \pi \right)
+\ee
+\be
+N^i \longrightarrow N^i(1- \dot{\pi} ) +(1- 2 \dot{\pi}) N^2 h^{ik} \partial_k \pi
+\ee
+\be
+h_{ij} \longrightarrow h_{ij}- N_i \partial_j \pi -N_j \partial_i - N^2\partial_i \pi \partial_j \pi
+\ee
+%\begin{align}
+%\delta K  \longrightarrow &   \delta K -3 \left ( \dot{H} \pi +\frac{1}{2} \ddot{H} \pi^2 \right ) - (1-\dot{\pi}) N h^{ij} \partial_i \partial_j \pi +\frac{1}{2} \partial_i h^{ij} \partial_j \pi  \nonumber \\ &+\frac{H}{2 a^2} \delta ^{ij}\partial_i \pi \partial_j \pi + \frac{2}{a^2} \delta ^{ij} \partial_i  \pi  \partial_j    \dot{\pi} -\frac{2}{a^2} \delta ^{ij} \partial_i N \partial_j \pi
+%\end{align}
+The EFT action is;
+\be
+S=\sqrt{-g} \left [ \frac{M_*^2}{2} f(t) R -\Lambda (t) -c(t) g^{00} +\frac{M_2^4(t)}{2} \left (g^{00} + \frac{1}{\bar{N}^2} \right )    -  \frac{m_3^3(t)}{2} \delta K  \left (g^{00} + \frac{1}{\bar{N}^2} \right )    \right ]
+\ee
+
+  Then the scalar field dynamics is obtained by varying the action with respect to the $\pi$. \\
+  To change the gauge from unitary to Newtonian we use the following transformation in the variables. (Note that from now on we follow the notation of Gevolution where $\Psi$ is perturbation in time component and $\Phi$ is for spatial component while EFT papers are opposite)
+ \be
+ \delta N \rightarrow \Psi \, , \, \zeta \rightarrow-\Phi \, , \, \psi   \rightarrow0,  \,  \,  B \rightarrow0
+ \ee
+
+\begin{align}
+\frac{1}{\sqrt{-g}} \frac{\delta S}{\delta \pi}|_{\text{First order} }&=  B_{\Psi} \Psi+  B_{\dot{\Psi}} \dot{\Psi} +
+B_{\Phi} \Phi + B_{\dot{\Phi}} \dot{\Phi}  + B_{\ddot{\Phi}} \ddot{\Phi}+B_{\pi} \pi +   B_{\dot{\pi}} \dot{\pi} + B_{\ddot{\pi}} \ddot{\pi}  
+\nonumber  \\& 
+- \frac{k^2}{a^2} \left( B^{(2)}_{\Psi}\Psi +  B^{(2)}_{\Phi}\Phi+ B^{(2)}_{\dot{\Phi}} \dot{\Phi} + B^{(2)}_{\pi}\pi \right) + \frac{k^4}{a^4} \left(B^{(4)}_{\Phi}\Phi +B^{(4)}_{\pi}\pi  \right)
+\end{align}
+where,
+\be
+B_{\Psi}=12 c H+2 \dot{c} +3 m_3^3 (3H^2+2\dot{H}) -6 M_*^2\dot{f} (\dot{H} + 2H^2) + 3H \left[ 4M_2^4 +\dot{(m_3^3)}\right]+4 \dot{(M_2^4)}
+\ee
+The last equation is different with Essential building paper, because of a typo in the paper. Moreover in eq. 191 the second one is not equivalent to first one, there is a sign difference according to eq. 153 and taking derivative.
+\be
+B_{\dot{\Psi}}=2c + 4 M_2^4 +3 H (m_3^3 -M_*^2 \dot{f})
+\ee
+\be
+B_{\Phi}=0
+\ee
+\be
+B_{\dot{\Phi}}=3 \left[ 2c +3 H m_3^3-4 H M_*^2 \dot{f} +\dot{m_3^3}\right]
+\ee
+\be
+B_{\ddot{\Phi}}=3( m_3^3 -M_*^2 \dot{f})
+\ee
+\be
+B_{{\pi}}=- \Big[ -3\dot{m_3^3} \dot{H} - 6 \dot{H} c + 3 M_*^2 (\ddot{H} +4 H \dot{H})\dot{f} - 9 H \dot{H} m_3^3- 3 m_3^3 \ddot{H}  \Big]
+\ee
+\be
+B_{\dot{\pi}}=- 2\Big[ 3 H (c+ 2 M_2^4) +\dot{c} + 2\dot{M_2^4} \Big]
+\ee
+\be
+B_{\ddot{\pi}}=- 2\Big[  c+ 2 M_2^4 \Big]
+\ee
+\be
+B^{(2)}_{{\Psi}}= \Big[  m_3^3  - M_*^2 \dot{f}\Big]
+\ee
+\be
+B^{(2)}_{{\Phi}}= 2  M_*^2 \dot{f} 
+\ee
+\be
+B^{(2)}_{\dot{\Phi}}=
+  0
+\ee
+\be
+B^{(2)}_{{\pi}}=
+ \Big[ 2c  + \dot{m_3^3}+ H m_3^3 \Big]
+\ee
+\be
+B^{(4)}_{{\Phi}}=0
+\ee
+\be
+B^{(4)}_{{\pi}}=
+0
+\ee
+The relevant second order, short wave correction terms in Fourier space are,
+\begin{align}
+ \frac{1}{\sqrt{-g}} \frac{\delta S}{\delta \pi}|_{\text{short wave} }&=  \int \int d^3k d^3 k' e^{i(\vec{k}+\vec{k}') . \vec{x}}  \Bigg [   -\frac{k^2}{a^2} C^{(2)}_{\Psi \Psi} \Psi \Psi  -\frac{k^2}{a^2} C^{(2)}_{\Psi \Phi} \Psi \Phi
+   -\frac{k^2}{a^2} C^{(2)}_{\Psi \pi} \Psi \pi -\frac{k^2}{a^2} C^{(2)}_{\Phi \Phi} \Phi \Phi 
+  \nonumber  \\& 
+     -\frac{k^2}{a^2} C^{(2)}_{\Phi \pi} \Phi \pi 
+   -\frac{k^2}{a^2} C^{(2)}_{\pi \Psi} \pi \Psi  -\frac{k^2}{a^2} C^{(2)}_{\pi \Phi} \pi \Phi   -\frac{k^2}{a^2} C^{(2)}_{\pi \pi} \pi \pi 
+  -\frac{k^2}{a^2} C^{(2)}_{{\pi} \dot{\Phi}} {\pi} \dot{\Phi}  -\frac{k^2}{a^2} C^{(2)}_{{\pi} \dot{\Psi}} {\pi} \dot{\Psi}  
+  %//////////////////////////
+  \nonumber  \\& 
+  -\frac{k^2}{a^2} C^{(2)}_{{\pi} \dot{\pi}} {\pi} \dot{\pi} 
+  -\frac{k^2}{a^2} C^{(2)}_{\dot{\Phi} \pi} \dot{\Phi} \pi   -\frac{k^2}{a^2} C^{(2)}_{\dot{\Psi} \pi} \dot{\Psi} \pi 
+  -\frac{k^2}{a^2} C^{(2)}_{\dot{\pi} \pi} \dot{\pi} \pi  -\frac{k^2}{a^2} C^{(2)}_{\dot{\pi} \Psi} \dot{\pi} \Psi 
+      \nonumber \\&
+      %///////////////////
+  -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\Phi \Phi} \Phi \Phi  -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\Phi \Psi} \Phi \Psi 
+ -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\Phi \pi} \Phi \pi  -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\Psi \pi} \Psi \pi   -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\Psi \Psi} \Psi \Psi 
+ \nonumber \\ &
+ -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\pi \pi} \pi \pi     -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\dot{\Phi} \pi} \dot{\Phi} \pi -\frac{\vec{k}.\vec{k}'}{a^2}  C^{1,1}_{\dot{\pi} \pi} \dot{\pi} \pi
+ +  C_{\ddot{\pi}} (\Psi,\Phi,\pi) \ddot{\pi} \Bigg ] 
+  \text{ .}
+\end{align}
+Where non zero terms are,
+\be
+C^{(2)}_{\Phi \Phi}= 4 M_*^2 \dot{f} \text{ .}
+\ee
+\be
+C^{(2)}_{\Phi \pi}= 2  M_*^2 \ddot{f}     \text{ .}
+\ee
+\be
+C^{(2)}_{\Psi \Psi}=  - m_3^3 \text{ .}
+\ee
+\be
+C^{(2)}_{\Psi \Phi}= 2(m_3^3 - M_*^2 \dot{f}) \text{ .}
+\ee
+\be
+C^{(2)}_{\Psi \pi}=  (\dot{m_3^3} -M_*^2 \ddot{f}) \text{ .}
+\ee
+\be
+C^{(2)}_{\Psi \dot{\pi}}= m_3^3\text{ .}
+\ee
+\be
+C^{(2)}_{\pi \Phi}=4c + 2 H m_3^3 + 2 \dot{m_3^3}\text{ .}
+\ee
+\be
+C^{(2)}_{\pi \Psi}= -4 M_2^4-4 H m_3^3\text{ .}
+\ee
+\be
+C^{(2)}_{\pi \pi}=  -3m_3^3 \dot{H} +  H \dot{m_3^3} + 2 \dot{c} +  \ddot{m_3^3}   \text{ .}
+\ee
+\be
+C^{(2)}_{\pi \dot{\Phi}}=  -4 m_3^3  \text{ .}
+\ee
+\be
+C^{(2)}_{\pi \dot{\Psi}}=  -m_3^3  \text{ .}
+\ee
+\be
+C^{(2)}_{\pi \dot{\pi}}=  4 M_2^4  \text{ .}
+\ee
+%/////////////////////////////////////////////////////////
+\be
+C^{1,1}_{\Phi \Phi}=	- M_*^2 \dot{f}	\text{ .}
+\ee
+\be
+C^{1,1}_{\Psi \Phi}= - (m_3^3 -M_*^2 \dot{f}) \text{ .}
+\ee
+\be
+C^{1,1}_{\Phi \pi}= - \left (  m_3^3 H + 2c + \dot{m_3^3}  \right )      \text{ .}
+\ee
+\be
+C^{1,1}_{\Psi \pi}=  2 (-m_3^3 H + c- 2 M_2^4 +\dot{m_3^3 })    \text{ .}
+\ee
+\be
+C^{1,1}_{\Psi \Psi}= - M_*^2 \dot{f}	\text{ .}
+\ee
+\be
+C^{1,1}_{\pi \pi}= -\frac{1}{2} \left (   m_3^3 H^2 - 2 (\dot{c} +2  \dot{M_2^4} -2 m_3^3 \dot{H})+H (-4 M_2^4 +\dot{m_3^3} )  \right )	\text{ .}
+\ee
+\be
+C^{1,1}_{\dot{\Phi} \pi}=  -4 m_3^3	\text{ .}
+\ee
+\be
+C^{1,1}_{\dot{\pi} \pi}=   2 \left( 4 M_2^4 - H m_3^3- \dot{m_3^3}\right) 	\text{ .}
+\ee
+\be
+C^{1,1}_{\dot{\pi} \Psi}=  2 m_3^3	\text{ .}
+\ee
+\be
+C_{\ddot{\pi}} (\Psi,\Phi,\pi)= 	- m_3^3 \frac{k^2}{a^2} {\pi}\text{ .}
+\ee
+For the k-essence case we have (note below equation 85 in \url{https://arxiv.org/pdf/1411.3712.pdf})
+\begin{align}
+& \alpha_B= \alpha_H=\alpha_M=\alpha_T=0 \nonumber \\ &
+\alpha_K=\frac{2\bar{X} P _X + 4 \bar{X}^2 P_{XX}}{M^2 H^2 }  \nonumber \\ &
+c_s^2=\frac{-2 \dot{H}}{\alpha_K H^2 } - \frac{\rho + P}{\alpha_K M^2 H^2}
+\end{align}
+After translation between two different language according to table 1 of  \url{https://arxiv.org/pdf/1411.3712.pdf} and equation 24-25 of \url{https://arxiv.org/pdf/1210.0201.pdf} we get,
+\begin{align}
+ & m_4^2=\tilde{m}_4^2=\bar{\lambda}=0 \nonumber  \\ &
+ f=1 \longrightarrow M^2=3M_{pl}^2,  \;  \;  m_3^3=0 , \;  \; \alpha_k=\frac{2c +4 M_2^4}{M^2 H^2}=  \frac{\Omega (1+w)}{c_s^2} \\ \nonumber &
+ \Lambda= \frac{\bar{\rho} (1-w)}{2}, \; \; c=\frac{\bar{\rho} (1+w)}{2}, \; \; 4 M_2^4=\bar{\rho} (1+w) (\frac{1}{c_s^2}-1)
+\end{align}
+\subsection{Friedmann equations}
+In this language the Friedman equations are,
+\be
+3{H}^2 M_{pl}^2= \rho_m + \rho_{scf}
+\ee
+Note that in Gevolution we have,
+\be
+\mathcal{H}^2=\frac{8 \pi G}{3} (\Omega_m a^{-3} +\Omega_{rad} a^{-4} +\Omega_{kess} a^{-3(1+w)} +\Omega_L a^{0} )
+\ee
+Where the critical density in here assumed 1, ie. $H_0^2=\mathcal{H}_0^2=\frac{8 \pi G}{3}$
+and 
+\begin{align}
+&\frac{\ddot{a}}{a} = - \frac{1}{6M^2_{pl}} \left (\rho_{tot} +3 P_{tot}\right ) \\ \nonumber &
+3 H^2 + 2\dot{H} = \frac{-1}{M^2_{pl}} \left( P_{m} + P_{scf} (X, \varphi) \right)
+\end{align}
+Equivalently it can be written,
+\be
+\dot{H}= \frac{-(2 \bar{X} P_{,X} + \rho_m+ P_m)}{6 M^2_{pl}}
+\ee
+where
+\be
+\bar{X}=\frac{1}{2} \; \; P_{,X} = \bar{\rho} (1+w)
+\ee
+and,
+\be
+\frac{\dot{\Omega}}{\Omega}= -3 H(1+w) -\frac{2\dot{H}}{H}
+\ee
+which is the same as equation 3.5 of \url{https://arxiv.org/pdf/1404.3713.pdf} 
+The non-zero terms are:\\
+{\color{red} Note that it is assumed that "w" is constant, $\bar{\rho}$ is density of k-essence field and continuity equation for k-essence field is $\dot{\bar{\rho}} +3 H \bar{\rho} (1+w)=0 $}.
+\\Note that in order to compare with other papers, like eq. 113 of \url{https://arxiv.org/pdf/1411.3712.pdf} , since in all the terms we have $\bar{\rho}$ we can divide the equation to $3 M_{pl}^2 H^2$ and write everything in terms of $\Omega$ or $\alpha_i$. So of we compare the below result with eq.113 we have 3$M_{pl}^2$ factor a sign difference.
+\be
+B_{\Psi}=12 c H+2 \dot{c}  + 3H ( 4M_2^4)+4 \dot{(M_2^4)} =  \frac{\dot{\bar{\rho}} (1+w)}{c_s^2} + 3 {H} \bar{\rho} (1+w) \Big( \frac{1}{c_s^2}+1 \Big)=3 {H} \bar{\rho} (1+w) \Big( 1- \frac{w}{c_s^2} \Big )
+\ee
+\be
+B_{\dot{\Psi}}=2c + 4 M_2^4 =  \frac{\bar{\rho} (1+w)}{c_s^2}
+\ee
+\be
+B_{\dot{\Phi}}=6 c = 3 \bar{\rho} (1+w)
+\ee
+\be
+B_{{\pi}}= 6 \dot{H} c= 3 \dot{H} \bar{\rho} (1+w)
+\ee
+\be
+B_{\dot{\pi}}=- 2\Big[ 3 H (c+ 2 M_2^4) +\dot{c} + 2\dot{M_2^4} \Big] = \frac{3 H w (1+w) \bar{\rho} }{c_s^2}
+\ee
+\be
+B_{\ddot{\pi}}=- 2\Big[  c+ 2 M_2^4 \Big]=- \frac{  \bar{\rho}(1+w) }{c_s^2}
+\ee
+\be
+B^{(2)}_{{\pi}}=
+2c  =\bar{\rho}(1+w) 
+\ee
+First order terms several times has checked, everything seems cosistent.
+
+\be
+C^{(2)}_{\pi \Phi}=4c =  2 \bar{\rho} (1+w) \text{ .}
+\ee
+\be
+C^{(2)}_{\pi \Psi}= -4 M_2^4=-\bar{\rho} (1+w) (\frac{1}{c_s^2}-1)\text{ .}
+\ee
+\be
+C^{(2)}_{\pi \pi}=   2 \dot{c}=-3 H  \bar{\rho} (1+w) ^2   \text{ .}
+\ee
+\be
+C^{(2)}_{\pi \dot{\pi}}=  4 M_2^4=\bar{\rho} (1+w) (\frac{1}{c_s^2}-1)  \text{ .}
+\ee
+\be
+C^{1,1}_{\Phi \pi}= -   2c =-   \bar{\rho} (1+w)      \text{ .}
+\ee
+\be
+C^{1,1}_{\Psi \pi}=  2 c- 4 M_2^4 =\bar{\rho} (1+w) (2-\frac{1}{c_s^2})      \text{ .}
+\ee
+\be
+C^{1,1}_{\pi \pi}= -\frac{1}{2} \left (  - 2 (\dot{c} +2  \dot{M_2^4} )+H (-4 M_2^4 )  \right )=-\frac{\bar{\rho} H (1+w)} {2 c_s^2} \Big(2+3w+c_s^2  \Big) 		\text{ .}
+\ee
+\be
+C^{1,1}_{\dot{\pi} \pi}=   2 (4 M_2^4)=2\bar{\rho} (1+w) (\frac{1}{c_s^2}-1) 	\text{ .}
+\ee
+The leading order terms are checked several times with Mathematica notebook. \\
+The final equation is:
+\begin{align} 
+ &3 {H} \bar{\rho} (1+w) \Big( 1- \frac{w}{c_s^2} \Big )
+ \Psi + \frac{ \bar{\rho} (1+w)}{c_s^2} \dot{\Psi} + 3 \bar{\rho} (1+w) \dot{\Phi} +3 \dot{H} \bar{\rho} (1+w) \pi + \frac{3 {H} \bar{\rho} (1+w) w}{c_s^2} \dot{\pi} -\frac{  \bar{\rho} (1+w)}{c_s^2} \ddot{\pi} 
+ \nonumber \\ 
+ &
++ \bar{\rho} (1+w) \frac{\nabla^2 \pi}{a^2}
+%////////////////  Second order temrs
+  +2  \bar{\rho} (1+w) \Phi  \frac{\nabla^2 \pi }{a^2}   
+  %//////////////// 
+  -   \bar{\rho} (1+w) (\frac{1}{c_s^2}-1)  \Psi \frac{\nabla^2 \pi }{a^2}   
+  %////////////////
+  - 3 H \bar{\rho} (1+w)^2 \pi \frac{\nabla^2 \pi }{a^2}  
+      \nonumber \\ &
+      %////////////////
+        +  \bar{\rho} (1+w) (\frac{1}{c_s^2}-1)    \dot{\pi } \frac{\nabla^2 {\pi }}{a^2}   
+        %//////////////// 
+             -\bar{\rho} (1+w)  \frac{\nabla  \Phi . \nabla \pi }{a^2} 
+   %//////////////// 
+        +\bar{\rho} (1+w) (2-\frac{1}{c_s^2}) \frac{\nabla  \Psi . \nabla \pi }{a^2}   
+   %//////////////// 
+   \nonumber \\ &
+ -\frac{\bar{\rho} H (1+w)} {2 c_s^2} \Big(2+3w+c_s^2  \Big)\frac{\nabla  \pi . \nabla \pi } {a^2}
+    %//////////////// 
+    +2  \bar{\rho} (1+w) (\frac{1}{c_s^2}-1)\frac{\nabla  \pi . \nabla \dot{\pi} } {a^2}
+     =0
+  \end{align}
+Simplifying the expression gives,
+\begin{align} 
+ & 3 {H}  \Big( 1- \frac{w}{c_s^2} \Big )
+\Psi + \frac{ 1}{c_s^2} \dot{\Psi} + 3 \dot{\Phi} +3 \dot{H} \pi + \frac{3 {H} w}{c_s^2} \dot{\pi} -\frac{  1}{c_s^2} \ddot{\pi} + \frac{\nabla^2 \pi }{a^2}
+   % Second order terms
+     +2   \Phi  \frac{\nabla^2 \pi }{a^2}   
+  %//////////////// 
+  -   (\frac{1}{c_s^2}-1)  \Psi \frac{\nabla^2 \pi }{a^2}   
+        \nonumber \\ &
+  %////////////////
+  - 3 H (1+w)\pi \frac{\nabla^2 \pi }{a^2}  
+      %////////////////
+        +   (\frac{1}{c_s^2}-1)    \dot{\pi } \frac{\nabla^2 {\pi }}{a^2}   
+        %//////////////// 
+             - \frac{\nabla  \Phi . \nabla \pi }{a^2} 
+   %//////////////// 
+        +(2-\frac{1}{c_s^2}) \frac{\nabla  \Psi . \nabla \pi }{a^2}   
+   %//////////////// 
+ -\frac{H} {2 c_s^2} \Big(2+3w+c_s^2  \Big)\frac{\nabla  \pi . \nabla \pi } {a^2}
+    \nonumber \\ &
+    %//////////////// 
+    +2   (\frac{1}{c_s^2}-1)\frac{\nabla  \pi . \nabla \dot{\pi} } {a^2}     =0 \label{fineq}
+%  -(\frac{1}{c_s^2}-1) \nabla^2 \Psi \pi+ 2 \nabla^2 \Phi \pi - 3 H (1+w) \pi \nabla^2 \pi  + (\frac{1}{c_s^2}-1) \pi \nabla^2 \dot{\pi}   \nonumber \\ &+ (2-\frac{1}{c_s^2})\nabla \Psi \nabla \pi - \nabla \Phi \nabla \pi -\frac{H} {2 c_s^2} \Big(2+3w+c_s^2  \Big) \nabla \pi \nabla \pi =0
+  \end{align} 
+  We have checked that the top equation agrees with equation 113 of \url{https://arxiv.org/pdf/1411.3712.pdf} up to first order. 
+  \subsection{The equation in terms of conformal time}
+  To express the last expression in terms of conformal time we only need to follow the following transformations, \\
+  \be
+  a d \tau= dt
+  \ee
+  The relation between Hubble and conformal Hubble is;
+\be
+\mathcal{H} (\tau)=\frac{1}{a(\tau) }\frac{d a(\tau)}{d \tau }= \frac{1}{a(t) } \frac{d a (t) }{d t} \frac{d t }{ d\tau}= a H(t)
+\ee
+and for the derivative,
+\begin{align}
+& \dot{H}= \frac{-\mathcal{H}^2+ \mathcal{H}'}{a^2} \nonumber \\ &
+\mathcal{H}'=a^2 \Big[ H^2 + \dot{H}\Big ]
+\end{align}
+The time derivative of any function of time like $\pi(t)$ transforms as,
+\be
+\pi(x,t)=\pi(x,\tau)
+\ee
+But both are the perturbation in physical time hypersurfaces.
+\be
+\dot{\pi}=\frac{\partial \pi}{\partial \tau}  \frac{\partial \tau}{\partial t} = \frac{1}{a(\tau)} \pi '
+\ee
+\be
+\ddot{\pi}=\frac{\partial \tau}  {\partial t} \frac{\partial }{\partial \tau} (\frac{1}{a}\pi ' ) = \frac{1}{a} (-\frac{a ' \pi'}{a^2}+ \frac{\pi''}{a})= \frac{1}{a^2} \Big(- \mathcal{H} \pi' + \pi'' \Big)
+\ee
+So the equation \ref{fineq} becomes,
+\begin{align} 
+ & 3 \frac{\mathcal{H}
+}{a} \Big( 1- \frac{w}{c_s^2} \Big )\Psi + \frac{ 1}{c_s^2} \frac{\Psi'}{a}+ 3 \frac{\Phi'}{a} + 3  \frac{-\mathcal{H}^2 + \mathcal{H}'}{a^2} \pi + \frac{3 \mathcal{H} w}{ a c_s^2} \frac{\pi'}{a}  -\frac{  1}{ a^2 c_s^2} \Big(- \mathcal{H} \pi' + \pi'' \Big) + \frac{\nabla^2 \pi }{a^2}
+% Second order terms
+\nonumber \\ &
+     +2   \Phi  \frac{\nabla^2 \pi }{a^2}   
+  %//////////////// 
+  -   (\frac{1}{c_s^2}-1)  \Psi \frac{\nabla^2 \pi }{a^2}   
+  %////////////////
+  - 3 \mathcal{H} (1+w)\pi \frac{\nabla^2 \pi }{a^3}  
+      %////////////////
+        +   (\frac{1}{c_s^2}-1) \frac{ \pi' \nabla^2 {\pi }}{a^3}   
+        %//////////////// 
+             - \frac{\nabla  \Phi . \nabla \pi }{a^2} 
+   %//////////////// 
+        +(2-\frac{1}{c_s^2}) \frac{\nabla  \Psi . \nabla \pi }{a^2}   
+   %//////////////// 
+    \nonumber \\ &
+ -\frac{\mathcal{H}} {2 a c_s^2} \Big(2+3w+c_s^2  \Big)\frac{\nabla  \pi . \nabla \pi } {a^2}
+    %//////////////// 
+    +2   (\frac{1}{c_s^2}-1)\frac{\nabla  \pi . \nabla {\pi'} } {a^3}       =0 \label{fineq}
+%  -(\frac{1}{c_s^2}-1) \nabla^2 \Psi \pi+ 2 \nabla^2 \Phi \pi - 3 H (1+w) \pi \nabla^2 \pi  + (\frac{1}{c_s^2}-1) \pi \nabla^2 \dot{\pi}   \nonumber \\ &+ (2-\frac{1}{c_s^2})\nabla \Psi \nabla \pi - \nabla \Phi \nabla \pi -\frac{H} {2 c_s^2} \Big(2+3w+c_s^2  \Big) \nabla \pi \nabla \pi =0
+  \end{align} 
+  Multiplying to $-a^2 c_s^2$ gives:
+%  \begin{empheq}[box=\tcbhighmath]{equation}
+ \begin{align} 
+ &\pi_{\text{phys}}'' - \mathcal{H} \Big (1+ 3w \Big)\pi_{\text{phys}}' -3 {a c_s^2 \mathcal{H}}\Big( 1- \frac{w}{c_s^2} \Big )\Psi -a \, {\Psi'}- 3 c_s^2 a \,{\Phi'} 
+  -3  c_s^2 \Big({-\mathcal{H}^2 + \mathcal{H}'} \Big) \pi_{\text{phys}} 
+ - c_s^2 {\nabla^2 \pi_{\text{phys}} }
+             \nonumber
+   \\
+    &
+    % Second order terms
+     -2 c_s^2  \Phi  {\nabla^2 \pi_{\text{phys}} }  
+  %//////////////// 
+  +   (1-c_s^2)  \Psi {\nabla^2 \pi_{\text{phys}} }
+  %////////////////
+  +3 c_s^2 \mathcal{H} (1+w)\pi_{\text{phys}} \frac{\nabla^2 \pi_{\text{phys}} }{a}  
+      %////////////////
+        -   (1-c_s^2) \frac{ \pi_{\text{phys}}' \nabla^2 {\pi_{\text{phys}} }}{a}   
+        %//////////////// 
+             +c_s^2 {\nabla  \Phi . \nabla \pi_{\text{phys}} }
+               \nonumber 
+               \\
+                &
+   %//////////////// 
+        -(2 c_s^2-1) {\nabla  \Psi . \nabla \pi_{\text{phys}} }  
+   %//////////////// 
+ +\frac{\mathcal{H}} {2 a} \Big(2+3w+c_s^2  \Big){\nabla  \pi_{\text{phys}} . \nabla \pi_{\text{phys}} } 
+    %//////////////// 
+    -2   (1-c_s^2)\frac{\nabla  \pi_{\text{phys}} . \nabla {\pi_{\text{phys}}'} } {a}       =0
+   %  -(\frac{1}{c_s^2}-1) \nabla^2 \Psi \pi+ 2 \nabla^2 \Phi \pi - 3 H (1+w) \pi \nabla^2 \pi  + (\frac{1}{c_s^2}-1) \pi \nabla^2 \dot{\pi}   \nonumber \\ &+ (2-\frac{1}{c_s^2})\nabla \Psi \nabla \pi - \nabla \Phi \nabla \pi -\frac{H} {2 c_s^2} \Big(2+3w+c_s^2  \Big) \nabla \pi \nabla \pi =0
+  \end{align} 
+%\end{empheq}
+It is very important to note that $\pi_{\text{phys}}$ here is the perturbation on physical time hypersurfaces, while in hi-class (equation 2.16 of https://arxiv.org/pdf/1605.06102.pdf) it is perturbation on conformal time hypersurfaces. The relation between $\pi_{\text{physical}}$ and $\pi_{\text{conformal}}$ is as following,
+\be
+\pi_{\text{conf}}= \frac{\delta \varphi_{\text{phys}}}{\bar{\dot{\varphi}} \, a} = \frac{\pi_{\text{phys}}}{a}
+\ee
+{\color{blue}
+\be
+\pi_{phys}'=(a \pi_{con})'=a (\mathcal{H} \pi_{con}+ \pi'_{con})
+\ee
+}
+{\color{blue}
+\be
+\pi_{phys}''=(a \pi_{con})''=a( \mathcal{H}' \pi_{con}+2 \mathcal{H} \pi'_{con} +\pi''_{con}+ \mathcal{H}^2 \pi_{con} )
+\ee
+}
+Substituting gives,
+\begin{align} 
+ &\pi_{\text{phys}}'' - \mathcal{H} \Big (1+ 3w \Big)\pi_{\text{phys}}' -3 {a c_s^2 \mathcal{H}}\Big( 1- \frac{w}{c_s^2} \Big )\Psi -a \, {\Psi'}- 3 c_s^2 a \,{\Phi'} 
+  -3  c_s^2 \Big({-\mathcal{H}^2 + \mathcal{H}'} \Big) \pi_{\text{phys}} 
+ - c_s^2 {\nabla^2 \pi_{\text{phys}} }
+             \nonumber
+   \\
+    &
+    % Second order terms
+     -2 c_s^2  \Phi  {\nabla^2 \pi_{\text{phys}} }  
+  %//////////////// 
+  +   (1-c_s^2)  \Psi {\nabla^2 \pi_{\text{phys}} }
+  %////////////////
+  +3 c_s^2 \mathcal{H} (1+w)\pi_{\text{phys}} \frac{\nabla^2 \pi_{\text{phys}} }{a}  
+      %////////////////
+        -   (1-c_s^2) \frac{ \pi_{\text{phys}}' \nabla^2 {\pi_{\text{phys}} }}{a}   
+        %//////////////// 
+             +c_s^2 {\nabla  \Phi . \nabla \pi_{\text{phys}} }
+               \nonumber 
+               \\
+                &
+   %//////////////// 
+        -(2 c_s^2-1) {\nabla  \Psi . \nabla \pi_{\text{phys}} }  
+   %//////////////// 
+ +\frac{\mathcal{H}} {2 a} \Big(2+3w+c_s^2  \Big){\nabla  \pi_{\text{phys}} . \nabla \pi_{\text{phys}} } 
+    %//////////////// 
+    -2   (1-c_s^2)\frac{\nabla  \pi_{\text{phys}} . \nabla {\pi_{\text{phys}}'} } {a}       =0
+   %  -(\frac{1}{c_s^2}-1) \nabla^2 \Psi \pi+ 2 \nabla^2 \Phi \pi - 3 H (1+w) \pi \nabla^2 \pi  + (\frac{1}{c_s^2}-1) \pi \nabla^2 \dot{\pi}   \nonumber \\ &+ (2-\frac{1}{c_s^2})\nabla \Psi \nabla \pi - \nabla \Phi \nabla \pi -\frac{H} {2 c_s^2} \Big(2+3w+c_s^2  \Big) \nabla \pi \nabla \pi =0
+  \end{align} 
+%  \begin{empheq}[box=\tcbhighmath]{equation}
+ \begin{align} 
+ &{\color{blue} \mathcal{H}' \pi_{con}+2 \mathcal{H} \pi'_{con} +\pi''_{con}+ \mathcal{H}^2 \pi_{con} }- \mathcal{H} \Big (1+ 3w \Big)({\color{blue} \mathcal{H} \pi_{con}+ \pi'_{con}}) -3 { c_s^2 \mathcal{H}}\Big( 1- \frac{w}{c_s^2} \Big )\Psi 
+    - \, {\Psi'}
+ - 3 c_s^2  \,{\Phi'} 
+             \nonumber
+   \\
+    &
+  -3  c_s^2 \Big({-\mathcal{H}^2 + \mathcal{H}'} \Big) \pi_{\text{conf}} 
+ - c_s^2 {\nabla^2 \pi_{\text{conf}} }
+    % Second order terms
+     -2 c_s^2  \Phi  {\nabla^2 \pi_{\text{conf}} }  
+  %//////////////// 
+  +   (1-c_s^2)  \Psi {\nabla^2 \pi_{\text{conf}} }
+  %////////////////
+  +3 c_s^2 \mathcal{H} (1+w)\pi_{\text{conf}} {\nabla^2 \pi_{\text{conf}} }
+              \nonumber
+   \\
+    &
+      %////////////////
+        -   (1-c_s^2) { \color{blue}(\mathcal{H} \pi_{con}+ \pi'_{con})} \nabla^2 {\pi_{\text{conf}} } 
+        %//////////////// 
+             +c_s^2 {\nabla  \Phi . \nabla \pi_{\text{conf}} }
+   %//////////////// 
+        -(2 c_s^2-1) {\nabla  \Psi . \nabla \pi_{\text{conf}} }  
+   %//////////////// 
+ +\frac{\mathcal{H}} {2 } \Big(2+3w+c_s^2  \Big){\nabla  \pi_{\text{conf}} . \nabla \pi_{\text{conf}} } 
+                                 \nonumber
+   \\
+    &
+    %//////////////// 
+     -2   (1-c_s^2){\nabla  \pi_{\text{conf}} . \nabla {\color{blue} {(\mathcal{H} \pi_{con}+ \pi'_{con})} }}       =0
+   %  -(\frac{1}{c_s^2}-1) \nabla^2 \Psi \pi+ 2 \nabla^2 \Phi \pi - 3 H (1+w) \pi \nabla^2 \pi  + (\frac{1}{c_s^2}-1) \pi \nabla^2 \dot{\pi}   \nonumber \\ &+ (2-\frac{1}{c_s^2})\nabla \Psi \nabla \pi - \nabla \Phi \nabla \pi -\frac{H} {2 c_s^2} \Big(2+3w+c_s^2  \Big) \nabla \pi \nabla \pi =0
+  \end{align} 
+%\end{empheq}
+
+%\begin{empheq}[box=\tcbhighmath]{equation}
+% \begin{align} 
+% &{\color{blue}\mathcal{H}' \pi_{con}+\mathcal{H} \pi'_{con} +\pi''_{con} }- \mathcal{H} \Big (1+ 3w \Big)({\color{blue} \mathcal{H} \pi_{con}+ \pi'_{con}}) -3 { c_s^2 \mathcal{H}}\Big( 1- \frac{w}{c_s^2} \Big )\Psi - \, {\Psi'}- 3 c_s^2  \,{\Phi'} 
+%           \nonumber
+%   \\
+%    &
+%  -3  c_s^2 \Big({-\mathcal{H}^2 + \mathcal{H}'} \Big) \pi_{\text{conf}} 
+% - c_s^2 {\nabla^2 \pi_{\text{conf}} }
+%    % Second order terms
+%     -2 c_s^2  \Phi  {\nabla^2 \pi_{\text{conf}} }  
+%  %//////////////// 
+%  +   (1-c_s^2)  \Psi {\nabla^2 \pi_{\text{conf}} }
+%  %////////////////
+%  +3 c_s^2 \mathcal{H} (1+w)\pi_{\text{conf}} {\nabla^2 \pi_{\text{conf}} }
+%      %////////////////
+%                                      \nonumber
+%   \\
+%    &
+%        -   (1-c_s^2) { \pi_{\text{conf}}' \nabla^2 {\pi_{\text{conf}} }} 
+%        %//////////////// 
+%             +c_s^2 {\nabla  \Phi . \nabla \pi_{\text{conf}} }
+%   %//////////////// 
+%        -(2 c_s^2-1) {\nabla  \Psi . \nabla \pi_{\text{conf}} }  
+%   %//////////////// 
+% +\frac{\mathcal{H}} {2 } \Big(2+3w+c_s^2  \Big){\nabla  \pi_{\text{conf}} . \nabla \pi_{\text{conf}} } 
+%                                 \nonumber
+%   \\
+%    &
+%    %//////////////// 
+%     -2   (1-c_s^2){\nabla  \pi_{\text{conf}} . \nabla {\pi_{\text{conf}}'} }       =0
+%   %  -(\frac{1}{c_s^2}-1) \nabla^2 \Psi \pi+ 2 \nabla^2 \Phi \pi - 3 H (1+w) \pi \nabla^2 \pi  + (\frac{1}{c_s^2}-1) \pi \nabla^2 \dot{\pi}   \nonumber \\ &+ (2-\frac{1}{c_s^2})\nabla \Psi \nabla \pi - \nabla \Phi \nabla \pi -\frac{H} {2 c_s^2} \Big(2+3w+c_s^2  \Big) \nabla \pi \nabla \pi =0
+%  \end{align} 
+%\end{empheq}
+%\begin{empheq}[box=\tcbhighmath]{equation}
+ \begin{align} 
+ &{\color{blue}\pi''_{con} +\mathcal{H}(1- 3w) \pi'_{con} } -3 { c_s^2 \mathcal{H}}\Big( 1- \frac{w}{c_s^2} \Big )\Psi - \, {\Psi'}- 3 c_s^2  \,{\Phi'} + {\color{blue}
+ \Big( 3\mathcal{H}^2 (c_s^2 -w) + \mathcal{H}' (1-3c_s^2)\Big) \pi_{\text{conf}} }
+           \nonumber
+   \\
+    &
+ - c_s^2 {\nabla^2 \pi_{\text{conf}} }
+    % Second order terms
+     -2 c_s^2  \Phi  {\nabla^2 \pi_{\text{conf}} }  
+  %//////////////// 
+  +   (1-c_s^2)  \Psi {\nabla^2 \pi_{\text{conf}} }
+  %////////////////
+  +3 c_s^2 \mathcal{H} (1+w)\pi_{\text{conf}} {\nabla^2 \pi_{\text{conf}} }
+      %////////////////
+                                      \nonumber
+   \\
+    &
+        -   (1-c_s^2)  { \color{blue}(\mathcal{H} \pi_{con}+ \pi'_{con}) } \nabla^2 {\pi_{\text{conf}} }
+        %//////////////// 
+             +c_s^2 {\nabla  \Phi . \nabla \pi_{\text{conf}} }
+   %//////////////// 
+        -(2 c_s^2-1) {\nabla  \Psi . \nabla \pi_{\text{conf}} }  
+   %//////////////// 
+                                    \nonumber
+   \\
+    &
+ +\frac{\mathcal{H}} {2 } \Big(2+3w+c_s^2  \Big){\nabla  \pi_{\text{conf}} . \nabla \pi_{\text{conf}} } 
+    %//////////////// 
+     -2   (1-c_s^2){\nabla  \pi_{\text{conf}} . {\color{blue}  \nabla {  (\mathcal{H} \pi_{con}+ \pi'_{con})   }}}     =0
+   %  -(\frac{1}{c_s^2}-1) \nabla^2 \Psi \pi+ 2 \nabla^2 \Phi \pi - 3 H (1+w) \pi \nabla^2 \pi  + (\frac{1}{c_s^2}-1) \pi \nabla^2 \dot{\pi}   \nonumber \\ &+ (2-\frac{1}{c_s^2})\nabla \Psi \nabla \pi - \nabla \Phi \nabla \pi -\frac{H} {2 c_s^2} \Big(2+3w+c_s^2  \Big) \nabla \pi \nabla \pi =0
+  \end{align} 
+%\end{empheq}
+\begin{empheq}[box=\tcbhighmath]{equation}
+ \begin{align} 
+ &{ \pi''_{con} +\mathcal{H}(1- 3w) \pi'_{con} } -3 { c_s^2 \mathcal{H}}\Big( 1- \frac{w}{c_s^2} \Big )\Psi - \, {\Psi'}- 3 c_s^2  \,{\Phi'} + {
+ \Big( 3\mathcal{H}^2 (c_s^2 -w) + \mathcal{H}' (1-3c_s^2)\Big) \pi_{\text{conf}} }
+           \nonumber
+   \\
+    &
+ - c_s^2 {\nabla^2 \pi_{\text{conf}} }
+    % Second order terms
+     -2 c_s^2  \Phi  {\nabla^2 \pi_{\text{conf}} }  
+  %//////////////// 
+  +   (1-c_s^2)  \Psi {\nabla^2 \pi_{\text{conf}} }
+  %////////////////
+  +3 c_s^2 \mathcal{H} (1+w)\pi_{\text{conf}} {\nabla^2 \pi_{\text{conf}} }
+      %////////////////
+                                      \nonumber
+   \\
+    &
+        -   (1-c_s^2)  { (\mathcal{H} \pi_{con}+ \pi'_{con}) } \nabla^2 {\pi_{\text{conf}} }
+        %//////////////// 
+             +c_s^2 {\nabla  \Phi . \nabla \pi_{\text{conf}} }
+   %//////////////// 
+        -(2 c_s^2-1) {\nabla  \Psi . \nabla \pi_{\text{conf}} }  
+   %//////////////// 
+                                    \nonumber
+   \\
+    &
+ +\frac{\mathcal{H}} {2 } \Big(2+3w+c_s^2  \Big){\nabla  \pi_{\text{conf}} . \nabla \pi_{\text{conf}} } 
+    %//////////////// 
+     -2   (1-c_s^2){\nabla  \pi_{\text{conf}} . {  \nabla {  (\mathcal{H} \pi_{con}+ \pi'_{con})   }}}     =0
+   %  -(\frac{1}{c_s^2}-1) \nabla^2 \Psi \pi+ 2 \nabla^2 \Phi \pi - 3 H (1+w) \pi \nabla^2 \pi  + (\frac{1}{c_s^2}-1) \pi \nabla^2 \dot{\pi}   \nonumber \\ &+ (2-\frac{1}{c_s^2})\nabla \Psi \nabla \pi - \nabla \Phi \nabla \pi -\frac{H} {2 c_s^2} \Big(2+3w+c_s^2  \Big) \nabla \pi \nabla \pi =0
+  \end{align} 
+\end{empheq}
+
+The followed expression is needed to be the same as EFT papers equation with using the fact that they write the equation for perturbation on constant physical time hypersurfaces. \\
+In order to compare the result with other results (ex. equation 113 of https://arxiv.org/pdf/1411.3712.pdf) we write down the coefficients in the paper and try to compare it with our result: \\
+The coefficient of $\ddot{\pi}$ in the paper is:
+\be
+H^2 \alpha_K  \ddot{\pi}_{phys}= \frac{ H^2 \Omega (1+w)}{c_s^2} \ddot{\pi}_{phys}
+\ee
+by multiplying to $\frac{ c_s^2}{ a (1+w) \Omega H^2}$ we get 1! We divided by "a" since it is introduced by $\pi_{\text{conf}}$.  Moreover it is important to note that $\ddot{\pi}= \frac{-\mathcal{H} \pi' + \pi''}{a^2}$, so in our expression we also multiply to $a^2$ to get 1 for coefficient of $\pi''$ and $-\mathcal{H} \pi'$. So at the end we multiply all terms by $\frac{a c_s^2}{ (1+w) \Omega H^2}$. In sum,
+\be
+\frac{ H^2 \Omega (1+w)}{c_s^2} \ddot{\pi}_{phys} \times \frac{ a c_s^2}{  (1+w) \Omega H^2}  =  \pi''_{\text{conf}} - \mathcal{H} \pi'_{\text{conf}}
+\ee
+The next term is $\dot{\pi}$,
+\be
+ H^2 \alpha_k (3H +2 \frac{\dot{H}}{H} + \frac{\dot{\alpha_k}}{\alpha_k} ) \dot{\pi}_{phys} = - \frac{3 H^3 w (1+w) \Omega  }{c_s^2} \dot{\pi}_{phys} \xrightarrow{  \times \frac{ ac_s^2}{(1+w) \Omega H^2}} -3 w \mathcal{H} \pi'_{\text{conf}}
+\ee
+Where we have used $\frac{\dot{\alpha_k}}{\alpha_k} = \frac{\dot{\Omega}}{\Omega}= -3 H (1+w) -2 \frac{\dot{H}}{H}$ and $\dot{H}+ \frac{\rho_m + P_m}{2 M^2} = - \frac{2 \bar{X} P_{,X}}{2 M^2}=\frac{- \bar{\rho}(1+w)}{2 M^2} $.  \\
+%Again by multiplying to $  \frac{ ac_s^2}{(1+w) \Omega H^2}$ we get 
+%$-\frac{3 w H}{a}$ which is the coefficient of $\dot{\pi}_{conf}$ for us it would be $-{3 \mathcal{H} ^2w}$ which is coefficient of ${\pi}'_{conf}$ 
+$\pi$ coefficient:
+\be
+6 \dot{H}(\dot{H} + \frac{\rho_m + P_m}{2M^2}) \pi_{phys} = -3 a^2 c_s^2 \dot{H} \pi_{\text{conf}} = -3 c_s^2(-\mathcal{H}^2 + \mathcal{H}') \pi_{\text{conf}}
+\ee
+Note that $\Omega= \frac{\rho}{3 M_{pl}^2 H^2}=  \frac{\rho}{M^2 H^2}$. \\
+The coefficient of $\nabla^2 \pi$ is :
+\be
+2 (\dot{H} + \frac{\rho_m + P_m}{2M^2}) \frac{\nabla^2 \pi_{phys}}{a^2} \xrightarrow{  \times \frac{ ac_s^2}{(1+w) \Omega H^2}} -c_s^2  \nabla^2 \pi_{\text{conf}}
+\ee
+The coefficient of $\dot{\Psi}$, (note that $\Psi$ and $\Phi$ are not the same in our convention and the paper!)
+\be
+- H^2 \alpha_k \dot{\Psi} = -\frac{\Omega (1+w) }{c_s^2} \Psi'/a \xrightarrow{  \times \frac{ ac_s^2}{(1+w) \Omega H^2}} -\Psi'
+\ee
+The coefficient of $\dot{\Phi}$, ($\dot{\Psi}$ in the paper)
+\be
+6(\dot{H} + \frac{\rho_m + P_m}{2M^2}) \dot{\Phi} = \frac{ -3 \bar{\rho}(1+w)}{M^2}  {\Phi'}/a\xrightarrow{  \times \frac{ ac_s^2}{(1+w) \Omega H^2}}  -3 \, c_s^2 \Phi'
+\ee
+The coefficient of ${\Psi}$, (${\Phi}$ in the paper)
+\begin{align}
+ & \left [ 6(\dot{H} + \frac{\rho_m + P_m}{2M^2}) + H \alpha_K \left ( -3  H -2 \frac{\dot{H}}{H} - \frac{\dot{\alpha}_K}{\alpha_K } \right ) \right ] H \Psi= \Big( -3 H^2 \Omega (1+w) + \frac{\Omega (1+w)}{c_s^2} 3 H^2 w)\Big ) \mathcal{H}/a  \Psi \nonumber. \\ &
+ \xrightarrow{  \times \frac{ ac_s^2}{(1+w) \Omega H^2}} -3 \mathcal{H} (c_s^2 -w )\Psi
+\end{align}
+So we get exactly the same first order equations as the references! \\
+\subsection{Numeric olver}
+Note that ${H'}$ can be determined by all the matter contents of the universe not by k-essence alone, the continuity equation for k-essence or matter gives the dynamics of density. \\
+The field equation is:
+we take $d \tau=\tau_{n+1}-\tau_n $ and $x_{i,j,k} $ as lattice point. We solve the differential equation numerically as following;
+\be
+\pi_v= {\pi}'
+\ee
+\be
+\pi^{n}= \pi ^{n-1}+\pi_v ^{n-\frac{1}{2}} d \tau
+\ee
+\be \label{eq3}
+\pi_v ^{n+\frac{1}{2}}=\pi_v ^{n-\frac{1}{2}} + {\pi''} ^{(n)}  d \tau
+\ee
+
+We define the laplacian in code as following,
+\begin{align}
+& \nabla^2 \pi =-\frac{\pi^{n}_{i-1,j,k}+\pi^{n}_{i+1,j,k} +\pi^{n}_{i,j-1,k} +\pi^{n}_{i,j+1,k}+\pi^{n}_{i,j,k-1}+\pi^{n}_{i,j,k+1} -6 \pi^{n}_{i,j,k}  }{ a^2 dx^2}  
+\end{align}
+Moreover in order to get scalar in the vertices the derivatives like $\nabla \pi . \nabla \pi $ should be defined symmetric .
+So we can rewrite the equation \ref{eq3} as below;
+\begin{align} 
+ &{\color{blue}\pi''_{con} +\mathcal{H}(1- 3w) \pi'_{con} } -3 { c_s^2 \mathcal{H}}\Big( 1- \frac{w}{c_s^2} \Big )\Psi - \, {\Psi'}- 3 c_s^2  \,{\Phi'} + {\color{blue}
+ \Big( 3\mathcal{H}^2 (c_s^2 -w) + \mathcal{H}' (1-3c_s^2)\Big) \pi_{\text{conf}} }
+           \nonumber
+   \\
+    &
+ - c_s^2 {\nabla^2 \pi_{\text{conf}} }
+    % Second order terms
+     -2 c_s^2  \Phi  {\nabla^2 \pi_{\text{conf}} }  
+  %//////////////// 
+  +   (1-c_s^2)  \Psi {\nabla^2 \pi_{\text{conf}} }
+  %////////////////
+  +3 c_s^2 \mathcal{H} (1+w)\pi_{\text{conf}} {\nabla^2 \pi_{\text{conf}} }
+      %////////////////
+                                      \nonumber
+   \\
+    &
+        -   (1-c_s^2)  { \color{blue}(\mathcal{H} \pi_{con}+ \pi'_{con}) } \nabla^2 {\pi_{\text{conf}} }
+        %//////////////// 
+             +c_s^2 {\nabla  \Phi . \nabla \pi_{\text{conf}} }
+   %//////////////// 
+        -(2 c_s^2-1) {\nabla  \Psi . \nabla \pi_{\text{conf}} }  
+   %//////////////// 
+                                    \nonumber
+   \\
+    &
+ +\frac{\mathcal{H}} {2 } \Big(2+3w+c_s^2  \Big){\nabla  \pi_{\text{conf}} . \nabla \pi_{\text{conf}} } 
+    %//////////////// 
+     -2   (1-c_s^2){\nabla  \pi_{\text{conf}} . {\color{blue}  \nabla {  (\mathcal{H} \pi_{con}+ \pi'_{con})   }}}     =0
+   %  -(\frac{1}{c_s^2}-1) \nabla^2 \Psi \pi+ 2 \nabla^2 \Phi \pi - 3 H (1+w) \pi \nabla^2 \pi  + (\frac{1}{c_s^2}-1) \pi \nabla^2 \dot{\pi}   \nonumber \\ &+ (2-\frac{1}{c_s^2})\nabla \Psi \nabla \pi - \nabla \Phi \nabla \pi -\frac{H} {2 c_s^2} \Big(2+3w+c_s^2  \Big) \nabla \pi \nabla \pi =0
+  \end{align} 
+\begin{align} 
+ &\pi_v ^{n+\frac{1}{2}}=\pi_v ^{n-\frac{1}{2}} - d \tau \Big [ \mathcal{H}^{(n)} (1-3w)\frac{(\pi_{v  \; {i,j,k}}^{n+\frac{1}{2}} +\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} )}{2} -3 {c_s^2 \mathcal{H}^{(n)}}\Big( 1- \frac{w}{c_s^2} \Big )\Psi^{(n) }
+ -  \frac{{\Psi}^{(n)}-{\Psi}^{(n-1)} }{d \tau}
+    \nonumber
+     \\
+      &
+      - 3c_s^2  \, \frac{{\Phi}^{(n)}-{\Phi}^{(n-1)} }{d \tau}    
+   +\Big( 3\mathcal{H}^2 (c_s^2 -w) + \mathcal{H}' (1-3c_s^2) \Big) \pi^{(n)}   - c_s^2 {\nabla^2 \pi ^{(n)}}  
+   %
+   + (1-c_s^2)\Psi^{(n)} {\nabla^{2} \pi^{(n)}  }    
+          \nonumber
+     \\
+      &
+      %___________
+    - 2 c_s^2  \Phi ^{(n)}  {\nabla^2 \pi^{(n)}}
+          %___________
+     + {3 c_s^2  \mathcal{H}^{(n)} (1+w) }\pi^{(n)} {\nabla^2 \pi^{(n)} }   
+               %___________
+     -  (1-c_s^2)
+ \Big[ \frac{(\pi_{v  \; {i,j,k}}^{n+\frac{1}{2}} +\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} )}{2}  + \mathcal{H} \pi^{(n)} \Big] {\nabla^2  \pi^{(n)}} 
+        \nonumber
+     \\
+       &
+               %___________
+    - (2 c_s^2-1) {\nabla  \Psi^{(n)}  . \nabla \pi ^{(n)} }
+            %___________
+    + c_s^2 {\nabla  \Phi ^{(n)} . \nabla \pi^{(n)}  }                %___________
+              +\frac{\mathcal{H}^{(n)}} {2 } \Big(2+3w+c_s^2  \Big) \,{\nabla  \pi^{(n)} . \nabla \pi^{(n)} }  
+                      %___________
+                           \nonumber
+     \\
+       &
+          -2(1-c_s^2) \nabla  \pi^{(n)} .  \Big( \frac{{ \nabla  ( \pi_{v  \; {i,j,k}}^{n+\frac{1}{2}} +\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} ) }  } {2}  + \mathcal{H}  \nabla\pi^{(n)} \Big) 
+    \Big]
+\end{align}
+After some simplification we get,
+\begin{align} 
+%
+ &\pi_v ^{n+\frac{1}{2}}= \frac{1}{1+ d\tau   \mathcal{H}^{(n)}  (1-3w) /2 - d\tau (1-c_s^2) \nabla^2 \pi^{(n)}/2} \times \Bigg[ \pi_v ^{n-\frac{1}{2}} - d \tau \Big [(1- 3w)\mathcal{H}^{(n)}   \frac{\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} }{2}
+     \nonumber
+     \\
+      &
+  -3 { c_s^2 \mathcal{H}^{(n)}}\Big( 1- \frac{w}{c_s^2} \Big )\Psi^{(n) }
+ - \, \frac{{\Psi}^{(n)}-{\Psi}^{(n-1)} }{d \tau}
+      - 3  c_s^2  \, \frac{{\Phi}^{(n)}-{\Phi}^{(n-1)} }{d \tau}    
+   +\Big( 3\mathcal{H}^2 (c_s^2 -w) + \mathcal{H}' (1-3c_s^2) \Big)\pi^{(n)}  
+             \nonumber
+     \\
+      &
+       - c_s^2 {\nabla^2 \pi ^{(n)}}  
+   %
+   + (1-c_s^2)\Psi^{(n)} {\nabla^{2} \pi^{(n)}  }    
+      %___________
+    - 2 c_s^2  \Phi ^{(n)}  {\nabla^2 \pi^{(n)}}
+          %___________
+     + {3 c_s^2  \mathcal{H}^{(n)} (1+w) }\pi^{(n)} {\nabla^2 \pi^{(n)} }   
+          \nonumber
+     \\
+      &
+               %___________
+     -  (1-c_s^2)
+ \Big( \frac{\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} }{2} +\mathcal{H}  \pi^{(n)}  \Big) {\nabla^2  \pi^{(n)}} 
+               %___________
+    - (2 c_s^2-1) {\nabla  \Psi^{(n)}  . \nabla \pi ^{(n)} }
+            %___________
+    + c_s^2 {\nabla  \Phi ^{(n)} . \nabla \pi^{(n)}  }  
+                              \nonumber
+     \\
+       & 
+            %___________
+              +\frac{\mathcal{H}^{(n)}} {2 } \Big(2+3w+c_s^2  \Big) \,{\nabla  \pi^{(n)} . \nabla \pi^{(n)} }  
+                      %___________                    
+         -2(1-c_s^2) \Big( \frac{{ \nabla  ( \pi_{v  \; {i,j,k}}^{n+\frac{1}{2}} +\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} ) }  } {2}  + \mathcal{H}  \nabla\pi^{(n)} \Big) 
+    \Big] \Bigg]
+\end{align}
+Since we have $\nabla \pi_v $ in the equation we use predictor corrector method as following,\\
+In the first step we predict that the term $\nabla \pi \nabla \pi_v$ is small so we approximate $\nabla \pi_v ^{(n)}$ with $\nabla \pi_v^{n-\frac{1}{2}}$ then we calculate $\pi_v^{n+\frac{1}{2}}$ according to the formula with the guess, then we use the new $\pi_v^{n+\frac{1}{2}}$ into the full equations to correct $\pi_v^{n+\frac{1}{2}}$ . \\
+ We have taken $\pi_{v  \; {i,j,k}}^{n} =\frac{(\pi_{v  \; {i,j,k}}^{n+\frac{1}{2}} +\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} )}{2} $. Then we need to calculate $\mathcal{H}'$, ${\Psi}'$ and  ${\Phi}'$ in each loop, to calculate ${\Psi}'$ we save two $\Psi$ in each loop. \\
+ On the other hand we have $\mathcal{H}'$ according to the Friedman equation, where we try to save $\mathcal{H}'$ from $a''$  and $\mathcal{H}$.
+ %***************************
+ %***************************
+  %***************************
+ %***************************
+ %***************************
+ %***************************
+ \section{Stress tensor }
+The most general action for a scalar field coupled to Einstein gravity is;
+\be
+S=\frac{1}{16 \pi G} \int \sqrt{-g} R d^4 x + \int \sqrt{-g} P (X, \varphi) d^4 x
+\ee
+The metric convention is $(-,+,+,+)$ and $X=- \frac{1}{2}  g^{\mu \nu}\partial _\mu \phi \partial_\nu \phi$. We  assume the scalar action as a matter sector which contributes to stress energy tensor,
+\be
+T^{\mu\nu}\equiv \dfrac {+2}{\sqrt {-g}}\dfrac {\delta \mathcal{ L}}{\delta g_{\mu\nu}}=\dfrac {2}{\sqrt {-g}}\dfrac {\delta \left[ \sqrt {-g}P\left( X,\varphi \right) \right] }{\delta g_{\mu\nu}}
+=
+\dfrac {2}{\sqrt {-g}}[- \dfrac {1 }{2 \sqrt{-g}} \frac{\delta g}{\delta g_{\mu\nu}}P\left( X,\varphi\right) +\dfrac {\delta P\left( X,\varphi\right) }{\delta g_{\mu\nu}}\sqrt {-g}]
+\ee
+According to appendix \ref{A1},
+\be
+\dfrac {\delta \sqrt {-g}}{\delta g_{\mu\nu}}=\dfrac {-1}{2\sqrt {-g}}\dfrac {\delta g}{\delta g_{\mu\nu}}=\dfrac {-1}{2\sqrt {-g}}\dfrac {g\delta g_{\mu\nu}g^{\mu\nu}}{\delta g_{\mu\nu}}=\dfrac {\sqrt {-g}}{2}g^{\mu\nu}
+\ee
+\be
+T^{\mu\nu}=2\dfrac {\delta P\left( X,\varphi\right) }{\delta g_{\mu\nu}} + g^{\mu\nu}P\left( X,\varphi\right)
+\ee
+\be
+T_{\rho \sigma}=g_{\mu \rho} g_{\nu \sigma} T^{\mu \nu}= \Big[ 2 g_{\mu \rho} g_{\nu \sigma}  \dfrac {\delta P\left( X,\varphi\right) }{-g_{\mu \rho'} g_{\nu \sigma'}  \delta g ^{\sigma' \rho'}} + g_{\mu \rho} g_{\nu \sigma}  g^{\mu\nu}P\left( X,\varphi\right) \Big]= -2\dfrac {\delta P \left( X,\varphi\right) }{\delta g^{\rho \sigma}}+g_{\rho \sigma}P\left( X,\varphi\right)
+\ee
+Where we have used $\delta g_{\mu \nu}= - g_{\mu \rho} g_{\nu \sigma} \delta g^{\rho \sigma}$.
+\begin{align}
+X=-\dfrac {1}{2}g^{\mu\nu}\partial_{\mu}\varphi\partial_{\nu}\varphi \longrightarrow  \delta X=-\dfrac {1}{2}\delta g^{\mu\nu}\partial_{\mu}\varphi\partial_{\nu}\varphi-\dfrac {1}{2}g^{\mu\nu}\partial_{\mu}\delta \varphi\partial_{\nu}\varphi-\dfrac {1}{2}g^{\mu\nu}\partial_{\mu}\varphi\partial_{\nu}\delta\varphi
+\end{align}
+so,
+\be
+\dfrac {\partial X}{\partial g^{\mu\nu}}=-\dfrac {\partial_{\mu}\varphi\partial_{\nu}\varphi}{2}
+\ee
+\be
+\dfrac {\delta P}{\delta g^{\mu\nu}}=\dfrac {\partial P}{\partial X}\dfrac {\partial X}{\partial g^{\mu\nu}}+ \cancel{\dfrac {\partial P}{\partial\varphi}\dfrac {\partial\varphi}{\partial g^{\mu\nu}}}=\dfrac {\partial P}{\partial X}\dfrac {\partial X}{\partial g^{\mu\nu}}=-\dfrac {\partial_{\mu}\varphi\partial_{\nu}\varphi}{2}P_{,X}
+\ee
+\be
+T_{\mu\nu}=g_{\mu\nu}P\left( X,\varphi\right) +P_{,X}\partial_{\mu}\varphi\partial_{v}\varphi \; , \;
+T_{\mu\nu}=\left( \rho+p\right) u_{\mu}u_{\nu}+p g_{\mu\nu}
+\ee
+\be
+u_{\mu}=\dfrac {\partial_{\mu}\varphi}{\sqrt {-\partial_{\mu}\varphi\partial^{\mu}\varphi}}\rightarrow u_{\mu}=\dfrac {\partial_{\mu}\varphi}{\sqrt {2X}} , \rho=2XP_{,X}-P \; , \; p=P  \label{eq10}
+\ee
+We assume that field is a monotonic function of time in background which is perturbed in each constant physical time hypersurfaces. \\
+It is important to notice that in the previous chapter $\pi$ was the perturbation in constant physical time hypersurfaces, so to be consistent,  although at the we want to express everything in terms of conformal time in Gevolution but we keep $\pi$ as perturbation in physical time.
+\be
+\varphi_{0}\left( \tau+\pi\left( \tau,\overrightarrow {x}\right) \right) =\varphi_{0}\left( \tau \right) +\dfrac {\partial\varphi_{0}}{\partial  \tau }\pi+\dfrac {\partial^{2}\varphi_{0}}{2\partial^{2} \tau}\pi^{2}+\ldots
+\ee
+We can choose $\varphi_0(\tau)=\tau$ for simplicity, using the following ansatz for the metric,
+\be
+g_{\mu\nu}=a(\tau)^2 \Big [-e^{2\Psi}d\tau^{2}+ e^{-2\Phi}dr^{2} \Big]
+\ee
+where $\tau$ is the conformal time.
+\be
+\delta g^{(1)}_ { 00}=-2\, a^2 \Psi \, \; \; , 
+\delta g^{(1)}_{ij}= -2 a^{2} \Phi \delta_{ij}
+\ee
+Where $\delta g^{(1)}_ { 00}$ means the first order metric in pertubations.  The inverse of metric is defined as following,
+\be
+g^{\mu\nu}=\frac{1}{a^2} \Big [-e^{-2\Psi}d\tau^{2}+e^{2\Phi}dr^{2}  \Big ]
+\ee
+\be
+\delta g_{(1)}^{00}=+\frac{2\Psi}{a^2} \, \; \; , 
+\delta g_{(1)}^{ij}= + \frac{2\Phi \delta^{ij} }{a^2}
+\ee
+We have,
+\be
+X=\dfrac {-1}{2}g^{\mu\nu} (\tau + \pi,x)\partial_{\mu}\left( \tau+\pi\right) \partial_{\nu}\left( \tau+\pi\right) 
+\ee
+We expand X perturbatively,
+\be
+X=\overline {X}+\delta X_{1}+ \delta X_{2}+\ldots
+\ee
+\be
+\overline {X}=-\dfrac {1}{2}\bar{g}^{00}\partial_{0} \tau \partial_{0} \tau=+\dfrac {1}{2 a^2}\\
+\ee
+\be
+\delta X_{1}={\bar{X}'} \pi-\dfrac {1}{2}\delta g_{(1)}^{00}\partial_{0} \tau \partial_{0} \tau-\dfrac {1}{2} \bar{g}^{00}\partial_{0} \tau \partial_{0}\pi-\dfrac {1}{2} \bar{g}^{00}\partial_{0}\pi\partial_{0} \tau-\dfrac {1}{2}\bar{g}^{ij}\partial_{i}\pi\partial_{j}\pi
+\ee
+where ${\bar{X}'} \pi =-\dfrac {1}{2}\bar{g}^{00'} \pi \partial_{0} \tau \partial_{0} \tau = -\frac{\mathcal{H}}{a^2} \pi $.
+\be
+ \delta X_{1}=\frac{1}{a^2} \Big [- \mathcal{H} \pi-\Psi+{\pi'}- \frac{(\vec{\nabla} \pi)^2}{2 }  +O\left( \varepsilon^{2}\right) \Big]
+\ee
+We do not need to calculate $X_2$ since the energy momentum constraint adds at most one spatial derivative which does not add the second order terms to first order. So
+\bea
+ & P\left(\varphi_0( \tau+\pi) ={\varphi_0}+ {{\varphi_0}}' \pi,\overline{X}+ \delta X_1+\delta X_2 \right)  = \overline{P}\left( \varphi( \tau),\overline {X}\right) 
++ {\dfrac {\partial\overline {P}}{\partial \varphi_0}} \pi+\dfrac {1}{2} {\dfrac {\partial^{2}\overline {P}}{\partial \varphi_0^2}}\pi^{2}
++
+\nonumber \\ &
+\dfrac {\partial\overline {P}}{\partial\overline {X}}\delta X_1+\dfrac {1}{2}\dfrac {\partial P}{\partial X^{2}}\delta X_1^{2}+\dfrac {\partial^2 P}{\partial X \partial \varphi_0}\delta X_1 \pi +\dfrac {1}{2}\dfrac {\partial P}{\partial X^{2}}\delta X_2 + \mathcal{O}(\epsilon^3).
+\eea
+\\
+ Note that here $\pi$ is perturbation in $\tau$ conformal time.%The term $\dfrac {\partial\overline {P}}{\partial \tau}$ becomes  $\dfrac {\partial\overline {P}}{\partial \tau}=\dfrac {\partial\overline {P}}{\partial  {\varphi}} \dfrac{\partial {\varphi}}{\partial \tau}+ \dfrac {\partial\overline {P}}{\partial  {X}} \dfrac{\partial {X}}{\partial \tau} =P_{,\varphi} \dot{\bar{\varphi}} + \bar{P}_{\bar{X}}$. Because $\varphi$ and $\partial_{\mu} \varphi$ are independent variables not function of $\tau$. \\
+The adiabatic sound speed ({\color{red}why?!}) is defined as below,
+\be
+%c^{2}_{s}\equiv \frac{\delta P}{\delta \rho} =\dfrac {\bar{P}_{,X} \delta X + \bar{P}_{,\varphi} \delta \varphi}{\bar{\rho}_{,X} \delta X  +\bar{\rho}_{,\varphi} \delta  \varphi}=\dfrac {\bar{P}_{,X}}{\bar{\rho}_{,X}}=\dfrac {\bar{P}_{,X}}{\bar{P}_{,X}+2\bar{X}\bar{P}_{,XX}} 
+c^{2}_{s}\equiv \dfrac {\bar{P}_{,X}}{\bar{\rho}_{,X}}=\dfrac {\bar{P}_{,X}}{\bar{P}_{,X}+2\bar{X}\bar{P}_{,XX}} 
+\ee
+and $\Omega$
+\be
+\Omega= \frac{\bar{\rho}}{3 M_{pl}^2 H^2}= \frac{ a^2 \bar{\rho}}{3 M_{pl}^2 \mathcal{H}^2}=\frac{{2\bar{X} \bar{P}_{,X}-\bar{P}}}{3 M_{pl}^2 H^2} \label{22}
+\ee
+Where we have used $ \rho=2XP_{,X}-P$
+\be
+\omega=\dfrac {\overline {P}}{\overline {\rho}}=\dfrac {\overline {P}}{2\overline {X} \, \overline{P}_{,X}-\overline {P}} \label{23}
+\ee
+Moreover we have,
+\be
+\rho'=2X' P_{,X} + 2 X P_{,X \varphi} \varphi' +2 X P_{,X X} X' - P_{,\varphi} \varphi' - P_{,X} X'= (2 X P_{,X \varphi} - P_{,\varphi}) \varphi' + (P_{,X} + 2 X P_{,XX})X'
+\ee
+In the background level and using $\bar{X}=\frac{1}{2 a^2}$, $\bar{X}'=-\frac{\mathcal{H}}{a^2}$, $\varphi'=1$
+\be
+\rho' =\frac{P_{,X}'}{a^2} - P'  - (P_{,X} + \frac{ P_{,XX}}{a^2}) \frac{\mathcal{H}}{a^2}
+\ee
+So we can write the function $P$ and it derivative in terms of $\Omega$, $\omega$ and $c_s^2$,
+\be
+\bar{P}_{X}= a^2 \bar{P} (1+\frac{1}{\omega}) \; \; \; \; \;  \; \bar{P} _{,XX}=a^2  \bar{P}_{,X} \frac{1-c_s^2}{c_s^2} =a^4  \bar{P} (1+\frac{1}{\omega}) (\frac{1}{c_s^2} -1 )
+\label{Pbarder}
+\ee
+So according to \ref{22} and \ref{23}\\
+\be
+\bar{P}=  3 M_{pl}^2 H^2 \Omega \, \omega = \frac{ 3 M_{pl}^2 \mathcal{H}^2 \Omega\, \omega }{a^2} \label{Pbar}
+\ee
+Moreover,
+\be
+\frac{\bar{P}'}{\bar{P}}=\frac{2 \mathcal{H}' }{\mathcal{H}} + \frac{\Omega'}{\Omega} + \cancel{\frac{w'}{w} }- 2\mathcal{H}
+\ee
+%Where according to continuity equation \ref{Conteqgg}, we can write,
+%\be
+%\frac{\bar{P}'}{\bar{P}}=-3 (1+w) \mathcal{H}- \mathcal{H}
+%\ee
+%where we have assumed that $w'=0$ and we have used the below relation,
+%\be
+% \frac{\Omega'}{\Omega}=- \frac{(1+3  w)}{2} \mathcal{H}- \frac{ \mathcal{H'}}{\mathcal{H}}
+%\ee
+Also we have the relation for $\bar{P}'_{,X}$ as following,
+\be
+\frac{\bar{P}'_{,X}}{\bar{P}_{,X}}=\frac{\bar{P}'}{\bar{P}}+2 \mathcal{H}
+\ee
+So we have,
+\begin{align}
+ -a^2 \bar{P}'  + \bar{P}'_{,X}&=-a^2 \bar{P}' + a^2 \bar{P} (1+\frac{1}{w}) (\frac{\bar{P}'}{\bar{P}}+2 \mathcal{H}) = a^2 \frac{\bar{P}'}{w} + 2 \mathcal{H} a^2 \bar{P} (1+\frac{1}{w})
+ \\ \nonumber&
+ = \frac{a^2 \bar{P}}{w} \Big[ 2 \frac{\mathcal{H}'}{\mathcal{H}}+ \frac{\Omega'}{\Omega} + 2 \mathcal{H} w\Big]
+\end{align}
+It is very important to note that by $\bar{P}(\varphi,X)'$ we mean $\bar{P}(\varphi,X)_{,\varphi}$ and $\bar{P}_{,\tau}=\bar{P}_{,\varphi} \varphi' + \bar{P}_{,X} X' $
+The relation between Hubble and conformal Hubble is;
+\be
+\mathcal{H} (\tau)=\frac{1}{a(\tau) }\frac{d a(\tau)}{d \tau }= \frac{1}{a(t) } \frac{d a (t) }{d t} \frac{d t }{ d\tau}= a H(t)
+\ee
+and for the derivative,
+\begin{align}
+& \dot{H}= \frac{-\mathcal{H}^2+ \mathcal{H}'}{a^2} \nonumber \\ &
+\mathcal{H}'=a^2 \Big[ H^2 + \dot{H}\Big ]
+\end{align}
+Now we can construct stress tensor up to first order in Gevolution's perturbation scheme,
+\begin{align} \label{eqTmunuI}
+T_{\mu \nu} &= P g_{\mu \nu} + P_{,X} \partial_{\mu} \varphi \partial_{\nu} \varphi
+ \\
+  \nonumber
+   & =(\bar{g}_{\mu \nu} + \delta g^{(1)}_{\mu \nu}) (\bar{P}+\bar{P}' \pi+\bar{P}_{,X} \delta X_1) + (\bar{P}_{,X}+\bar{P}'_{,X} \pi+\bar{P}_{,XX} \delta X_1) \partial_{\mu} (\tau+ \pi) \partial_\nu (\tau+\pi)+ \ldots
+\\ \nonumber & 
+= \Big[ \bar{g}_{\mu \nu} \bar{P} 
++
+ \bar{P}_{,X} \partial_{\mu} \tau \partial_{\nu} \tau \Big] \epsilon ^0 
++
+\Big[( \bar{g}_{\mu \nu} \bar{P}'+ \bar{P}'_{,X} )\pi+\bar{g}_{\mu \nu}  \bar{P}_{,X} \delta X_1 
++
+ \delta g^{(1)}_{\mu \nu} \bar{P} 
+ +
+  \bar{P}_{,X}  \left ( \partial_{\mu} \pi \partial_{\nu} \tau  
+  +
+  \partial_{\mu} \tau \partial_{\nu} \pi  \right ) 
+    \nonumber \\ &
+  +
+   \delta X_1 \bar{P}_{,XX}   \partial_{\mu} \tau \partial_{\nu} \tau  
+      +
+    \bar{P}_{,X}   \partial_{\mu} \pi \partial_{\nu} \pi
+    +  \delta X_1 {\color{red} \bar{P}_{,XX}  \big(  \partial_{\mu} \tau \partial_{\nu} \pi  +   \partial_{\mu} \pi \partial_{\nu} \tau  \big) }
+    + \cancelto{\mathcal {O}(\epsilon^{2})}{\delta X_1 \bar{P}_{,XX}   \partial_{\mu} \pi \partial_{\nu} \pi  
+   } \Big ] 
+ \; \; \;+ \mathcal {O}(\epsilon^{2}) 
+\end{align}
+It is important to know that $\bar{g}_{\mu \nu}' \bar{P}=0$ since the metric is not a function of scalar field, so it is no affected by changing the scalar field which is a dynamical variable. 
+{\color{red}The red color is the one I have tension with Filippo's calculation.}
+%\newpage
+\subsection{$T_{00}$ component of energy momentum tensor}
+According to previous equation $T_{00} $ component is,
+\begin{align} \label{T00}
+T_{00} &=
+   \Big[ \bar{g}_{0 0} \bar{P} 
++
+ \bar{P}_{,X} \partial_{0} \tau \partial_{0} \tau \Big] \epsilon ^0 
++
+\Big[( -a^2 \bar{P}' +\bar{P}'_{,X} )\pi+\bar{g}_{0 0}  \bar{P}_{,X} \delta X_1 
++
+ \delta g^{(1)}_{0 0} \bar{P} 
+ +
+  \bar{P}_{,X}  \left ( \partial_{0} \pi \partial_{0} \tau  
+  +
+  \partial_{0} \tau \partial_{0} \pi  \right ) 
+    \nonumber
+ \\
+  &
+  +
+   \delta X_1 \bar{P}_{,XX}   \partial_{0} \tau \partial_{0} \tau 
+   +
+    \cancelto{\mathcal {O}(\epsilon^{2}) 
+} { \bar{P}_{,X}  } \partial_{0} \pi \partial_{0} \pi  +   \cancelto{\mathcal {O}(\epsilon^{2})}  {2 \pi'   } \delta X_1  \bar{P}_{,XX}  \Big ]
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  \nonumber
+ \\
+  &
+  =
+  [-a^2  \bar{P} 
++
+ \bar{P}_{,X}  ] \epsilon ^0 
++
+\Big[a^2 (- \bar{P}' +\frac{\bar{P}'_{,X}}{a^2} )\pi- a^2 \bar{P}_{,X} \delta X_1 
+-
+ 2 a^2 \Psi \bar{P} 
+ +
+ 2 \bar{P}_{,X}   {\pi'}
+  +
+    {\color{red}
+   \delta X_1 \bar{P}_{,XX} }
+  \Big ] 
++ \mathcal {O}(\epsilon^{2}) 
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  \nonumber
+ \\
+  &
+  =
+  [-a^2 \bar{P} 
++
+a^2 \bar{P}  (1+\frac{1}{w}) ] \epsilon ^0 
++
+\Big[a^2 \rho' \pi
+-
+ 2 a^2  \Psi \bar{P} 
+ +
+ 2  a^2 \bar{P}  (1+\frac{1}{w})  {\pi'}
+  +
+  a^4 \bar{P}  (1+\frac{1}{w}) (\frac{1}{c_s^2}-1) \,   (\delta X_1 )
+   \Big ] 
++ \mathcal {O}(2) 
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  \nonumber
+ \\
+  &
+  =
+ \frac{ a^2 \bar{P}}{w} \,\epsilon ^0 
++
+\frac{ a^2\bar{ P}}{w}   \Big[ -3 \mathcal{H} (1+w) \pi
+-
+ 2   w \Psi
+ +
+ 2  (1+w)  {\pi'}
+  +
+  a^2 (1+w) (\frac{1}{c_s^2}-1) \, \Big(  -\Psi+{\pi'}-  \frac{(\vec{\nabla} \pi)^2}{2} \Big)
+   \Big ] \epsilon^1
+%+ \mathcal {O}(\epsilon^{3/2}) 
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%  \nonumber
+% \\
+%  &
+%  =
+%\frac{a^2 \bar{ P}}{w} \,\epsilon ^0 
+%+
+%\frac{a^2 \bar{ P}}{w}   \Big[ (2 \frac{\mathcal{H}'}{\mathcal{H}}+ \frac{\Omega'}{\Omega}  ) \pi+  a^2 (1+w) (\frac{1}{c_s^2}- 2)  \delta X_1 
+%-
+% 2 w \Psi
+% +
+% 2  (1+w)  {\pi'}
+% \Big ] 
+%+ \mathcal {O}(\epsilon^{2}) 
+%%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%  \nonumber
+% \\
+%  &  
+%  =
+%3 M_{pl}^2 \mathcal{H}^2 \Omega  \,\epsilon ^0 
+%+
+%3 M_{pl}^2  \mathcal{H}^2 \Omega    \Bigg[ (2 \frac{\mathcal{H}'}{\mathcal{H}}+ \frac{\Omega'}{\Omega}  ) \pi+ (1+w) (\frac{1}{c_s^2}- 2)  \Big[\mathcal{H} \pi -\Psi+{\pi'}-  \frac{(\vec{\nabla} \pi)^2}{2} \Big ]
+%-
+%  \nonumber
+% \\
+%  &
+% 2 w \Psi
+% +
+% 2  (1+w)  {\pi'}
+% \Bigg ]
+%+ \mathcal {O}(\epsilon^{2})  
+%%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%  \nonumber
+% \\
+%  &
+%  =
+%3 M_{pl}^2  \mathcal{H}^2 \Omega \Bigg[  1 +(2 \frac{\mathcal{H}'}{\mathcal{H}}+ \frac{\Omega'}{\Omega}  ) \pi+ \Psi \Big (- (1+w) (\frac{1}{c_s^2}- 2)-2 w  \Big ) + {\pi'} \Big ( (1+w) (\frac{1}{c_s^2}- 2 )+2 (1+w)   \Big) 
+%   \nonumber
+% \\
+%  & - \frac{(\vec{\nabla} \pi)^2}{2}  \Big ( (1+w) (\frac{1}{c_s^2}- 2 )  \Big )
+% \Bigg]
+ %::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+   \nonumber
+ \\
+  &
+  =
+3 M_{pl}^2  \mathcal{H}^2 \Omega \Bigg[  1-3\mathcal{H} (1+w)  \pi+ \Psi \Big (2 - \frac{1+w}{c_s^2}  \Big ) + {\pi'} \Big ( \frac{1+w}{c_s^2}   \Big)  - \frac{(\vec{\nabla} \pi)^2}{2}   (1+w) (\frac{1}{c_s^2}- 2 ) 
+ \Bigg]+  \mathcal {O}(\epsilon^{2}) 
+\end{align}
+Where we have used \ref{Pbarder} and \ref{Pbar}.
+Finaly the $T_{00}$ component is;
+%\begin{empheq}[box=\mymath ]{equation*}
+%If we convert the $\pi$ to be the perturbation in constant physical time hypersurfaces (not constant conformal time) we get,
+%$\pi_{phys}= \pi_{conf}$
+\begin{empheq}[box=\mymath ]{equation*}
+\begin{align}
+T_{00}=  
+3 M_{pl}^2   \mathcal{H}^2\Omega \Bigg[  1-3\mathcal{H} (1+w)  \pi+  \Psi \Big (2 - \frac{1+w}{c_s^2}  \Big ) + {\color{blue} ({\pi'}+ \mathcal{H} \pi) } \Big ( \frac{1+w}{c_s^2}   \Big)  -   \frac{(\vec{\nabla} \pi)^2}{2}    (1+w) (\frac{1}{c_s^2}- 2 ) 
+ \Bigg]+  \mathcal {O}(\epsilon^{2}) 
+\end{align}
+\end{empheq}
+Now we compare the result with equation 147 of https://arxiv.org/pdf/1411.3712.pdf:\\
+It is clear that the coefficient of $\pi$ is the same, but we should remember that we changed a sign to get this result ($\rho'$) and also $H \pi_{phys}$ = $\mathcal{H} \pi_{\text{conf}}$. \\
+${\color{blue} \dot{\pi_{phys}} = \partial_t(a \pi_{conf})=(a \dot{\pi_{con}} + aH \pi_{con} -\Psi)= \pi_{con}'+\mathcal{H} \pi_{con} -\Psi}$ \\
+The other terms in the paper are:
+\be
+ H^2 \alpha_k \mathcal{P}= \frac{\bar{\rho } (1+w)}{c_s^2}(\dot{\pi}- \Psi)=  \frac{\bar{\rho } (1+w)}{c_s^2}({\pi'}_{\text{conf}}- \Psi)
+\ee
+$\Psi$ here means $\Phi$ in the paper. Moreover $\dot{\pi}_{phys}=\pi_{conf}'$. The extra $2 \Psi$ term here comes from the fact that $T_{00}=g_{00} T^0_0$. \\
+In sum, up to first order we get the same equatuin as the references. Moreover the extra $a^2$ factor is in $\Omega =  \frac{a^2 \bar{\rho}}{3 M_{pl}^2 \mathcal{H}^2}$
+\subsection{$T_{0i}$ component of energy momentum tensor}
+According to the equation \ref{eqTmunuI} we can calculate $T_{0i}$ component of energy momentum tensor
+\begin{align}
+T_{\mu \nu}    & =(\bar{g}_{\mu \nu} + \delta g^{(1)}_{\mu \nu}) (\bar{P}+\bar{P}' \pi+\bar{P}_{,X} \delta X_1) + (\bar{P}_{,X}+\bar{P}'_{,X} \pi+\bar{P}_{,XX} \delta X_1) \partial_{\mu} (\tau+ \pi) \partial_\nu (\tau+\pi)+ \ldots
+%\label{eqTmunu}
+\end{align}
+So $T_{0i}$ reads;
+\begin{align} \label{T0i}
+T_{0 i} &
+= \Big[\cancel{\bar{g}_{0 i}} \bar{P} 
++
+ \bar{P}_{,X} \partial_{0} \tau \partial_{i} \tau \Big] \epsilon ^0 
++
+\Big[ \cancel{\bar{g}_{0 i}} \bar{P}' \pi+ \cancel{\bar{g}_{0 i}}  \bar{P}_{,X} \delta X_1 
++
+ \delta g^{(1)}_{0 i} \bar{P} 
+ +
+  \bar{P}_{,X}  \Big( \partial_{0} \pi \cancel{ \partial_{i} \tau  }
+  +
+  \partial_{0} \tau \partial_{i} \pi  \Big ) 
+      \nonumber  \\&
+  +
+   \delta X_1 \bar{P}_{,XX}   \partial_{0} \tau  \cancel{\partial_{i} \tau  }
+   +
+     \delta X_1 \bar{P}_{,XX}   \partial_{0} \tau  \partial_{i} \pi
+  +
+    {\bar{P}_{,X} } \partial_{0} \pi \partial_{i} \pi \; \;   \Big ]
++ \mathcal {O}(\epsilon^{2}) 
+\nonumber 
+\\ 
+&
+= [0] \epsilon ^0 
++
+\Big[
+ \delta g^{(1)}_{0 i} \bar{P} 
+ +
+  \bar{P}_{,X}   \partial_{0} \tau \partial_{i} \pi +  {\bar{P}_{,X} } \partial_{0} \pi \partial_{i} \pi + \delta X_1 \bar{P}_{,XX}    \partial_{i} \pi
+  \Big ] 
++ \mathcal {O}(\epsilon^{2}) 
+\nonumber 
+\\ 
+&
+= 
+3 M_{pl}^2 \mathcal{H}^2 \Omega \Bigg[
+ w \, \frac{\delta g^{(1)}_{0 i} }{a^2}
+ +
+   (1+w )\,  \partial_{i} \pi + (1+w) \, \pi' \partial_{i} \pi  -(1+ w)(\frac{1}{c_s^2}-1)  \frac{(\vec{\nabla} \pi)^2}{2} \partial_{i} \pi 
+   \Bigg ]
++ \mathcal {O}(\epsilon^{2}) 
+%\label{eqTmunu}
+\end{align}
+If we neglect vector perturbation and keeping only short wave correction in first order we have,
+\begin{empheq}[box=\mymath]{equation*}
+\begin{align}
+T_{0i}= 
+3 M_{pl}^2 \mathcal{H}^2 \Omega \Bigg[
+    (1+w )\,  \partial_{i} \pi -(1+ w)(\frac{1}{c_s^2}-1)   \frac{(\vec{\nabla} \pi)^2}{2} \partial_{i} \pi 
+   \Bigg ]
++ \mathcal {O}(\epsilon^{2}) 
+\end{align}
+\end{empheq}
+Note that $T_{0i}=T_{i0}$. To first order the followed expression is the same as equation 148 which is $q_D=-\bar{\rho} (1+w) \pi$, which means $T_{0i} = -\bar{\rho} (1+w) \partial_i \pi/a = -\bar{\rho} (1+w) \partial_i \pi_{\text{conf}} $, since $T_{0i}=g_{00}T^0_i=- T^0_i$ and $g_{00}$ in the paper is "-1".
+\subsection{$T_{ij}$ component of energy momentum tensor}
+It is noteworthy to mention that by $P'$ we mean $P_{\varphi}$ while the expression for $P_{\tau}= P_{\varphi} \varphi' + P_{X} X'$ since P is a function of $\varphi$ and $X$.
+Again using the equation \ref{eqTmunuI}
+\begin{align}
+T_{\mu \nu} &
+= \Big[ \bar{g}_{\mu \nu} \bar{P} 
++
+ \bar{P}_{,X} \partial_{\mu} \tau \partial_{\nu} \tau \Big] \epsilon ^0 
++
+\Big[ ({\bar{g}_{\mu \nu}} \bar{P}' +\bar{P}'_{, X})\pi+ \bar{g}_{\mu \nu}  \bar{P}_{,X} \delta X_1 
++
+ \delta g^{(1)}_{\mu \nu} \bar{P} 
+ +
+  \bar{P}_{,X}  \left ( \partial_{\mu} \pi \partial_{\nu} \tau 
+  +
+  \partial_{\mu} \tau \partial_{\nu} \pi  \right ) 
+       \nonumber \\ &
+  +
+   \delta X_1 \bar{P}_{,XX}   \partial_{\mu} \tau \partial_{\nu} \tau  
+   +
+    \bar{P}_{,X}   \partial_{\mu} \pi \partial_{\nu} \pi  + 
+    +  \delta X_1 \bar{P}_{,XX}  \big(  \partial_{\mu} \tau \partial_{\nu} \pi  +   \partial_{\mu} \pi \partial_{\nu} \tau \big ) \Big]
++ \mathcal {O}(\epsilon^{3/2}) 
+%\label{eqTmunu}
+\end{align}.
+So $T_{ij}$ is;
+\begin{align} \label{Tij}
+T_{i j} &
+= \Big[ \bar{g}_{i j} \bar{P} 
++
+ \bar{P}_{,X} \cancel{ \partial_{i} \tau}\partial_{j} \tau \Big] \epsilon ^0 
++
+\Big[ ({\bar{g}_{i j}} \bar{P}' \pi+\cancel{\bar{P}'_{, X}} \partial_{i} (\tau+\pi) \partial_{j}(\tau+\pi))\pi+ \bar{g}_{i j}  \bar{P}_{,X} \delta X_1 
++
+ \delta g^{(1)}_{i j} \bar{P} 
+        \nonumber \\ &
+ +
+  \bar{P}_{,X}  \left ( \partial_{i} \pi \cancel{\partial_{j} \tau  }
+  +
+\cancel{  \partial_{i} \tau }\partial_{j} \pi  \right ) 
+  +
+   \delta X_1 \bar{P}_{,XX}   \cancel{ \partial_{i} \tau }\partial_{j} \tau  
+   +
+    \bar{P}_{,X}   \partial_{i} \pi \partial_{j} \pi \Big ]
++ \mathcal {O}(\epsilon^{2}) 
+\nonumber \\ & 
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+= \Big[ a^2 \delta_{ij} \bar{P} 
+ \Big] \epsilon ^0 
++
+\Big[ a^2   (\delta_{ij}  \bar{P}' + P_{,X} \bar{X}' )\pi+ a^2  \delta_{ij}   \bar{P}_{,X} \delta X_1 
+-
+ 2 a^2 \Phi \delta_{ij} \bar{P} 
+     +
+    \bar{P}_{,X}   \partial_{i} \pi \partial_{j} \pi \Big ] 
++ \mathcal {O}(\epsilon^{2}) 
+\nonumber \\ & 
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+= \frac{ a^2 \bar{P}}{w}   \Big[ w \delta_{ij} 
+\Big] \epsilon ^0 
++
+\frac{ a^2  \bar{P}}{w} \Big[ w   \delta_{ij}  \bar{P}_{,\tau}  /\bar{P} \pi+  \delta_{ij}   (1+w)  \Big (-{\mathcal{H}} \pi-\Psi+{\pi'}- \frac{ (\vec{\nabla} \pi)^2 }{2 } \Big ) 
+-
+ 2  w \Phi \delta_{ij} 
+        \nonumber \\ &
+     +
+   (1+w)  \partial_{i} \pi \partial_{j} \pi \Big ] 
++ \mathcal {O}(\epsilon^{2}) 
+\nonumber \\ & 
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+=3 M_{pl}^2 \mathcal{H}^2 \Omega    \Bigg[w \delta_{ij} -3 \mathcal{H} w (1+w)\pi \delta_{ij} 
++
+ \delta_{ij}   (1+w)  \Big (-\Psi+{\pi'}- \frac{(\vec{\nabla} \pi)^2  }{2 }  \Big )
+-
+ 2 w \Phi \delta_{ij} 
+     +
+   {(1+w)}  \partial_{i} \pi \partial_{j} \pi \Bigg ]
+          \nonumber \\ & 
+%:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: 
+%:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+\end{align}
+As a result we can write;
+\begin{empheq}[box=\mymath]{equation*}
+\begin{align}
+T_{ij}=&3 M_{pl}^2 \mathcal{H}^2 \Omega  \Bigg[  w \delta_{ij}  -3 \mathcal{H} w (1+w)\pi \delta_{ij}
+-
+ 2 w \Phi \,  \delta_{ij} + (1+w) ( {\color{blue} ({\pi'}+ \mathcal{H} \pi) }-\Psi)  \, \delta_{ij}
+ \nonumber  \\ &
+ - \frac{1+w}{2 }   (\vec{\nabla} \pi)^2 \, \delta_{ij} +({1+w}  )\partial_{i} \pi \partial_{j} \pi    \Bigg ] 
+     + \mathcal {O}(\epsilon^{2}) 
+\end{align}
+\end{empheq}
+Comparing with equation 150 of https://arxiv.org/pdf/1411.3712.pdf:
+\be
+T_{ij}^{(paper)}= g_{ii} T^i_{j} =a^2 \Big(\dot{p} \pi + \frac{\rho_D + p_D}{M^2} \times M^2( \dot{\pi} -\Psi) \Big) \delta_{ij} = \delta_{ij} a^2[-3 \frac{\mathcal{H}}{a} \bar{\rho} (1+w) a \pi_{\text{conf}} + \bar{\rho} (1+w) ( {\pi}'_{\text{conf}} -\Psi))]
+\ee
+Which is the same  and extra $a^2$ coefficient in their paper  is in the definition of $\Omega$ which is defined by physical Hubble constant! Moreover extra term -2$w \Phi$ comes from $\delta g_{ik} T^{k}_j$
+The diagonal components read; 
+\be
+T_{ii}=3 M_{pl}^2 \mathcal{H}^2 \Omega   \Bigg[   w -3 \mathcal{H} w (1+w) \pi
+-
+ 2 w  \, \Phi  - (1+w)  \, \Psi +  (1+w) \,  {\pi'} 
+ + \frac{1+w}{2 }    (\vec{\nabla} \pi)^2    \Bigg ] 
+     + \mathcal {O}(\epsilon^{3/2}) 
+\ee
+The off diagonal components are; 
+\be
+T_{ij}=3 M_{pl}^2 \mathcal{H}^2 \Omega (1+w)   \,   \partial_{i} \pi \partial_{j} \pi   
+     + \mathcal {O}(\epsilon^{3/2}) 
+\ee
+\section{Field transfer function}
+Before trying to get the field transfer function we try to do some tests on different results in order to catch all the physics we are dealing with.
+
+\section{Gevolution implementation }
+In Gevolution we should use $ M^2_{pl}= 1/8 \pi G$.\\
+%And it seems the normalization factor is $-3 \mathcal{H}_0^2T_0^0/8\pi G$ \\
+So we have:
+%\begin{empheq}[box=\mymath]{equation}
+\begin{align}
+T_{0i}= 
+3 M_{pl}^2 \mathcal{H}^2 \Omega \Bigg[
+    (1+w )\,  \partial_{i} \pi -(1+ w)(\frac{1}{c_s^2}-1)   \frac{(\vec{\nabla} \pi)^2}{2} \partial_{i} \pi 
+   \Bigg ]
++ \mathcal {O}(\epsilon^{2}) 
+\end{align}
+
+\begin{align}
+ & T_0^0 (Gev)=-a^3 {T_{0}^{0}}=   {3 a M_{pl}^2   \mathcal{H}^2\Omega} \Bigg[1+ \frac{1+w}{c_s^2} \Big(- 3 \mathcal{H}c_s^2 \pi- \Psi+  {\pi'}  -  \Big(1-2 c_s^2 \Big) 
+ \frac{(\vec{\nabla} \pi)^2}{2} \Big )   \Bigg ]
+\nonumber \\ &
+T^{0}_{i}(Gev)=a^3 T^0_i = -a T_{0i} = -{3 a M_{pl}^2   \mathcal{H}^2\Omega}  (1+w)\Big[1 - (\frac{1}{c_s^2} -1)  \frac{(\vec{\nabla} \pi)^2}{2}  \Big ] \partial _i \pi 
+\nonumber \\ &
+T_{j}^{i}(Gev)= a^3 T_j^i = {3 a M_{pl}^2   \mathcal{H}^2\Omega w} \Bigg ( 1+  \frac{1+w}{w}\Big [ -3 \mathcal{H} w \pi- \Psi + \pi' -  \frac{(\vec{\nabla} \pi)^2}{2}   \Big] \delta_{j}^{i}  + \frac{1+w}{w} \delta^{i k} \partial_k \pi \partial_j \pi  \Bigg) 
+\end{align}
+%\end{empheq}
+Note that $\dot{H}$ is determined by all the matter contents of the universe not by k-essence alone, the continuity equation for k-essence or matter gives the dynamics of density. \\
+About the unit of $T^0_0$ note that it is $\bar{\rho}_{kessence} [1+\delta \rho/\bar{\rho} ]$ and since in Gevolution it is multiplied to $-a^3$ and since critical density at redshift zero is 1 so we have\\
+\be
+3 a M_{pl}^2   \mathcal{H}^2\Omega = a^3   \frac{\bar{\rho}_D}{\rho_{crit} ^{0}=1} = a^3   \frac{\bar{\rho}^0_D a ^{-3(1+w)}}{\rho_{crit} ^{0}}= \Omega^{0}_{kess} a^{-3w}
+\ee
+\begin{empheq}[box=\mymath]{equation}
+\begin{align}
+ & T_0^0 (Gev)=  \Omega^0_{kess} a^{-3 w}  \Bigg[1+ \frac{1+w}{c_s^2} \Big(- 3 \mathcal{H}c_s^2 \pi- \Psi+   {\color{blue} ({\pi'}+ \mathcal{H} \pi) }  -  \Big(1-2 c_s^2 \Big) 
+ \frac{(\vec{\nabla} \pi)^2}{2} \Big )   \Bigg ]
+\nonumber \\ &
+T^{i}_{0}(Gev)= - \Omega^0_{kess} a^{-3 w} (1+w) \Big[1 - (\frac{1}{c_s^2} -1)  \frac{(\vec{\nabla} \pi)^2}{2}  \Big ] \partial _i \pi 
+\nonumber \\ &
+T_{j}^{i}(Gev)= w  \, \Omega^0_{kess} a^{-3 w} \Bigg ( 1+  \frac{1+w}{w}\Big [ -3 \mathcal{H} w \pi- \Psi +   {\color{blue} ({\pi'}+ \mathcal{H} \pi) } -  \frac{(\vec{\nabla} \pi)^2}{2}   \Big] \delta_{j}^{i}  + \frac{1+w}{w} \delta^{i k} \partial_k \pi \partial_j \pi  \Bigg) 
+\end{align}
+\end{empheq}
+{\color{red} What is $\delta P/\delta\rho$ here and is it comparable with other papers?}
+In Gevolution we extract $\delta T_0^0/ \bar{T}_0^0$ which scales out the coefficient $\Omega^0_{kess} a^{-3 w} $. \\
+The field equation is:
+we take $d \tau=\tau_{n+1}-\tau_n $ and $x_{i,j,k} $ as lattice point. We solve the differential equation numerically as following;
+\be
+\pi_v= {\pi}'
+\ee
+\be
+\pi^{n}= \pi ^{n-1}+\pi_v ^{n-\frac{1}{2}} d \tau
+\ee
+\be \label{eq3}
+\pi_v ^{n+\frac{1}{2}}=\pi_v ^{n-\frac{1}{2}} + {\pi''} ^{(n)}  d \tau
+\ee
+
+We define the laplacian in code as following,
+\begin{align}
+& \nabla^2 \pi =-\frac{\pi^{n}_{i-1,j,k}+\pi^{n}_{i+1,j,k} +\pi^{n}_{i,j-1,k} +\pi^{n}_{i,j+1,k}+\pi^{n}_{i,j,k-1}+\pi^{n}_{i,j,k+1} -6 \pi^{n}_{i,j,k}  }{ a^2 dx^2}  
+\end{align}
+Moreover in order to get scalar in the vertices the derivatives like $\nabla \pi . \nabla \pi $ should be defined symmetric .
+So we can rewrite the equation \ref{eq3} as below;
+After some simplification we get,
+\begin{align} 
+%
+ &\pi_v ^{n+\frac{1}{2}}= \frac{1}{1+ d\tau   \mathcal{H}^{(n)}  (1-3w) /2 - d\tau (1-c_s^2) \nabla^2 \pi^{(n)}/2} \times \Bigg[ \pi_v ^{n-\frac{1}{2}} - d \tau \Big [(1- 3w)\mathcal{H}^{(n)}   \frac{\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} }{2}
+     \nonumber
+     \\
+      &
+  -3 { c_s^2 \mathcal{H}^{(n)}}\Big( 1- \frac{w}{c_s^2} \Big )\Psi^{(n) }
+ - \, \frac{{\Psi}^{(n)}-{\Psi}^{(n-1)} }{d \tau}
+      - 3  c_s^2  \, \frac{{\Phi}^{(n)}-{\Phi}^{(n-1)} }{d \tau}    
+   +\Big( 3\mathcal{H}^2 (c_s^2 -w) + \mathcal{H}' (1-3c_s^2) \Big)\pi^{(n)}  
+             \nonumber
+     \\
+      &
+       - c_s^2 {\nabla^2 \pi ^{(n)}}  
+   %
+   + (1-c_s^2)\Psi^{(n)} {\nabla^{2} \pi^{(n)}  }    
+      %___________
+    - 2 c_s^2  \Phi ^{(n)}  {\nabla^2 \pi^{(n)}}
+          %___________
+     + {3 c_s^2  \mathcal{H}^{(n)} (1+w) }\pi^{(n)} {\nabla^2 \pi^{(n)} }   
+          \nonumber
+     \\
+      &
+               %___________
+     -  (1-c_s^2)
+ \Big( \frac{\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} }{2} +\mathcal{H}  \pi^{(n)}  \Big) {\nabla^2  \pi^{(n)}} 
+               %___________
+    - (2 c_s^2-1) {\nabla  \Psi^{(n)}  . \nabla \pi ^{(n)} }
+            %___________
+    + c_s^2 {\nabla  \Phi ^{(n)} . \nabla \pi^{(n)}  }  
+                              \nonumber
+     \\
+       & 
+            %___________
+              +\frac{\mathcal{H}^{(n)}} {2 } \Big(2+3w+c_s^2  \Big) \,{\nabla  \pi^{(n)} . \nabla \pi^{(n)} }  
+                      %___________                    
+         -2(1-c_s^2) \Big( \frac{{ \nabla  ( \pi_{v  \; {i,j,k}}^{n+\frac{1}{2}} +\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} ) }  } {2}  + \mathcal{H}  \nabla\pi^{(n)} \Big) 
+    \Big] \Bigg]
+\end{align}
+Since we have $\nabla \pi_v $ in the equation we use predictor corrector method as following,\\
+In the first step we predict that the term $\nabla \pi \nabla \pi_v$ is small so we approximate $\nabla \pi_v ^{(n)}$ with $\nabla \pi_v^{n-\frac{1}{2}}$ then we calculate $\pi_v^{n+\frac{1}{2}}$ according to the formula with the guess, then we use the new $\pi_v^{n+\frac{1}{2}}$ into the full equations to correct $\pi_v^{n+\frac{1}{2}}$ . \\
+ We have taken $\pi_{v  \; {i,j,k}}^{n} =\frac{(\pi_{v  \; {i,j,k}}^{n+\frac{1}{2}} +\pi_{v \; {i,j,k}}^{n-\frac{1}{2}} )}{2} $. Then we need to calculate $\mathcal{H}'$, ${\Psi}'$ and  ${\Phi}'$ in each loop, to calculate ${\Psi}'$ we save two $\Psi$ in each loop. \\
+% \begin{align} 
+% &\pi'' - \mathcal{H} \Big (1+ 3w \Big)\pi' -3 {a c_s^2 \mathcal{H}}\Big( 1- \frac{w}{c_s^2} \Big )\Psi -a \, {\Psi'}- 3 c_s^2 a \,{\Phi'} 
+%  +3  c_s^2 \Big({-\mathcal{H}^2 + \mathcal{H}'} \Big) \pi 
+% - c_s^2 {\nabla^2 \pi }
+%     + (1-c_s^2)\pi {\nabla^2 \Psi }
+%      - 2 c_s^2 \pi {\nabla^2 \Phi }
+%            \nonumber
+%   \\
+%    &
+%      + 3 c_s^2  H (1+w)\pi {\nabla^2 \pi }   
+%  -  (1-c_s^2)
+%   \pi \frac{\nabla^2\pi ' }{a}   
+%   - (2 c_s^2-1) {\nabla  \Psi . \nabla \pi }
+% + c_s^2 {\nabla  \Phi . \nabla \pi }  
+%   +\frac{\mathcal{H}} {2 a } \Big(2+3w+c_s^2  \Big) \,{\nabla  \pi . \nabla \pi }     =0 
+%%  -(\frac{1}{c_s^2}-1) \nabla^2 \Psi \pi+ 2 \nabla^2 \Phi \pi - 3 H (1+w) \pi \nabla^2 \pi  + (\frac{1}{c_s^2}-1) \pi \nabla^2 \dot{\pi}   \nonumber \\ &+ (2-\frac{1}{c_s^2})\nabla \Psi \nabla \pi - \nabla \Phi \nabla \pi -\frac{H} {2 c_s^2} \Big(2+3w+c_s^2  \Big) \nabla \pi \nabla \pi =0
+%  \end{align} 
+
+\subsection{Initial condition}
+-Do everything carefully and have some behaviours and approximations in mind of functions \\
+-Reach something consistent\\
+-
+\subsection{gevolution tests}
+-Compare with hi-class in different redshift\\
+-Do check Stress tensor implemented alone,\\
+-Invent some tests \\
+-Put figure of Background and zero order modes of the field and Lorenzo's function
+%%%%%%%%%%%%%%%%%
+\section{Numerical Results}
+\label{s:num}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+How large are the 1st order relativistic terms from camb? Plot, literature.
+
+Compare the different correction terms. How do they depend on $\ell$ and on $z_1-z_2$ and on $z_1$? Which one dominates when? Especial emphasis on new terms. Can we neglect then? When?
+
+How good is our approximation of the integral over $r$?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions}
+\label{Sec4}
+Is the lensing observable?
+
+Can we use it?
+
+Do we plan to look into redshift space distortions?
+
+\setcounter{equation}{0}
+%%%%%%%%%%%%%%%%%%%%%
+
+ 
+\section*{Acknowledgements}
+
+We acknowledge financial support from the Swiss National Science Foundation.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Derivation of the new lensing terms for HI intensity mapping\label{a:derCl-new}}
+
+%\bea
+%&& \hspace*{-1cm}\l F_3^*(\bell_1,z_1)\DH(\bell_2,z_2)\re =   ~ \de(\bell_1-\bell_2) \times \nonumber \\ && \left\{\begin{array}{ll}
+% 0 & \quad \mbox{ if } z_2>z_1 \\ 
+%2\Om_m\frac{(r_1-r_2)r_2H^2_0}{r_1H(z_2)}(1+z_2)C_{\ell_2}^{\de_m\DH}(z_2,z_2)R^{\phi\De}(z_2,z_1)  &  \quad\mbox{ if } z_2<z_1
+%\end{array}\right.
+%\eea
+This is the result which we have inserted in \eqref{e:Cellens}.
+%
+\bibliographystyle{JHEP}
+\bibliography{biblio}
+\end{document}
+
+
+
+
+
+
+\begin{thebibliography}{999}
+\newcommand{\bb}{\bibitem}
+
+
+\bibitem{RuthBook} R. Durrer, {\it The Cosmic Microwave Background}. Cambridge University Press, 2008.
+
+
+\bibitem{Lewis:2006fu} 
+  A.~Lewis and A.~Challinor,
+  ``Weak gravitational lensing of the cmb,''
+  Phys.\ Rept.\  {\bf 429}, 1 (2006)
+  [astro-ph/0601594].
+  %%CITATION = ASTRO-PH/0601594;%%
+
+\bibitem{Fanizza:2015swa} 
+  G.~Fanizza, M.~Gasperini, G.~Marozzi and G.~Veneziano,
+  ``A new approach to the propagation of light-like signals in perturbed cosmological backgrounds,''
+  arXiv:1506.02003 [astro-ph.CO].
+  %%CITATION = ARXIV:1506.02003;%%
+     
+\bibitem{DiDio:2014lka} 
+  E.~Di Dio, R.~Durrer, G.~Marozzi and F.~Montanari,
+  %``Galaxy number counts to second order and their bispectrum,''
+  JCAP {\bf 1412}, 017 (2014)
+  [arXiv:1407.0376 [astro-ph.CO]].
+  %%CITATION = ARXIV:1407.0376;%%   
+    
+    
+  
+
+ \end{thebibliography}
+
+
+
+
