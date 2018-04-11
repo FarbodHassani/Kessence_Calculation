@@ -1,0 +1,336 @@
+\documentclass[a4paper,12pt]{article}
+%% My standard included packages
+%\pdfoutput=1 % if your are submitting a pdflatex (i.e. if you have
+%             % images in pdf, png or jpg format)
+%\usepackage{jcappub} % for details on the use of the package, please
+%                     % see the JCAP-author-manual
+%\usepackage[T1]{fontenc} % if needed
+
+\usepackage{setspace}           % Allows easy changes to line spacing 
+\usepackage{graphicx}           % Allows including of graphics files
+\usepackage{amsmath}            % Additional math capabilities
+\usepackage{marginnote}         % Used with todonotes package
+\usepackage{datetime}           % Allows formatting of date and time
+\newcommand {\be}{\begin{equation}}
+\newcommand {\ee}{\end{equation}}
+
+\usepackage{enumitem} 
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{graphicx}% Use pdf, png, jpg, or epså¤ with pdflatex; use eps in DVI mode
+\usepackage{caption}
+\usepackage{subcaption}
+          % List formatting commands
+\setlist{noitemsep}             % Remove space between list items 
+%\usepackage{subfigure}          % Create numbered and captioned subfigures
+\usepackage{rotating}           % Create landscape tables and figures
+\usepackage[dvipsnames]{xcolor} % Refer to colors by name
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=Orange,citecolor=RedViolet]{hyperref}           % URLS and hyperlinks
+%\usepackage{hyperref}           % URLS and hyperlinks
+\usepackage{float}              % Activate [H] option to place figure HERE
+\usepackage[numbers]{natbib}
+\usepackage{versionPO}          % Include text conditionally
+\usepackage{caption}
+%\usepackage[utf8]{inputenc}
+%\usepackage[nottoc]{tocbibind}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
+% These next lines allow including or excluding different versions of text
+% using versionPO.sty
+\includeversion{notes}		% Include notes?
+%\excludeversion{notes}
+\excludeversion{comment}
+\includeversion{links}          % Turn hyperlinks on?
+\excludeversion{submit}		% Format for conference submission?
+\includeversion{toc}		% Include table of contents?
+%\graphicspath{{./Results1-Perihelionadvance}}
+
+% Turn off hyperlinking if links is excluded
+\iflinks{}{\hypersetup{draft=true}}
+
+% Notes options
+\ifnotes{%
+\usepackage[margin=1in,paperwidth=10in,right=2.5in]{geometry}%
+\usepackage[textwidth=1.4in,shadow,colorinlistoftodos]{todonotes}%
+}{%
+\usepackage[margin=1in]{geometry}%
+\usepackage[disable]{todonotes}%
+}
+
+% Allow todonotes inside footnotes without blowing up LaTeX
+% Next command works but now notes can overlap. Instead, we'll define 
+% a special footnote note command that performs this redefinition.
+%\renewcommand{\marginpar}{\marginnote}%
+
+% Save original definition of \marginpar
+\let\oldmarginpar\marginpar
+% Workaround for todonotes problem with natbib (To Do list title comes out wrong)
+\makeatletter\let\chapter\@undefined\makeatother % Undefine \chapter for todonotes
+% Packages included specifically for this document.
+\usepackage{texintro}           % Document-specific definitions
+\usepackage{tocvsec2}           % More flexible formatting of table of contents
+\usepackage{bibentry}           % Print full citation in text
+\nobibliography*                                % Allow use of \bibentry command
+\usepackage{tikz}             % Already included by todonotes
+\usetikzlibrary{matrix}
+\usepackage[retainorgcmds]{IEEEtrantools}  % Equation formatting. Option needed to
+                                           % allow enumitem to work.
+
+% Workaround for todonotes problem with natbib (To Do list title comes out wrong)
+% If you're including tocvsec2, do so before this command.
+\makeatletter\let\chapter\@undefined\makeatother % Undefine \chapter for todonotes.
+
+% Number paragraphs and subparagraphs and include them in TOC
+\setcounter{tocdepth}{2}
+
+\usepackage[affil-it]{authblk} 
+\usepackage{etoolbox}
+%\usepackage{lmodern}
+%\renewcommand\Authfont{\fontsize{12}{14.4}\selectfont}
+%\renewcommand\Affilfont{\fontsize{9}{10.8}\itshape}
+%\renewcommand\Authfont{\fontsize{12}{15}\selectfont}
+%\renewcommand\Affilfont{\fontsize{9}{11}\itshape}
+\definecolor{astral}{RGB}{46,116,181}
+%\subsectionfont{\color{astral}}
+%\sectionfont{\color{astral}}
+%\usdate{17 May}                         % Use usual LaTeX date layout
+
+%\title{\color{BlueViolet}\Huge{On the accuracy of approximated geodesic equations and different potentials with different numerical methods } }
+\title{\color{BlueViolet}\Huge{Reports- EFT implementation project}}
+%\vskip 2em
+\author{Farbod Hassani}
+%\thanks{Email:\href{mailto:farbod.hassani@unige.ch}{{farbod.hassani@unige.ch}}}  \thanks{Homepage: \href{http://www.farbod-hassani.com}{farbod-hassani.com}}}
+%\affil{D\'epartement de Physique Th\'eorique and Center for Astroparticle Physics, Universit\'e de Gen\'eve,
+%24 quai Ansermet, CH-1211 Gen\'eve 4, Switzerland}
+
+%{farbod-hassani.com}} }
+%\newcommand*{\TitleFont}{%     \usefont{\encodingdefault}{\rmdefault}{b}'%     \fontsize{18}{16}%    \selectfont}
+%\title{\TitleFont Halo finder}
+%\author[1]{{Farbod Hassani} \thanks{ \url{farbod.hassani@gmail.com}
+%}
+%\thanks{farbod-hassani.com}}
+%\author[2]{Author E\thanks{E.E@university.edu}}
+%\affil[1]{D\'epartement de Physique Th\'eorique and Center for Astroparticle Physics, Universit\'e de Gen\'eve,
+%24 quai Ansermet, CH-1211 Gen\'eve 4, Switzerland}
+%\emailAdd{farbod.hassani@gmail.com}
+%\affil[2]{Department of Mechanical Engineering, \LaTeX\ University}
+      %\begin{abstract}
+%This is abstract text: This simple document shows very basic features of \LaTeX{}.
+%\lstset { %
+%    language=C++,
+%    %backgroundcolor=\color{black!5}, % set backgroundcolor
+%    basicstyle=\footnotesize,% basic font settings
+%}
+\begin{document}
+  \maketitle
+  \flushbottom
+  
+  \section{05April2018}
+ - Today I've tried to get $P_{22}$ powerspectrum, for Riess Sciama effect.\\
+  I tried, mathematica (Matt mathematica) which did not work because of Nintegration,\\
+   I tried old version of class which loop correction to density power is implemented, but it seems the integration is not taken by high precision, so we dont get the right difference! \\
+ I also tried FnFast, which is not documented at all, so I could not use it! \\
+ Now I want to check Kumatsu's routines which seems good to me, well documented and etc. I can also check CAMB to see if they have implemented it ... \\
+ Then I need to calculated powaer of $\Psi'$ according to Riess Sciama effect and compare it with Gevolution! and report the result to all collaborators. \\
+ I also could match Class and my mathematica code result, which is intresting, so I need to report it as well! \\
+ -After believing the Gevolution and field equation, we need to agree on Matter powerspectrum and stress tensors in class, mathematica code and Gevolution! \\
+ - When everything is fixed we must add second order corrections! Compare them with first order terms and .... \\
+ - Check the error from predictor -corrector method!... \\
+ -Then we need to report about all the results and think for future works and results! \\
+ -Also we can think about the question: Is Riess Sciama effect is relevant for scalar field? how much? although it is subpercent in CMB, is it the same in field power?
+ \section{05April2018}
+ -We know how the matter behaves:
+in $cs^2=w?>0$ the evolution should be the same as GEvolution matter!!!
+
+-http://www2.iap.fr/users/pitrou/cmbquick.htm
+
+-I check$ \Phi_dot$, if we add to$ \phi_old $we get$ \Phi_new$!
+
+-For limit $cs and w?>0$ check if it looks like matter? If the filed is differet, maybe class is written differently! but if$ \delta$ is the smae as matter or non-linear matter then it is ok otherwise there should be a problem.
+
+-Our at conversion from $\delta $and $\theta$ are linear, 
+
+- Do the stupid phi test, get phi at redshift 100 and add $phi_dot$  and check we get at z=50
+-I must write what tests I did and what are the results!
+
+
+-Get the field equation, why at linear order for $w=cs^2=0$ 
+eq.2 and 3 of Domenico paper and Martin, why we get 0 evolution when $\pi$ and $\pi_dot$ is zero but in Domenico it is generated!!
+
+- Just check that in matter case for kessence we get sinsible results!
+Check that also in $\delta T_00$ we get good behaviour in first order perturbation theory!
+ \begin{figure}[H]
+ \includegraphics[scale=0.3]{IMG_3589.jpg} 
+ \end{figure}
+ \section{06April2018}
+-I've tried to get non linear $\dot{\Psi}$ from CMBquick but it seeems the integration is not provided. It only gives, the transfer function for the configuration ($k_1$, $k_2$ and $\mu$). \\
+As Cyril suggested I'm gonna try SONG (contact Christian Fidler), but if I could not get a good result, I'm gonna integrate myself or I'll use Joyce code! If nothing has worked I'm gonna try to compare $\dot{\Phi}$ in Gadget! and compare with Gevolution!
+
+\section{Check the equations and Gevolution for $c_s^2 ->0$ and$ w ->0$  to get the matter behaviour and cross check with class!}
+Todo:  \\
+-Writing down the equaton in this limit, and compare with fluid approximated equations, if we get the same thing? \\
+-Plot $\delta_m$ in class versus $\delta_{kess}$ to check if we get the same behaviour! \\
+-Plot $\delta_m$ in the Gev versus $\delta_{kee}$ to check again! Run Gev with the relevant IC!\\
+- Add $\dot{\Phi}$ to $\Phi$ in redshift $z=100$ in class and check if we get the same in the redshift $z=50$ and the same thing in Gevolution as a check! \\
+-Get the field equation, why at linear order for w = $cs_2$ = 0 eq.2 and 3 of Domenico paper and Martin, why we get 0 evolution when $\pi$ and $\dot{\pi}$ is zero but in Domenico it is generated!! \\
+- Just check that in matter case for kessence we get sinsible results! Check that also in $\delta T_{0}^0$ we get good behaviour in first order perturbation theory!\\
+-Use Riess Sciama formula to get $P_{\dot{\Phi}}$ and compare it with class and Class! \\
+In the Gevolution for IC, we use $\pi_{class} \frac{H_{class}}{H_{gev}}$, so as an input we need to give $\pi$ and $\pi'$ from the class!  which is obtained by the output file!
+\subsection{Comparing the $\Psi'$ in Gevolution with Riess Sciama effect at redshift 50.}
+In matter dominated universe ${\Phi'}$ vanishes in linear order. Next order contribution would be,
+\be
+{\Phi'} = -\frac{3 H_0^2 }{2 k^2} {a'} \delta_2
+\ee
+where $\delta= a \delta_1 +a^2 \delta_2 $.
+\be
+\delta_2 (\vec{k}) = \int d^3 {q_1} \int d^3{q_2 } \;  \delta_D(\vec{k}-\vec{q_1}-\vec{q_2}) \;  F_2(\vec{q}_1 , \vec{q}_2)  \; \delta_1 (|\vec{q}_1|) \, \delta_1(|\vec{q}_2|)
+\ee
+\be
+F_2(\vec{q}_1,\vec{q}_2)= \frac{5}{7} + \frac{1}{2} \frac{\vec{q}_1 . \vec{q}_2}{q_1 q_2} \Big ( \frac{q_1}{q_2} + \frac{q_2}{q_1} \Big) + \frac{2}{7} \frac{(\vec{q}_1 .\vec{q}_2)}{q_1^2 q_2^2}
+\ee
+So we obtain,
+\be
+P_{{\Phi'} }=  \frac{9}{4} (\frac{H_0}{k} )^4 {a'}^2 \; P_{22}
+\ee
+\be
+P_{22} (k) = \int d^3 {q} P_{\delta} ({q}) P_{\delta} (|\vec{k}-\vec{q}|) \; F_2^2(\vec{q} , \vec{k} - \vec{q})
+\ee
+We  use the Growth factor,
+\be
+D^{+}= H(a) \frac{5 \Omega_m}{2} \int \frac{d \,a}{a^3 H(a)}
+\ee
+and physical Hubble ,
+\be
+H(a)=\sqrt{\Omega_m a^{-3} + (1-\Omega_m- \Omega_{\Lambda}-\Omega_{kess}) a^{-2}+ \Omega_{kess}^{-3(1+w)}+\Omega_{\Lambda}}
+\ee
+To make dimensionless quantity we have:
+\be
+P_{{\frac{\Phi'}{\mathcal{H}}} }=  \frac{9}{4} (\frac{H_0}{k} )^4 {a}^2 \; P_{22}
+\ee
+where $[  P_{{\frac{\Phi'}{\mathcal{H}}} }]=[P_{22}]= L^3$ and to make dimensionless powerspectrum we have $\mathcal{P}_{{\frac{\Phi'}{\mathcal{H}}} } = 2 \pi^2 k^3 P_{{\frac{\Phi'}{\mathcal{H}}} } $. \\
+What we are going to compare:
+\be
+\mathcal{P}_{\frac{\Phi'}{\mathcal{H}(a)}} (class)= \mathcal{R} ^2 \Big( \frac{\Phi'_{class}}{\mathcal{H}(a) \mathcal{R}} \Big)^2= A_s  \Big( \frac{k}{k_p} \Big)^{n_s-1} \; (\frac{\Phi'}{\mathcal{H} \mathcal{R}})^2
+\ee
+\be
+\mathcal{P}_{\Phi'/\mathcal{H}} (Gevolution) = \text{output}
+\ee
+\be
+P_{{\frac{\Phi'}{\mathcal{H}}} } (\text{Riess-Sciama})=  \frac{9}{4} (\frac{H_0}{k h} )^4 {a}^2 \; P_{22}
+\ee
+Since the unit of $P_{22}$ is $L^3/h^3$ to get dimensionless powerspectrum we have,
+\be
+\mathcal{P}_{{\frac{\Phi'}{\mathcal{H}}} } (\text{Riess-Sciama}) = k^3 P_{{\frac{\Phi'}{\mathcal{H}}} } (\text{Riess-Sciama}) /2 \pi^2
+\ee
+and $k=h/Mpc$
+\begin{figure}[H]
+ \includegraphics[scale=0.5]{compI.jpg} 
+ \end{figure}
+
+\subsection{Test of Gevolution when we add $\Psi' d\tau$ to $\Psi_{ini}$ to get the final value in class and Gevolution  }
+What we are going to do is comparing $\Phi(z=50)$ with $\Phi(z=90) + \Phi'(z=90) \times d \tau = \Phi(z=90) + \Phi'(z=90) \times \frac{1}{da /d\tau} \frac{da}{dz} dz = \Phi(z=90) - \Phi'(z=90)/\mathcal{H} \times a \Delta z $ and $\Phi'/\mathcal{H}$ is defined in the Gevolution!
+\begin{figure}[H]
+ \includegraphics[scale=0.5]{compII.jpg} 
+ \end{figure}
+\subsection{Class and Gevolution. results, $w \longrightarrow0$, $c_s^2 \longrightarrow0$: in theory,  both equations and $T_{\mu \nu}$ } 
+%\end{empheq}
+ \begin{align} 
+ &{ \pi''+\mathcal{H}(1- 3w) \pi' } +3 {  \mathcal{H}}\Big( -c_s^2+ {w} \Big )\Psi - \, {\Psi'}- 3 c_s^2  \,{\Phi'} + {
+ \Big( 3\mathcal{H}^2 (c_s^2 -w) + \mathcal{H}' (1-3c_s^2)\Big) \pi }
+           \nonumber
+   \\
+    &
+ - c_s^2 {\nabla^2 \pi} =0
+    % Second order terms==0
+  \end{align} 
+\begin{align}
+ & T_0^0 (Gev)=  \Omega^0_{kess} a^{-3 w}  \Bigg[1+ \frac{1+w}{c_s^2} \Big(- 3 \mathcal{H}c_s^2 \pi- \Psi+   {({\pi'}+ \mathcal{H} \pi) }    \Big )   \Bigg ]
+\nonumber \\ &
+T^{i}_{0}(Gev)= - \Omega^0_{kess} a^{-3 w} (1+w) \partial _i \pi 
+\nonumber \\ &
+T_{j}^{i}(Gev)= w  \, \Omega^0_{kess} a^{-3 w} \Bigg ( 1+  \frac{1+w}{w}\Big [ -3 \mathcal{H} w \pi- \Psi +   {({\pi'}+ \mathcal{H} \pi) }\Big] \delta_{j}^{i}   \Bigg) 
+\end{align}
+In the limit  $w = c_s^2 \rightarrow 0$, we end up with,
+\be
+\pi''+\mathcal{H}\pi'     -  {\Psi'} 
+ + \mathcal{H}'  \pi  = 0
+\ee
+Comparing with other results: like eq. B.22 of {\url{arXiv:1611.07966v2}} we see that in the limit of $w \rightarrow 0$ we have (according to the equation in the paper):
+\be
+\ddot{\pi}_{phys} - \dot{\Phi} =0
+\ee
+we know that in their notation $\Phi$ is our $\Psi$, moreover our equation is written for $\pi$ in constant conformal time hypersurfaces and the derivatives are taken based on conformal time! \\Applying the relation for $\pi_{phys}$ we have:
+\be
+\ddot{\pi}_{phys} = \frac{\mathcal{H} \pi_{c}' +\mathcal{H}' \pi_{c} + \pi_{c}'' }{a}
+\ee
+index "c" refers to conformal time! More over we have:
+\be
+\dot{\Phi}=\Phi'/a
+\ee
+So we recover our equation for this limit! \\
+It is noteworthy that we have checked the complete linear equation versus the result obtained by Filippo's paper and Iggi et. al paper!
+\begin{align}
+ & T_0^0 (Gev)=  \Omega^0_{kess}  \Bigg[1+ \frac{1}{c_s^2} \Big( -\Psi+   { ({\pi'}+ \mathcal{H} \pi) }\Big )   \Bigg ]
+\nonumber \\ &
+T^{i}_{0}(Gev)= - \Omega^0_{kess} \partial _i \pi 
+\nonumber \\ &
+T_{j}^{i}(Gev)=   \, \Omega^0_{kess}  \Bigg ( - \Psi +    ({\pi'}+ \mathcal{H} \pi)   \Bigg) 
+\end{align}
+According to the stress tensor in this limit we have,
+\be
+\delta= \frac{1}{c_s^2} \Big( -\Psi+   { ({\pi'}+ \mathcal{H} \pi) }\Big ) 
+\ee
+\be
+u_i=\partial _i \pi 
+\ee
+Which is basically the same as eq.3.12 of  {\url{arXiv:1611.07966v2}}! \\
+\subsection{Solving the equation:}
+Before solving the equation we can observe that:
+\be
+\pi'+\mathcal{H} \pi -\Psi \sim c_s^2 \partial^2 \Psi/ \mathcal{H}^2
+\ee
+or equivalently,
+\be
+\dot{\pi}_{phys} - \Psi  \sim c_s^2 \partial^2 \Psi/ {H}
+\ee
+To observe this relation it is better to look at the equation in terms of physical time which according to eq.3.9 of  {\url{arXiv:1611.07966v2}} is as following,
+\be
+\frac{1}{a^3 M_2^3} \frac{d}{dt} \Big[a^3 M_2^4 (\dot{\pi} -\Psi)\Big] = c_s^2 a^{-2} \partial^2 \pi 
+\ee
+Since we are in the limit $c_s^2 \rightarrow 0$ we expand the scalar field in terms of sound speed $\pi= \pi_0 + \pi_{,c_s^2} c_s^2$. Plugging into the equation we get,
+\be
+\pi_0 = \Psi
+\ee
+and 
+\be
+\frac{1}{a^3 M_2^3} \frac{d}{dt} \Big[a^3 M_2^4 (\dot{\pi_{,c_s^2}} )\Big]   a^{-2} \partial^2 \pi_0 \sim a^{-2} H ^{-1} \partial^2 \Psi
+\ee
+Where we have taken that time derivatives to be of order $H$ . So we have used $\pi_0 \sim H^{-1} \Psi$ and finally we have $ \pi_{,c_s^2} \sim  H ^{-1} \partial^2 \Psi $ which result in:
+\be
+\dot{\pi} -\Psi \sim c_s^2 \partial^2 \Psi /H^2
+\ee
+\subsection{How does it relate to fluid language?}
+First of all according to our observation we saw that $\dot{\pi} -\Psi \sim c_s^2 \partial^2 \Psi /H^2$, so actually the $\dot{\pi}$ plays the role of gravitational potential for us! But to confirm the relation we look at the fluid equations according to eq. 2 or eq. 9 of {\url{https://arxiv.org/abs/0909.0007v2}}. We start off continuity equation from Ma and Bertschinger paper {\url{https://arxiv.org/pdf/astro-ph/9506072.pdf}}
+\be
+\delta' = -(1+w) (\theta - 3 \Phi') - 3 \mathcal{H} \Big( \frac{\delta P}{\delta \rho} -w \Big ) \delta
+\ee
+which $'$ denotes the derivative with respect to conformal time! In the limit $w=0$ and also $c_s^2 \rightarrow 0$ we can rewrite the equation as following,
+\be
+\delta' = - (\theta - 3 \Phi')
+\ee
+Just using the the values of quantities for kessence case $\delta= \frac{1}{c_s^2} \Big( -\Psi+   { ({\pi'}+ \mathcal{H} \pi) } \Big ) $ and 
+$\theta = - \partial^2 \pi $. It is easy to see that we get $c_s^2 (\theta - 3 \Phi')$ in righthand side which goes away for small sound speeds and left hand side is actually what we are looking for,
+\be
+\delta'=\pi''+\mathcal{H}' \pi + \mathcal{H} \pi' - \Psi'=0
+\ee
+
+\subsection{Class and Gevolution. results, $w->0$, $c_s^2=10^{-16}$: results from the code} 
+We cannot set $w=0$ in the class, it should be negative! so we put it $10^{-16}$ and $c_s=10^{-8}$. \\
+The linear equation  is as following;
+
+
+\end{document}
+ 

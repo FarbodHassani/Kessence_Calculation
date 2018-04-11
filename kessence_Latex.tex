@@ -19,7 +19,7 @@
 \usepackage{enumitem} 
 \usepackage{listings}
 \usepackage{amsmath}
-\usepackage{graphicx}% Use pdf, png, jpg, or epså¤ with pdflatex; use eps in DVI mode
+\usepackage{graphicx}% Use pdf, png, jpg, or epsï¿½ï¿½ with pdflatex; use eps in DVI mode
 \usepackage{caption}
 \usepackage{subcaption}
           % List formatting commands
@@ -133,8 +133,8 @@
 
 \newtcbox{\mymath}[1][]{%
     nobeforeafter, math upper, tcbox raise base,
-    enhanced, colframe=yellow!30!black,
-    colback=yellow!30, boxrule=1pt,
+    enhanced, colframe=yellow!35!black,
+    colback=yellow!35, boxrule=1pt,
     #1}
 
 \begin{document}
@@ -152,15 +152,19 @@
    -vector elliptic, The difference between vector elliptic and parabolic?\\
   - $\mathcal{H}'$  in the code?! does $(\mathcal{H}^{(n+1)}-\mathcal{H}^{n})/d\tau$ makes sense? \\
  - Why in Gevolution source, $\Phi$ and $\chi$ has the same name in Fourier space? "scalarFT"? \\
- -According to the equation of 120, we need to have two mode $k$ and $k'$ in Fourier space to solve the field equation?! How we should solve it?!
+ -According to the equation of 120, we need to have two mode $k$ and $k'$ in Fourier space to solve the field equation?! How we should solve it?! \\
+ Why in Gecolution in icbasic, $\sqrt{2}$ is missed and multiplied to "-"?
+ - To agree with hiclass (sign agreement) we consider $-\theta$ as an output of class?!
+ 
   \section{Todo:}
   - Check stress tensor turning on vector elliptic, what is vector elliptic...? \\
   - Implement the IC for $\pi'$ in Gevolution. \\
   - The IC from hi-class, do some checks to find where it goes crazy! \\
   - Write down the full field update equation in theory and implement in the code and track the transfer function!\\
   {\color{red}{\text{Todo:}
-The updating metric/ particles in the sub steps of field update.
-}}
+The updating metric/ particles in the sub steps of field update. }}\\
+Since $\pi$ is dimensionful, we need to conver from class or hiclass unit to GEvolution by multiplying and dividing by $H_0$, try to do it automatically from hiclass!!!
+
 \section{Energy momentum tensor} 
 The most general action for a scalar field coupled to Einstein gravity is;
 \be
@@ -245,6 +249,10 @@ P\left(\varphi_0( \tau+\pi)={\varphi_0}+ {{\varphi_0}}' \pi,\overline{X}+ \delta
 +
 \dfrac {\partial\overline {P}}{\partial\overline {X}}\delta X_1+\dfrac {1}{2}\dfrac {\partial P}{\partial X^{2}}\delta X_1^{2}+\dfrac {\partial^2 P}{\partial X \partial \varphi_0}\delta X_1 \pi +\dfrac {1}{2}\dfrac {\partial P}{\partial X^{2}}\delta X_2 + \mathcal{O}(\epsilon^3).
 \ee
+\\
+{\color{red} Note that here $\pi$ is perturbation in $\tau$ conformal time which is in the conformal time unit! To obtain the perturbation in physical time we have $\pi_{\text{physical time}} = a \, \pi _{\text{conformal time}}$. \\
+Actually it is not necessary to do such a transformation but it is important to be consistent since the field equation is for $\pi$ perturbation in physical time while here it is in conformal time. These two quantities are not the same, so we get wrong equations. As a result we take $\pi$ as perturbation for physical time $t+ \pi(t,\vec{x})$ and for stress tensor part we scale all $\pi$ at the end.
+ }
 %The term $\dfrac {\partial\overline {P}}{\partial \tau}$ becomes  $\dfrac {\partial\overline {P}}{\partial \tau}=\dfrac {\partial\overline {P}}{\partial  {\varphi}} \dfrac{\partial {\varphi}}{\partial \tau}+ \dfrac {\partial\overline {P}}{\partial  {X}} \dfrac{\partial {X}}{\partial \tau} =P_{,\varphi} \dot{\bar{\varphi}} + \bar{P}_{\bar{X}}$. Because $\varphi$ and $\partial_{\mu} \varphi$ are independent variables not function of $\tau$. \\
 The adiabatic sound speed ({\color{red}why?!}) is defined as below,
 \be
@@ -448,10 +456,19 @@ a^2 \bar{P}  (1+\frac{1}{w}) ] \epsilon ^0
 \end{align}
 Where we have used \ref{Pbarder} and \ref{Pbar}.
 Finaly the $T_{00}$ component is;
-\begin{empheq}[box=\mymath ]{equation*}
+%\begin{empheq}[box=\mymath ]{equation*}
 \begin{align}
 T_{00}=  
 3 M_{pl}^2   \mathcal{H}^2\Omega \Bigg[  1+(2 \frac{\mathcal{H}'}{\mathcal{H}}+ \frac{\Omega'}{\Omega} + 2 \mathcal{H} w ) \pi+ \Psi \Big (2 - \frac{1+w}{c_s^2}  \Big ) + {\pi'} \Big ( \frac{1+w}{c_s^2}   \Big)  -  \frac{(\vec{\nabla} \pi)^2}{2}   \Big ( (1+w) (\frac{1}{c_s^2}- 2 )  \Big )
+ \Bigg]+  \mathcal {O}(\epsilon^{2}) 
+\end{align}
+%\end{empheq}
+If we convert the $\pi$ to be the perturbation in constant physical time hypersurfaces (not constant conformal time) we get,
+$\pi_{phys}= \pi_{conf}$
+\begin{empheq}[box=\mymath ]{equation*}
+\begin{align}
+T_{00}=  
+3 M_{pl}^2   \mathcal{H}^2\Omega \Bigg[  1+(2 \frac{\mathcal{H}'}{\mathcal{H}}+ \frac{\Omega'}{\Omega} + 2 \mathcal{H} w ) a \, \pi+  \Psi \Big (2 - \frac{1+w}{c_s^2}  \Big ) + a{\pi'} \Big ( \frac{1+w}{c_s^2}   \Big)  -  a^2 \frac{(\vec{\nabla} \pi)^2}{2}   \Big ( (1+w) (\frac{1}{c_s^2}- 2 )  \Big )
  \Bigg]+  \mathcal {O}(\epsilon^{2}) 
 \end{align}
 \end{empheq}
@@ -894,7 +911,9 @@ so we can write,
 \be
  \frac{{\bar{\rho'}}}{\bar{\rho}}= -3 (1+w) \mathcal{H}
  \ee
-First we compare  $\frac{(\delta_{Newt} - \delta_{Syn})}{-3 (1+w) \mathcal{H}}$ with $\alpha$ that we read from the hi-class. Note that according to the code units $\mathcal{H}(z=0)=H(z=0)=2.25 \times10^{-4} /Mpc $. In the below figure we have compared the $\alpha$ in hi-class with what we get from the calculation in the class. These two quantities agree well.
+First we compare  $\frac{(\delta_{Newt} - \delta_{Syn})}{-3 (1+w) \mathcal{H}}$ with $\alpha$ that we read from the hi-class. Note that according to the code units $\mathcal{H}(z=0)=H(z=0)=2.25 \times10^{-4} /Mpc $. 
+\\
+ In the below figure we have compared the $\alpha$ in hi-class with what we get from the calculation in the class. These two quantities agree well.
 \begin{figure}[H]
 \begin{center}
 \captionsetup{,margin=1cm}
@@ -1049,6 +1068,39 @@ If we turn off the following part we get completely different solution for the f
 \begin{lstlisting}
 plan_pi_k->execute(FFT_FORWARD); 
 \end{lstlisting}
+\subsection{Gevolution initial field factors from initial condition to output power }
+When we give the field transfer function as an initial condition in Gevolution, since in class it is normalized to $\mathcal{R}$ curvature perturbation, first we need to multiply to $\sqrt{P_{\mathcal{R}}}$. On the other hand we need to notice to the units of $k$ in input initial condition and what Gevolution work with internally. \\
+What happens in the $icbasic.hpp$,
+\be
+\pi_{gev} = -\sqrt{2} \times \pi_{numb} \; \; \;\frac{ \pi_{class} \sqrt{\mathcal{P}_{\mathcal{R}}(k/ \text{Boxsize})  }} {k[h/Mpc]^{3/2}}
+\ee
+Note that the factor $\sqrt{2}$ in the above definition is missed in Gevolution! Actually it is recovered in the output power for other variables. So we keep the convention and use the below formula,
+\be
+\pi_{gev} = - \pi_{numb} \; \; \;\frac{ \pi_{class} \sqrt{\mathcal{P}_{\mathcal{R}}(k/ \text{Boxsize})  }} {k[h/Mpc]^{3/2}}
+\ee
+{\color{red} What is the negative sign here?}
+\\
+Where $\mathcal{P}_{\mathcal{R}}=A_s (\frac{k}{k_p})^{n_s-1}$ in the code internally, $k_p$ is in the unit of $1/Mpc$ and $\mathcal{P}_{\mathcal{R}}$ is dimensionless.
+and $\pi_{numb}$ $\pi$ number. \\
+In order to know why we divide by $k[h/Mpc]^{3/2}$ we need to look at other part of the code to get what happens...\\
+Boxsize in gevolution is $Mpc/h$. So its better to give k in class in $h/Mpc$.
+\be
+k_{gev}= k_{class} [h/Mpc] \text{Boxsize}[Mpc/h]
+\ee
+So k when it is read out is dimensionless, equivalently it is in comoving box. \\
+Moreover the quantities in class and hiclass are normalized to dimensionful curvature perturbation so the coefficient in Gevolution is,
+\be
+\delta_{\mathcal{R}}(k)= \frac{\sqrt{2 \pi^2 A_s(\frac{k}{k_p})^{n_s-1}}}{k^{3/2}}
+\ee
+More over it is very important to note that since $\pi$ in class has dimension $Mpc$ is not enough to divide by Boxsize in Gevolution since it is actually in the unit of $1/H$ where in Gevolution it is divided by c light velocity. To make it consistent we do $\pi \mathcal{H}_{class}/\mathcal{H}_{Gev}$ since $\pi \mathcal{H}_{class}$ is dimensionless in class and we make it in time dimension in Gevolution by dividing to $\mathcal{H}_{Gev}$
+\\
+\subsection{writePowerSpectrum}
+Now we want to extract writePowerSpectrum function where the coefficients are very important. \\
+First of all  we have k which is in unit of boxsize must divided by boxsize to give $h/Mpc$ unit. Unit conversion for P (power) depends on the quantity but $\frac{1}{N_{points}^6 \times 2 \pi^2}$ is common. $N_{points}^6$ comes from FFT definition, $2 \pi^2$. \\
+{\color{red} Here everything is so confusing! I do not know why $\sqrt{2}$ in the definition of $\delta_{\mathcal{R}}$ is missed, I also do not know why at the end it is not multiplied to $\frac{k^3}{2 \pi ^2}$, also negative sign in the definitions!!! it seems that  something is done internally that I cannot track well!!!}. \\
+What I'm doing is following the same notation and then check what is going on and do some consistency checks!!
+
+
  \subsection{Stress tensor}
 { \color{red}{ Todo: How to add stress tensor?}} \\
 Should  
@@ -1082,6 +1134,10 @@ template <class FieldType>
 \label{comparehi-gev}
 \end{center}
 \end{figure}
+ Note that to get $H0$ in class unit, we have $H0=\frac{100h \times 10^3}{3 \times 10^8} [1/Mpc]$ where the first $10^3$ is because of $km/s$ and is divided by c. \\
+ It is also important to note that, to obtain $\pi$ from $\delta $ and $\theta$ in class, because we have $H \pi_{phys}$ combination and since it is dimensionless we have $\mathcal{H} \pi_{conf} = H \pi_{phys}$. \\
+ Also $\theta=-\nabla^2 \pi_{conf}=-\nabla^2 \pi_{phy}/a^2$ and negative sign is the convention. \\
+ In Gevolution $H_{0}=\sqrt{8 \pi G/3}$ since $\rho_{crit}^0=1$ and also note that we have $4 \pi G= \frac{3 \text{Boxsize}^2}{2 c^2}$, in order for working with normal numbers internally, and $c[100km/s]$ in the code.
  
  \section{K-essence field equation from EFT action}
 Here we use the second order EFT action and vary it with respect to the field and we obtain the equations with leading order post Newtonian corrections, \\
@@ -1276,6 +1332,11 @@ In this language the Friedman equations are,
 \be
 3{H}^2 M_{pl}^2= \rho_m + \rho_{scf}
 \ee
+Note that in Gevolution we have,
+\be
+\mathcal{H}^2=\frac{8 \pi G}{3} (\Omega_m a^{-3} +\Omega_{rad} a^{-4} +\Omega_{kess} a^{-3(1+w)} +\Omega_L a^{0} ) \times a^2
+\ee
+Where the critical density in here assumed 1, ie. $H_0^2=\mathcal{H}_0^2=\frac{8 \pi G}{3}$
 and 
 \begin{align}
 &\frac{\ddot{a}}{a} = - \frac{1}{6M^2_{pl}} \left (\rho_{tot} +3 P_{tot}\right ) \\ \nonumber &
@@ -1419,20 +1480,34 @@ So the equation \ref{fineq} becomes,
   \end{align} 
 \end{empheq}
  \section{Numerical solution to the k-essence equation and stress tensors in Gevolution }
-In Gevolution we should use $3 M^2_{pl}= 1/8 \pi G$.\\
+In Gevolution we should use $ M^2_{pl}= 1/8 \pi G$.\\
 %And it seems the normalization factor is $-3 \mathcal{H}_0^2T_0^0/8\pi G$ \\
 So we have:
-\begin{empheq}[box=\mymath]{equation}
+%\begin{empheq}[box=\mymath]{equation}
 \begin{align}
- & T_0^0 (Gev)=-a^3 {T_{0}^{0}}=   {3 a M_{pl}^2   \mathcal{H}^2\Omega} \Bigg[1+ \frac{1+w}{c_s^2} \Big(- 3 \mathcal{H}c_s^2 \pi- \Psi+   {\pi'}  -  \Big(1-2 c_s^2 \Big) 
+ & T_0^0 (Gev)=-a^3 {T_{0}^{0}}=   {3 a M_{pl}^2   \mathcal{H}^2\Omega} \Bigg[1+ \frac{1+w}{c_s^2} \Big(- 3 \mathcal{H}c_s^2 \pi- \Psi+ a  {\pi'}  -  \Big(1-2 c_s^2 \Big) 
  \frac{(\vec{\nabla} \pi)^2}{2} \Big )   \Bigg ]
 \nonumber \\ &
 T^{i}_{0}(Gev)= {3 a M_{pl}^2   \mathcal{H}^2\Omega} \Big[1+ \pi' +(\frac{1}{c_s^2} -1) \Big(-\Psi +\pi' - \frac{(\vec{\nabla} \pi)^2}{2}  \Big ) \Big ] \partial _i \pi 
 \nonumber \\ &
 T_{j}^{i}(Gev)= a^3 T_j^i = {3 a M_{pl}^2   \mathcal{H}^2\Omega w} \Bigg ( 1+  \frac{1+w}{w}\Big [ -3 \mathcal{H} w \pi- \Psi + \pi' +  \frac{(\vec{\nabla} \pi)^2}{2}   \Big] \delta_{j}^{i}  + \frac{1+w}{w} \delta^{i k} \partial_k \pi \partial_j \pi  \Bigg) 
 \end{align}
-\end{empheq}
+%\end{empheq}
 Note that $\dot{H}$ is determined by all the matter contents of the universe not by k-essence alone, the continuity equation for k-essence or matter gives the dynamics of density. \\
+About the unit of $T^0_0$ note that it is $\bar{\rho}_{kessence} [1+\delta \rho/\bar{\rho} ]$ and since in Gevolution it is multiplied to $-a^3$ and since critical density at redshift zero is 1 so we have\\
+\begin{empheq}[box=\mymath]{equation}
+\begin{align}
+ & T_0^0 (Gev)=  \Omega^0_{kess} a^{-3 w}  \Bigg[1+ \frac{1+w}{c_s^2} \Big(- 3 \mathcal{H}c_s^2 \pi- \Psi+ a  {\pi'}  -  \Big(1-2 c_s^2 \Big) 
+ \frac{(\vec{\nabla} \pi)^2}{2} \Big )   \Bigg ]
+\nonumber \\ &
+T^{i}_{0}(Gev)=  \Omega^0_{kess} a^{-3 w} \Big[1+ \pi' +(\frac{1}{c_s^2} -1) \Big(-\Psi + a \pi' - \frac{(\vec{\nabla} \pi)^2}{2}  \Big ) \Big ] \partial _i \pi 
+\nonumber \\ &
+T_{j}^{i}(Gev)=  \Omega^0_{kess} a^{-3 w} \Bigg ( 1+  \frac{1+w}{w}\Big [ -3 \mathcal{H} w \pi- \Psi + a \pi' +  \frac{(\vec{\nabla} \pi)^2}{2}   \Big] \delta_{j}^{i}  + \frac{1+w}{w} \delta^{i k} \partial_k \pi \partial_j \pi  \Bigg) 
+\end{align}
+\end{empheq}
+In Gevolution we extract $\delta T_0^0/ \bar{T}_0^0$ which scales out the coefficient $\Omega^0_{kess} a^{-3 w} $.
+
+
 The field equation is:
 % \begin{align} 
 % &\pi'' - \mathcal{H} \Big (1+ 3w \Big)\pi' -3 {a c_s^2 \mathcal{H}}\Big( 1- \frac{w}{c_s^2} \Big )\Psi -a \, {\Psi'}- 3 c_s^2 a \,{\Phi'} 
@@ -1573,6 +1648,10 @@ else
 		pi_v_k.updateHalo();
 	}
 }
+\section{Notes_Class}
+It is important that we need large bound of wavenumbers. So we set it by $k_scalar_k_per_decade_for_pk$ in the class to get more number of wavenumbers. \\
+Moreover notice that the initial file for inputing to Gevolution the wavenumber is in $1/Mpc$ unit, so in Gevolution we must notice this fact and take it into account actually in Gevolution we need to multiply to $h/Sizebox$ which is done already.
+%
 \end{lstlisting}
 %\be
 % \ddot{\pi} ^{n} =- \frac{\nabla^2 \pi}{a^2} + \ddot{\pi} +3   \dot{\Phi} -\frac{(3 H^2+2 \dot{H}) (1+3 w) }{H (1+w)}  \Phi  - 2 H \dot{\pi} +  \frac{ 6H w}{ 1+w} \Psi 
